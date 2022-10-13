@@ -138,7 +138,7 @@ body {
   align-items: center;
 }
 
-.no_account > button {
+.no_account > a {
   background: none;
   border: none;
   color: rgba(170, 199, 113, 1);
@@ -146,6 +146,7 @@ body {
   padding: 0.3rem;
   font-size: 1.2rem;
   cursor: pointer;
+  text-decoration: none;
 }
 @media screen and (min-width: 768px) {
   .grid--1x2 {
@@ -188,7 +189,7 @@ body {
     margin-top: 4rem;
   }
 
-  .no_account > button {
+  .no_account > a {
     font-size: 4.2rem;
     margin-left: 1rem;
   }
