@@ -5,6 +5,7 @@ const url =
 const client = new MongoClient(url, { useUnifiedTopology: true });
 const db = client.db("QuizStart");
 const users = db.collection("users");
+const testing = db.collection("test");
 
 async function registerUser(userData) {
   await client.connect();
@@ -19,6 +20,20 @@ async function registerUser(userData) {
   }
 }
 
+async function testData(data){
+  await client.connect();
+  try{
+    await testing.insertOne(data);
+    return 200;
+  } catch (error){
+    console.log(error)
+    return 400
+  } finally {
+    client.close()
+  }
+}
+
 module.exports = {
   registerUser,
+  testData,
 };
