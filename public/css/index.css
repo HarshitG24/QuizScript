@@ -157,17 +157,39 @@ body {
   }
 
   .input {
-    height: 12rem;
+    height: 8rem;
     font-size: 3.5rem;
-    padding-left: 2rem;
+    padding: 5rem;
   }
 
   .input_label {
     left: 210px;
-    font-size: 3.5rem;
+    font-size: 3rem;
+    margin-top: 2.5%;
+  }
+
+  .input:focus + .input_label,
+  .input:valid + .input_label {
+    transform: translate(6%, -100%) scale(0.8);
+    color: #d1c5fc;
+    padding-inline: 5px;
+    background-color: #242329;
+  }
+
+  .login_btn {
+    width: 35%;
+    height: 9%;
+    font-size: 3rem;
+    margin-top: 8rem;
   }
 
   .no_account {
     font-size: 4rem;
+    margin-top: 4rem;
+  }
+
+  .no_account > button {
+    font-size: 4.2rem;
+    margin-left: 1rem;
   }
 }
