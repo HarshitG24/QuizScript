@@ -116,6 +116,18 @@ body {
   outline-color: #d1c5fc;
 }
 
+.login_btn {
+  margin-top: 2rem;
+  width: 50%;
+  height: 20%;
+  background: transparent;
+  color: var(--white-color);
+  border: 2px solid var(--white-color);
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 /* New Account Registration */
 .no_account {
   display: flex;
@@ -128,13 +140,34 @@ body {
 
 .no_account > button {
   background: none;
-  border: 2px solid var(--white-color);
-  color: white;
-  margin-left: 0.5rem;
+  border: none;
+  color: rgba(170, 199, 113, 1);
+  margin-left: 0.01rem;
   padding: 0.3rem;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .grid--1x2 {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .input_group {
+    margin-top: 8rem;
+  }
+
+  .input {
+    height: 12rem;
+    font-size: 3.5rem;
+    padding-left: 2rem;
+  }
+
+  .input_label {
+    left: 210px;
+    font-size: 3.5rem;
+  }
+
+  .no_account {
+    font-size: 4rem;
   }
 }
