@@ -15,7 +15,9 @@ async function login(userData) {
         password: userData.password,
       })
       .toArray();
-    return user.length > 0 ? 200 : 400;
+
+    console.log("user is", user);
+    return user.length > 0 ? 200 : 500;
   } catch (error) {
     console.log(error);
     return 400;

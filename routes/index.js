@@ -10,7 +10,7 @@ router.get("/", function (req, res) {
 // Api calls
 router.post("/login", async (req, res) => {
   const resp = await db.login(req?.body || {});
-  res.send({ status: resp });
+  res.status(resp).send();
 });
 
 module.exports = router;
