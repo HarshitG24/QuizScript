@@ -3,7 +3,7 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const createBtn = document.getElementById("create");
 
-createBtn.addEventListener("click", () => {
+createBtn.addEventListener("click", async () => {
   let newUser = {
     fullName: fname?.value || "",
     email: email?.value || "",
@@ -22,5 +22,10 @@ createBtn.addEventListener("click", () => {
     body: JSON.stringify(newUser),
   };
 
-  fetch("/newuser/createUser", opts);
+  const resp = await fetch("/newuser/createUser", opts);
+  if (resp.status == 200 && resp.statusText == "OK") {
+    alert("Successfully created account");
+  } else {
+    alert("error creating account");
+  }
 });
