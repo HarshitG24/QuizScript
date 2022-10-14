@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel = "stylesheet" href = "./css/normalize.css" />
-    <link rel = "stylesheet" href = "./css/categories.css" />
-</head>
-<body>
-    
-        <header>
-            <nav class = "navbar">
-                <div class = "app_title">
-                    QuizScript
-                    
-
-                </div>
-                <a href="/" class="toggle_button">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                  </a>
-                <div class = "navbar_links">
-                    <ul>
-                        <li>Dashboard</li>
-                        <li>Sign Out</li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <p class="page_title">Categories</p>
-
-        <div>
-            <div class = "project_grid">
-                <div class = "my_project" onmouseover="change()" onmouseout="revert()">
-                    <img src = "/assests/ml.jpeg" alt = "ml image" class = "category_image"/>
-                    <div class = "category_parent">
-                    <p class = "category_name">Machine Learning</p>
-                    </div>
-                    <div class = "category_details">
-                        <p class = "category_description">
-                            Test your skills on machine learning
-                        </p>
-                    </div>
-                    <div class = "buttons">
-                        <ul>
-                            <li><button>Single Test</button></li>
-                            <li><button> Multiplayer Test</button></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/categories.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="app_title">QuizScript</div>
+        <a href="/" class="toggle_button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar_links">
+          <ul>
+            <li>Dashboard</li>
+            <li>Sign Out</li>
+          </ul>
         </div>
-    <script src = "./scripts/categories.js"></script>
-</body>
+      </nav>
+    </header>
+
+    <p class="page_title">Categories</p>
+
+    <div>
+      <div class="project_grid">
+        <div class="my_project" onmouseover="change()" onmouseout="revert()">
+          <img src="assests/ml.jpeg" alt="ml image" class="category_image" />
+          <div class="category_parent">
+            <p class="category_name">Machine Learning</p>
+          </div>
+          <div class="category_details">
+            <p class="category_description">
+              Test your skills on machine learning
+            </p>
+          </div>
+          <div class="buttons">
+            <ul>
+              <li><button>Single Test</button></li>
+              <li><button>Multiplayer Test</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/categories.js"></script>
+  </body>
 </html>
