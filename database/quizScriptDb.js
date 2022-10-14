@@ -6,11 +6,16 @@ const client = new MongoClient(url, { useUnifiedTopology: true });
 const db = client.db("QuizStart");
 const users = db.collection("users");
 
-async function registerUser(userData) {
+async function login(userData) {
   await client.connect();
   try {
-    await users.insertOne(userData);
-    return 200;
+    const user = await users
+      .find({
+        email: userData.email,
+        password: userData.password,
+      })
+      .toArray();
+    return user.length > 0 ? 200 : 400;
   } catch (error) {
     console.log(error);
     return 400;
@@ -33,6 +38,6 @@ async function createUser(userData) {
 }
 
 module.exports = {
-  registerUser,
+  login,
   createUser,
 };
