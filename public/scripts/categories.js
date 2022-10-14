@@ -3,6 +3,7 @@ const buttons = document.querySelector(".buttons")
 const img = document.querySelector(".category_image")
 const cat_parent = document.querySelector(".category_parent")
 const cat_details = document.querySelector(".category_details")
+
 function change () {
     console.log("worked")
     img.style.webkitFilter = "blur(8px)";

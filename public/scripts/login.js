@@ -1,20 +1,33 @@
-//const button = document.getElementById("clickme");
-const button2 = document.getElementById("clicked");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const btn = document.getElementById("clickme");
 
+btn.addEventListener("click", async () => {
+  console.log("login btn ");
+  let user = {
+    email: email?.value || "",
+    password: password?.value || "",
+  };
 
-// button.addEventListener("click", () => {
-//   console.log("btn click");
-//   fetch("/hello")
-//     .then((resp) => resp.json())
-//     .then((data) => console.log(data));
-// });
+  email.value = "";
+  password.value = "";
 
+  const headers = new Headers({ "Content-Type": "application/json" });
 
+  const opts = {
+    method: "post",
+    headers: headers,
+    body: JSON.stringify(user),
+  };
 
-
-button2.addEventListener("click", () =>{
-  console.log("btn click")
-  fetch("/homepage/hello")
-  .then((resp) => resp.json())
-  .then((data) => console.log(data))
-})
+  try {
+    const resp = await fetch("/login", opts);
+    if (resp.status == 200 && resp.statusText == "OK") {
+      alert("Successfully logged in");
+    } else {
+      alert("Please check your credentials");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});

@@ -7,7 +7,27 @@ const db = client.db("QuizStart");
 const users = db.collection("users");
 const testing = db.collection("test");
 
-async function registerUser(userData) {
+async function login(userData) {
+  await client.connect();
+  try {
+    const user = await users
+      .find({
+        email: userData.email,
+        password: userData.password,
+      })
+      .toArray();
+
+    console.log("user is", user);
+    return user.length > 0 ? 200 : 500;
+  } catch (error) {
+    console.log(error);
+    return 400;
+  } finally {
+    client.close();
+  }
+}
+
+async function createUser(userData) {
   await client.connect();
   try {
     await users.insertOne(userData);
@@ -34,6 +54,6 @@ async function testData(data){
 }
 
 module.exports = {
-  registerUser,
-  testData,
+  login,
+  createUser,
 };

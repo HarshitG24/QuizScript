@@ -8,9 +8,9 @@ router.get("/", function (req, res) {
 });
 
 // Api calls
-router.get("/hello", async (req, res) => {
-  const resp = await db.registerUser({ name: "Hello Mihir" });
-  res.send({ status: resp });
+router.post("/login", async (req, res) => {
+  const resp = await db.login(req?.body || {});
+  res.status(resp).send();
 });
 
 module.exports = router;
