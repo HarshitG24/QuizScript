@@ -4,6 +4,7 @@ const expressLayouts = require("express-ejs-layouts");
 
 const indexRouter = require("./routes/index");
 const newUserRouter = require("./routes/newuser");
+const addCategories = require("./routes/categories");
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
@@ -14,5 +15,6 @@ app.use(express.json());
 
 app.use("/", indexRouter);
 app.use("/newuser", newUserRouter);
+app.use("/categories",addCategories);
 
 app.listen(process.env.PORT || 3000);

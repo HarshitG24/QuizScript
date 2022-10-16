@@ -3,6 +3,7 @@ const buttons = document.querySelector(".buttons")
 const img = document.querySelector(".category_image")
 const cat_parent = document.querySelector(".category_parent")
 const cat_details = document.querySelector(".category_details")
+const button = document.querySelector(".create")
 
 function change () {
     console.log("worked")
@@ -17,4 +18,24 @@ function revert(){
     cat_details.style.webkitFilter = "none"
     buttons.style.display = "none"
 }
+
+button.addEventListener("click", async() => {
+    let categories = {
+        category_name: "",
+        category_data: "",
+    }
+    
+    const headers = new Headers({ "Content-Type": "application/json" });
+    const opts = {
+        method: "post",
+        headers: headers,
+        body: JSON.stringify(categories),
+      };
+    
+    
+    const resp =  await fetch("/categories/createCategories",opts)
+
+
+})
+    
 
