@@ -10,6 +10,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   background: rgb(170, 199, 113);
   background: linear-gradient(
