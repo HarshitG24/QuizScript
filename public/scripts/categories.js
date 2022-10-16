@@ -6,6 +6,30 @@ const cat_details = document.querySelector(".category_details");
 const button = document.querySelector(".create");
 const multiplayer = document.getElementById("multiplayer_quiz");
 
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const closeButton = document.querySelector(".close-button");
+
+const myGameCode = document.getElementById("generated_game_code");
+const enteredGameCode = document.getElementById("entered_game_code");
+
+function toggleModal() {
+  modal.classList.toggle("show-modal");
+  if (modal.classList.contains("show-modal")) {
+    myGameCode.innerText = `${generateUserGameCode()}`;
+  }
+}
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+    toggleModal();
+  }
+}
+
+trigger.addEventListener("click", toggleModal);
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
+
 function change() {
   img.style.webkitFilter = "blur(8px)";
   cat_parent.style.webkitFilter = "blur(8px)";
@@ -38,3 +62,7 @@ function revert() {
 multiplayer.addEventListener("click", () => {
   console.log("quiz button clicked");
 });
+
+function generateUserGameCode() {
+  return Math.floor(1000 + Math.random() * 9000);
+}

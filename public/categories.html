@@ -43,14 +43,34 @@
                     <div class = "buttons">
                         <ul>
                             <li><button>Single Test</button></li>
-                            <li><a id="multiplayer_quiz" href="./mulquiz.html"> Multiplayer Test</a></li>
+                            <li><a id="multiplayer_quiz" class="trigger"> Multiplayer Test</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+
             <div>
-                <button id="create" class="create_account">Add data</button>
+              <!-- <button class="trigger">Click here to trigger the modal!</button> -->
+              <div class="modal">
+                  <div class="modal-content">
+                      <span class="close-button">&times;</span>
+                      <div class="model_data">
+                        <p>Game Code:</p>
+                        <p id="generated_game_code">1234</p>
+                      </div>
+
+                      <p>OR</p>
+
+                      <div>
+                        <input id="entered_game_code" type="text">
+                        <a href="">
+                          <p>Start Game</p>
+                        </a>
+                      </div>
+                  </div>
               </div>
+            </div>
+
         </div>
       </div>
     </div>
