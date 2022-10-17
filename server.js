@@ -4,6 +4,7 @@ const app = express();
 const http = require("http").Server(app);
 // const server = http.createServer(app);
 const io = require("socket.io")(http);
+const game = require(__dirname + "/controller/game.js");
 
 const indexRouter = require("./routes/index");
 const newUserRouter = require("./routes/newuser");
@@ -22,6 +23,7 @@ app.use("/categories", addCategories);
 
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
+  game.handle(socket);
 });
 
 // app.listen(process.env.PORT || 3000);
