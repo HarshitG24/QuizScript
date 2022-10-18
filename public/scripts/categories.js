@@ -22,7 +22,8 @@ function revert(){
 button.addEventListener("click", async() => {
     let categories = {
         category_name: "",
-        category_data: "",
+        category_description: "",
+        category_image:""
     }
     
     const headers = new Headers({ "Content-Type": "application/json" });
