@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const multiplayer_quiz = document.getElementById("multiplayer_quiz");
   const myGameCode = document.getElementById("generated_game_code");
+  const start_game = document.getElementById("start_game");
 
   multiplayer_quiz.addEventListener("click", () => {
     socket.emit("new player", myGameCode);
@@ -20,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (hasGameStarted()) {
       let active = players.find((player) => player.active == true);
       console.log(active.name + " is active");
+    }
+
+    if (players.length == 2) {
+      start_game.click();
     }
   });
 });
