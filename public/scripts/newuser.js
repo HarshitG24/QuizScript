@@ -24,7 +24,9 @@ createBtn.addEventListener("click", async () => {
 
   const resp = await fetch("/newuser/createUser", opts);
   if (resp.status == 200 && resp.statusText == "OK") {
-    alert("Successfully created account");
+    // alert("Successfully created account");
+    // alert("Successfully logged in");
+    window.location.replace("/categories.html");
   } else {
     alert("error creating account");
   }

@@ -23,7 +23,8 @@ btn.addEventListener("click", async () => {
   try {
     const resp = await fetch("/login", opts);
     if (resp.status == 200 && resp.statusText == "OK") {
-      alert("Successfully logged in");
+      // alert("Successfully logged in");
+      window.location.replace("/categories.html");
     } else {
       alert("Please check your credentials");
     }

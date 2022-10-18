@@ -3,8 +3,8 @@ const app = express();
 // const expressLayouts = require("express-ejs-layouts");
 const http = require("http").Server(app);
 // const server = http.createServer(app);
-//const io = require("socket.io")(http);
-//const game = require(__dirname + "/controller/game.js");
+const io = require("socket.io")(http);
+const game = require(__dirname + "/controller/game.js");
 
 const indexRouter = require("./routes/index");
 const newUserRouter = require("./routes/newuser");
@@ -21,10 +21,10 @@ app.use("/", indexRouter);
 app.use("/newuser", newUserRouter);
 app.use("/categories", addCategories);
 
-//io.on("connection", (socket) => {
-  //console.log("a user connected", socket.id);
-  //game.handle(socket);
-//});
+io.on("connection", (socket) => {
+  console.log("a user connected", socket.id);
+  game.handle(socket);
+});
 
-app.listen(process.env.PORT || 3000);
-// http.listen(process.env.PORT || 3000);
+// app.listen(process.env.PORT || 3000);
+http.listen(process.env.PORT || 3000);

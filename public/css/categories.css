@@ -1,25 +1,176 @@
 /* navbar */
 :root {
-    --black-color: rgb(3, 3, 3);
-  }
+  --black-color: rgb(3, 3, 3);
+}
+
+/* html {
+  font-size: 62.5%;
+} */
 .navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background : skyblue;
-    position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: skyblue;
+  position: sticky;
 }
 
 .app_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  margin: 0.5rem;
+}
+
+.navbar_links {
+  padding-right: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.navbar_links ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar_links ul li {
+  list-style: none;
+  font-size: 1.2rem;
+  margin-left: 2.5rem;
+  color: white;
+}
+
+.toggle_button {
+  position: absolute;
+  top: 3.5%;
+  /* 2.7rem */
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+.toggle_button .bar {
+  height: 3px;
+  width: 100%;
+  background: var(--font-white-static);
+  border-radius: 10px;
+}
+
+/* categories card */
+
+.page_title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
+  padding-top: 2rem;
+}
+.project_grid {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.my_project {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: blueviolet;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  flex-direction: column;
+  margin: 4rem;
+  border: 2px solid var(--black-color);
+}
+
+.buttons {
+  position: absolute;
+  display: none;
+}
+
+.buttons ul li {
+  list-style: none;
+  padding: 1rem;
+}
+
+/*.my_project:hover{
+    filter:blur(8px);
+  }*/
+
+.project_text {
+  width: 100%;
+  color: var(--white-color);
+  font-weight: 400;
+  text-align: center;
+  font-size: 3rem;
+  padding-top: 2rem;
+}
+
+.category_image {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.category_parent {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: darkgray;
+}
+.category_name {
+  font-size: 1.5rem;
+}
+
+.category_details {
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.category_description {
+  padding-top: 1rem;
+  font-weight: 400;
+}
+
+.github_link {
+  width: 20rem;
+  height: 3rem;
+  border: solid 1px var(--white-color);
+  background: none;
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.github_link:hover {
+  background-color: var(--font-dynamic);
+}
+
+/*desktop*/
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    display: flex;
+    height: 150px;
+    justify-content: space-between;
+    align-items: center;
+    background: skyblue;
+    position: sticky;
+  }
+  .app_title {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    margin: 0.5rem;
+    font-size: 80px;
+    margin: 1.5rem;
   }
-
-  
 
   .navbar_links {
     padding-right: 2.5rem;
@@ -27,16 +178,16 @@
     flex-direction: column;
   }
   .navbar_links ul {
-    margin: 0;
-    padding: 0;
+    margin-right: 1.5rem;
     display: flex;
+    width: 100%;
   }
-  
+
   .navbar_links ul li {
     list-style: none;
-    font-size: 1.2rem;
-    margin-left: 2.5rem;
+    font-size: 60px;
     color: white;
+    padding: 4.5rem;
   }
 
   .toggle_button {
@@ -55,12 +206,12 @@
     width: 100%;
     background: var(--font-white-static);
     border-radius: 10px;
-  }  
-  
+  }
+
   /* categories card */
 
   .page_title {
-    font-size: 2.5rem;
+    font-size: 100px;
     font-weight: 800;
     width: 100%;
     text-align: center;
@@ -68,8 +219,8 @@
   }
   .project_grid {
     display: grid;
-    align-items: center;
-    justify-content: center;
+    padding: 1.5rem;
+    justify-content: space-between;
   }
 
   .my_project {
@@ -83,25 +234,21 @@
     flex-direction: column;
     margin: 4rem;
     border: 2px solid var(--black-color);
-    
-    
   }
 
-  .buttons{
+  .buttons {
     position: absolute;
     display: none;
-
   }
 
-  .buttons ul li{
-    list-style:none;
+  .buttons ul li {
+    list-style: none;
     padding: 1rem;
-
   }
 
   /*.my_project:hover{
-    filter:blur(8px);
-  }*/
+      filter:blur(8px);
+    }*/
 
   .project_text {
     width: 100%;
@@ -111,21 +258,15 @@
     font-size: 3rem;
     padding-top: 2rem;
   }
-  
-  
-  
-  
-  
 
   .category_image {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-
   }
-  
-  .category_parent{
+
+  .category_parent {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -133,21 +274,20 @@
     background-color: darkgray;
   }
   .category_name {
-    font-size: 1.5rem;
+    font-size: 80px;
   }
-  
-  
+
   .category_details {
-    
     font-size: 1.5rem;
     width: 100%;
   }
-  
+
   .category_description {
-    padding-top: 1rem;
+    padding: 1rem;
     font-weight: 400;
+    font-size: 60px;
   }
-  
+
   .github_link {
     width: 20rem;
     height: 3rem;
@@ -158,175 +298,66 @@
     margin-bottom: 2rem;
     cursor: pointer;
   }
-  
+
   .github_link:hover {
     background-color: var(--font-dynamic);
   }
+}
 
+/* MODAL */
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
 
-  /*desktop*/
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 0.5rem;
+}
 
-  @media screen and (min-width: 768px) {
+.close-button {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
 
-    .navbar {
-      display: flex;
-      height: 150px;
-      justify-content: space-between;
-      align-items: center;
-      background : skyblue;
-      position: sticky;
-  }
-    .app_title {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-size: 80px;
-      margin: 1.5rem;
-    }
-  
-    
-  
-    .navbar_links {
-      padding-right: 2.5rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .navbar_links ul {
-      margin-right: 1.5rem;
-      display: flex;
-      width: 100%
-    }
-    
-    .navbar_links ul li {
-      list-style: none;
-      font-size: 60px;
-      color: white;
-      padding: 4.5rem;
-    }
-  
-    .toggle_button {
-      position: absolute;
-      top: 3.5%;
-      /* 2.7rem */
-      right: 1rem;
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
-    }
-    .toggle_button .bar {
-      height: 3px;
-      width: 100%;
-      background: var(--font-white-static);
-      border-radius: 10px;
-    }  
-    
-    /* categories card */
-  
-    .page_title {
-      font-size: 100px;
-      font-weight: 800;
-      width: 100%;
-      text-align: center;
-      padding-top: 2rem;
-    }
-    .project_grid {
-      display: grid;
-      padding: 1.5rem;
-      justify-content: space-between;
-    }
-  
-    .my_project {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      background-color: blueviolet;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2rem;
-      flex-direction: column;
-      margin: 4rem;
-      border: 2px solid var(--black-color);
-      
-      
-    }
-  
-    .buttons{
-      position: absolute;
-      display: none;
-  
-    }
-  
-    .buttons ul li{
-      list-style:none;
-      padding: 1rem;
-  
-    }
-  
-    /*.my_project:hover{
-      filter:blur(8px);
-    }*/
-  
-    .project_text {
-      width: 100%;
-      color: var(--white-color);
-      font-weight: 400;
-      text-align: center;
-      font-size: 3rem;
-      padding-top: 2rem;
-    }
-    
-    
-    
-    
-    
-  
-    .category_image {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-  
-    }
-    
-    .category_parent{
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      background-color: darkgray;
-    }
-    .category_name {
-      font-size: 80px;
-    }
-    
-    
-    .category_details {
-      
-      font-size: 1.5rem;
-      width: 100%;
-    }
-    
-    .category_description {
-      padding: 1rem;
-      font-weight: 400;
-      font-size: 60px;
-    }
-    
-    .github_link {
-      width: 20rem;
-      height: 3rem;
-      border: solid 1px var(--white-color);
-      background: none;
-      color: white;
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-      cursor: pointer;
-    }
-    
-    .github_link:hover {
-      background-color: var(--font-dynamic);
-    }
+.close-button:hover {
+  background-color: darkgray;
+}
 
-  }
+.model_data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.game_code_or {
+  display: flex;
+  flex-direction: row;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
