@@ -1,9 +1,9 @@
 const card = document.querySelector(".my_project");
-const buttons = document.querySelector(".buttons");
-const img = document.querySelector(".category_image");
-const cat_parent = document.querySelector(".category_parent");
-const cat_details = document.querySelector(".category_details");
-const button = document.querySelector(".create");
+//const buttons = document.querySelector(".buttons");
+//const img = document.querySelector(".category_image");
+//const cat_parent = document.querySelector(".category_parent");
+//const cat_details = document.querySelector(".category_details");
+//const button = document.querySelector(".create");
 const multiplayer = document.getElementById("multiplayer_quiz");
 
 const modal = document.querySelector(".modal");
@@ -30,13 +30,15 @@ trigger.addEventListener("click", toggleModal);
 closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
 
-function change() {
+function change(img,cat_parent,cat_details,buttons) {
+  console.log("change called")
   img.style.webkitFilter = "blur(8px)";
   cat_parent.style.webkitFilter = "blur(8px)";
   cat_details.style.webkitFilter = "blur(8px)";
   buttons.style.display = "block";
 }
-function revert() {
+function revert(img,cat_parent,cat_details,buttons) {
+  console.log("revert called")
   img.style.webkitFilter = "none";
   cat_parent.style.webkitFilter = "none";
   cat_details.style.webkitFilter = "none";
@@ -77,8 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   data.forEach((val) => {
     const my_project = document.createElement("div")
     my_project.className = "my_project"
-    my_project.addEventListener("onmouseover", change())
-    my_project.addEventListener("onmouseout", revert())
+    
     const image = document.createElement("img");
     const categoryParent = document.createElement("div");
     const categoryDetails = document.createElement("div");
@@ -94,8 +95,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     categoryDetails.className = "category_details"
     category_name.className = "category_name"
     category_description.className  = "category_description"
+    image.className = "category_image"
     category_name.innerHTML = name
     category_description.innerHTML = description
+
+    image.src = img
 
     buttons.className = "buttons"
     const list = document.createElement("ul")
@@ -109,6 +113,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     anch2.innerHTML = "Multiplayer quiz"
     anch1.innerHTML = "Single quiz"
 
+   
+
     link1.appendChild(anch1)
     link2.appendChild(anch2)
 
@@ -117,9 +123,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     buttons.appendChild(list)
     categoryParent.appendChild(category_name);
     categoryDetails.appendChild(category_description);
+    my_project.appendChild(image)
     my_project.appendChild(categoryParent);
     my_project.appendChild(categoryDetails);
     my_project.appendChild(buttons);
+    my_project.onmouseover = function(e){
+      change(image,categoryParent,categoryDetails,buttons);
+    }
+    my_project.onmouseout = function(e) {
+      revert(image,categoryParent,categoryDetails,buttons);
+    }
     grid.append(my_project)
     
   });
