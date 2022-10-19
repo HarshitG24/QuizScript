@@ -1,5 +1,6 @@
 let Player = require("./player.js"),
-  players = [];
+  players = [],
+  options = [];
 
 module.exports = {
   handle: (socket) => {
@@ -9,8 +10,19 @@ module.exports = {
       socket.server.emit("update-game", players);
     });
 
-    socket.on("option-selected", (opt) => {
-      socket.server.emit("update option", opt);
+    socket.on("option-selected", (data) => {
+      options = options.filter((d) => d.id != data.id);
+      options.push(data);
+
+      console.log(options, "options");
+      if (options.length == 2) {
+        options.forEach((o) => {
+          socket.server.emit("update option", o.opt);
+        });
+
+        options = [];
+        options.slice(0, options.length);
+      }
     });
   },
 };

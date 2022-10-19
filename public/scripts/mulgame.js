@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let options = [];
+  let iSelected = false;
   const socket = io("http://localhost:3000");
 
   const optA = document.getElementById("optA");
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const optD = document.getElementById("optD");
 
   function optionSelected(opt) {
-    socket.emit("option-selected", opt);
+    socket.emit("option-selected", { id: socket.id, opt });
   }
 
   function clearActiveSelection() {
@@ -24,34 +24,50 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   optA.addEventListener("click", () => {
-    optionSelected(1);
+    if (!iSelected) {
+      iSelected = true;
+      optA.classList.toggle("active");
+      optionSelected(1);
+    }
   });
   optB.addEventListener("click", () => {
-    optionSelected(2);
+    if (!iSelected) {
+      iSelected = true;
+      optB.classList.toggle("active");
+      optionSelected(2);
+    }
   });
   optC.addEventListener("click", () => {
-    optionSelected(3);
+    if (!iSelected) {
+      iSelected = true;
+      optC.classList.toggle("active");
+      optionSelected(3);
+    }
   });
   optD.addEventListener("click", () => {
-    optionSelected(4);
+    if (!iSelected) {
+      iSelected = true;
+      optD.classList.toggle("active");
+      optionSelected(4);
+    }
   });
 
   socket.on("update option", (option) => {
     switch (option) {
       case 1:
-        clearActiveSelection();
+        // clearActiveSelection();
         optA.classList.add("active");
         break;
       case 2:
-        clearActiveSelection();
+        // clearActiveSelection();
         optB.classList.add("active");
         break;
       case 3:
-        clearActiveSelection();
+        // clearActiveSelection();
         optC.classList.add("active");
         break;
       case 4:
-        clearActiveSelection();
+        // clearActiveSelection();
         optD.classList.add("active");
         break;
       default:
