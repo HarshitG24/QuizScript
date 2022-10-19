@@ -8,6 +8,11 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./css/mulquiz.css" />
     <link rel="stylesheet" href="./css/normalize.css" />
+    <script
+      type="module"
+      src="https://cdn.socket.io/4.5.3/socket.io.min.js"
+      integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"
+      crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="container">
@@ -16,20 +21,21 @@
           <p>Which of the following is NOT a principle of OOP</p>
         </div>
         <div class="options">
-          <div class="option">
+          <button id="optA" class="option">
             <p>A. Encapsulation</p>
-          </div>
-          <div class="option">
+          </button>
+          <button id="optB" class="option">
             <p>B. Abstraction</p>
-          </div>
-          <div class="option">
+          </button>
+          <button id="optC" class="option">
             <p>C. Polymorphism</p>
-          </div>
-          <div class="option">
+          </button>
+          <button id="optD" class="option">
             <p>D. Data Protection</p>
-          </div>
+          </button>
         </div>
       </div>
     </div>
+    <script src="./scripts/mulgame.js"></script>
   </body>
 </html>

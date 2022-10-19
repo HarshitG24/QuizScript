@@ -18,9 +18,10 @@ async function login(userData) {
         password: userData.password,
       })
       .toArray();
-
-    console.log("user is", user);
-    return user.length > 0 ? 200 : 500;
+    return {
+      data: user.length ? user : [],
+      code: user.length > 0 ? 200 : 500,
+    };
   } catch (error) {
     console.log(error);
     return 400;
@@ -42,31 +43,29 @@ async function createUser(userData) {
   }
 }
 
-async function testData(data){
+async function testData(data) {
   await client.connect();
-  try{
+  try {
     await testing.insertOne(data);
     return 200;
-  } catch (error){
-    console.log(error)
-    return 400
+  } catch (error) {
+    console.log(error);
+    return 400;
   } finally {
-    client.close()
+    client.close();
   }
 }
 
-async function createCategories(data){
+async function createCategories(data) {
   await client.connect();
   try {
     await cat.insertOne(data);
-    return 200
-  }
-  catch (error){
-    console.log(error)
-    return 400
-  }
-  finally {
-    client.close()
+    return 200;
+  } catch (error) {
+    console.log(error);
+    return 400;
+  } finally {
+    client.close();
   }
 }
 

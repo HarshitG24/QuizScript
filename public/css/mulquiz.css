@@ -55,11 +55,21 @@ body {
 .options {
   width: 100%;
   background: lightgreen;
+  display: flex;
+  flex-direction: column;
 }
 
 .option {
   margin: 2rem;
   background: plum;
+}
+
+.active {
+  background: peru;
+}
+
+.option:hover {
+  display: pointer;
 }
 
 .option p {
