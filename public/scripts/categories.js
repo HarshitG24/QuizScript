@@ -66,3 +66,61 @@ multiplayer.addEventListener("click", () => {
 function generateUserGameCode() {
   return Math.floor(1000 + Math.random() * 9000);
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("reached");
+  const resp = await fetch("/categories",{
+    method:"get",});
+  data = await resp.json()
+  const grid = document.querySelector(".project_grid")
+  grid.innerHTML = "";
+  data.forEach((val) => {
+    const my_project = document.createElement("div")
+    my_project.className = "my_project"
+    my_project.addEventListener("onmouseover", change())
+    my_project.addEventListener("onmouseout", revert())
+    const image = document.createElement("img");
+    const categoryParent = document.createElement("div");
+    const categoryDetails = document.createElement("div");
+    const buttons  = document.createElement("div");
+    const category_name = document.createElement("p");
+    const category_description = document.createElement("p");
+
+    let name = val.category_name
+    let description = val.category_description
+    let img = val.category_image
+
+    categoryParent.className = "category_parent"
+    categoryDetails.className = "category_details"
+    category_name.className = "category_name"
+    category_description.className  = "category_description"
+    category_name.innerHTML = name
+    category_description.innerHTML = description
+
+    buttons.className = "buttons"
+    const list = document.createElement("ul")
+    const link1 = document.createElement("li")
+    const link2 = document.createElement("li")
+    const anch1 = document.createElement("a")
+    const anch2 = document.createElement("a")
+
+    anch2.id = "multiplayer_quiz"
+    anch2.className = "trigger"
+    anch2.innerHTML = "Multiplayer quiz"
+    anch1.innerHTML = "Single quiz"
+
+    link1.appendChild(anch1)
+    link2.appendChild(anch2)
+
+    list.appendChild(link1)
+    list.appendChild(link2)
+    buttons.appendChild(list)
+    categoryParent.appendChild(category_name);
+    categoryDetails.appendChild(category_description);
+    my_project.appendChild(categoryParent);
+    my_project.appendChild(categoryDetails);
+    my_project.appendChild(buttons);
+    grid.append(my_project)
+    
+  });
+})

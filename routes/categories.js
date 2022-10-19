@@ -8,10 +8,8 @@ const db = require("../database/quizScriptDb.js")
 
 router.get("/",async(req,res) => {
     const data = await db.fetchCategories();
-    console.log(data);
-    res.render(
-        "categories",{data: data}
-    )
+    
+    res.send(JSON.stringify(data))
 })
 router.post("/createCategories", async(req,res)=> {
     const cat = db.createCategories(req?.body || {})
