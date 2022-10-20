@@ -14,4 +14,11 @@ router.post("/postQuestions", async (req, res) => {
   res.send({ data: "works" });
 });
 
+// Api to get questions from mongodb database for a given category
+router.get("/getQuestions/:category", async (req, res) => {
+  const cat = await db.getQuestions(req?.params?.category || "");
+  console.log("cat is", cat);
+  res.send({ code: cat.code, data: cat.data });
+});
+
 module.exports = router;
