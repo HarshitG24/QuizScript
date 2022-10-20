@@ -7,6 +7,7 @@ const db = client.db("QuizStart");
 const users = db.collection("users");
 const testing = db.collection("test");
 const cat = db.collection("categories");
+const questions = db.collection("questions");
 
 async function login(userData) {
   await client.connect();
@@ -68,8 +69,36 @@ async function createCategories(data) {
   }
 }
 
+async function createQuestions(data) {
+  await client.connect();
+  try {
+    const qbank = await questions.find({ category: data.category }).toArray();
+    if (qbank.length > 0) {
+      qbank[0].question = [...qbank[0].question, ...data.question];
+
+      await questions.findOneAndUpdate(
+        { category: data.category },
+        {
+          $set: {
+            question: qbank[0].question,
+          },
+        }
+      );
+    } else {
+      await questions.insertOne(data);
+    }
+    return 200;
+  } catch (error) {
+    console.log(error);
+    return 400;
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   login,
   createUser,
   createCategories,
+  createQuestions,
 };

@@ -21,10 +21,11 @@ btn.addEventListener("click", async () => {
   };
 
   try {
-    const resp = await fetch("/login", opts);
+    let resp = await fetch("/login", opts);
+    resp = await resp.json();
     console.log("login resp", resp);
     debugger;
-    if (resp.status == 200 && resp.statusText == "OK") {
+    if (resp.code == 200) {
       try {
         window.location.replace("http://localhost:3000/categories.html");
       } catch (error) {
