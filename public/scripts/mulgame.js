@@ -7,8 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const optC = document.getElementById("optC");
   const optD = document.getElementById("optD");
 
+  const query = window.location.search.substring(1);
+  const array = query.split("=");
+  const param = array[1];
+  console.log("param is:" + param);
+
   function optionSelected(opt) {
-    socket.emit("option-selected", { id: socket.id, opt });
+    socket.emit("option-selected", { id: param, opt });
   }
 
   function clearActiveSelection() {

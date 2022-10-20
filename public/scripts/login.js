@@ -27,7 +27,9 @@ btn.addEventListener("click", async () => {
     debugger;
     if (resp.code == 200) {
       try {
-        window.location.replace("http://localhost:3000/categories.html");
+        window.location.replace(
+          "http://localhost:3000/categories.html?userID=" + resp.data[0].email
+        );
       } catch (error) {
         console.log(error);
       }

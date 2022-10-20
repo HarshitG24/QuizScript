@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const myGameCode = document.getElementById("generated_game_code");
   const start_game = document.getElementById("start_game");
 
+  //  Logic for userID
+  const query = window.location.search.substring(1);
+  const array = query.split("=");
+  const param = array[1];
+  console.log("param is:" + param);
+  //  =====
+
   multiplayer_quiz.addEventListener("click", () => {
     socket.emit("new player", myGameCode);
   });
@@ -24,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (players.length == 2) {
+      start_game.href = "./mulquiz.html?userID=" + param;
       start_game.click();
     }
   });
