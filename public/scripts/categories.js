@@ -1,11 +1,3 @@
-const card = document.querySelector(".my_project");
-//const buttons = document.querySelector(".buttons");
-//const img = document.querySelector(".category_image");
-//const cat_parent = document.querySelector(".category_parent");
-//const cat_details = document.querySelector(".category_details");
-//const button = document.querySelector(".create");
-const multiplayer = document.getElementById("multiplayer_quiz");
-
 const modal = document.querySelector(".modal");
 const trigger = document.querySelector(".trigger");
 const closeButton = document.querySelector(".close-button");
@@ -25,20 +17,42 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
+function socketCall() {
 
-trigger.addEventListener("click", toggleModal);
+  const socket = io("http://localhost:3000");
+  socket.emit("new player", myGameCode);
+
+  socket.on("update-game", (players) => {
+    console.log("total players", players);
+    let me = socket.id;
+    console.log(players.flatMap((player) => player.name));
+
+    let hasGameStarted = () => {
+      return players.find((player) => player.active == true);
+    };
+
+    if (hasGameStarted()) {
+      let active = players.find((player) => player.active == true);
+      console.log(active.name + " is active");
+    }
+    console.log(players.length)
+    if (players.length == 2) {
+      start_game.click();
+    }
+  });
+}
 closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
 
 function change(img,cat_parent,cat_details,buttons) {
-  console.log("change called")
+  
   img.style.webkitFilter = "blur(8px)";
   cat_parent.style.webkitFilter = "blur(8px)";
   cat_details.style.webkitFilter = "blur(8px)";
   buttons.style.display = "block";
 }
 function revert(img,cat_parent,cat_details,buttons) {
-  console.log("revert called")
+  
   img.style.webkitFilter = "none";
   cat_parent.style.webkitFilter = "none";
   cat_details.style.webkitFilter = "none";
@@ -61,22 +75,22 @@ function revert(img,cat_parent,cat_details,buttons) {
 //   const resp = await fetch("/categories/createCategories", opts);
 // });
 
-multiplayer.addEventListener("click", () => {
-  console.log("quiz button clicked");
-});
 
 function generateUserGameCode() {
   return Math.floor(1000 + Math.random() * 9000);
 }
 
+
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log("reached");
+  const container = document.querySelector(".container")
   const resp = await fetch("/categories",{
     method:"get",});
   data = await resp.json()
-  const grid = document.querySelector(".project_grid")
-  grid.innerHTML = "";
+  const grid = document.createElement("div")
+  //const grid = document.querySelector(".project_grid project_grid--1x3")
+  grid.className = ".project_grid project_grid--1x3"
   data.forEach((val) => {
+    // categories grid display
     const my_project = document.createElement("div")
     my_project.className = "my_project"
     
@@ -110,11 +124,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     anch2.id = "multiplayer_quiz"
     anch2.className = "trigger"
-    anch2.innerHTML = "Multiplayer quiz"
-    anch1.innerHTML = "Single quiz"
+    anch2.innerText = "Multiplayer quiz"
+    anch1.innerText = "Single quiz"
 
    
+    anch1.onclick = function(e){
+      window.location.href = "mulquiz.html?categories="+name;
+    }
+    anch2.onclick = function(e) {
+      console.log("quiz button clicked");
+      toggleModal();
+      socketCall();
+    }
 
+    
     link1.appendChild(anch1)
     link2.appendChild(anch2)
 
@@ -133,7 +156,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     my_project.onmouseout = function(e) {
       revert(image,categoryParent,categoryDetails,buttons);
     }
+    // appending to the grid
     grid.append(my_project)
     
   });
+  // pop up for quiz page
+  container.append(grid)
 })

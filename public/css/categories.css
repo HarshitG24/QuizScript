@@ -90,6 +90,8 @@
 .buttons {
   position: absolute;
   display: none;
+  background: yellowgreen;
+  font-size: x-large;
 }
 
 .buttons ul li {
@@ -156,6 +158,8 @@
 /*desktop*/
 
 @media screen and (min-width: 768px) {
+
+  
   .navbar {
     display: flex;
     height: 150px;
@@ -208,6 +212,12 @@
     border-radius: 10px;
   }
 
+  .project_grid--1x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+
   /* categories card */
 
   .page_title {
@@ -239,6 +249,8 @@
   .buttons {
     position: absolute;
     display: none;
+    background: yellowgreen;
+    font-size: xxx-large;
   }
 
   .buttons ul li {
