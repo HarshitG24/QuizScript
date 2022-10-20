@@ -177,8 +177,8 @@ body {
 
   .input_label {
     left: 8rem;
-    font-size: 3.5rem;
-    margin-top: 2.5%;
+    font-size: 2.5rem;
+    margin-top: 4%;
   }
 
   .input:focus + .input_label,
