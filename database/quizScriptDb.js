@@ -111,7 +111,7 @@ async function fetchCategories() {
   }
 }
 
-async function getQuestions(category) {
+async function fetchQuestions(category) {
   await client.connect();
   try {
     const qbank = await questions
@@ -139,8 +139,6 @@ module.exports = {
   createUser,
   createCategories,
   createQuestions,
-  getQuestions,
   fetchCategories,
   fetchQuestions,
-
 };
