@@ -7,6 +7,7 @@ const db = client.db("QuizStart");
 const users = db.collection("users");
 const testing = db.collection("test");
 const cat = db.collection("categories");
+const ques = db. collection("questions");
 //const cat_test = db.getCollection("categories");
 
 async function login(userData) {
@@ -76,7 +77,7 @@ async function fetchCategories(){
     
     const data = await cat.find({})
     const final_data = await data.toArray()
-    console.log(final_data);
+    
     return final_data;
   }
   catch (error) {
@@ -89,9 +90,28 @@ async function fetchCategories(){
   
 }
 
+async function fetchQuestions(query) {
+  await client.connect();
+  try{
+    
+    const data = await ques.find({category:query})
+    const final_data = await data.toArray()
+    console.log(final_data);
+    return final_data;
+  }
+  catch (error) {
+    console.log(error)
+    return 400
+  }
+  finally{
+    client.close()
+  }
+}
+
 module.exports = {
   login,
   createUser,
   createCategories,
   fetchCategories,
+
 };

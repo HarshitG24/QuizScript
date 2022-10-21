@@ -9,6 +9,7 @@ const game = require(__dirname + "/controller/game.js");
 const indexRouter = require("./routes/index");
 const newUserRouter = require("./routes/newuser");
 const addCategories = require("./routes/categories");
+const addQuestion = require("./routes/questions");
 
 // app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use("/", indexRouter);
 app.use("/newuser", newUserRouter);
 app.use("/categories", addCategories);
+app.use("/questions",addQuestion);
 
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
