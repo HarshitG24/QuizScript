@@ -113,5 +113,6 @@ module.exports = {
   createUser,
   createCategories,
   fetchCategories,
+  fetchQuestions,
 
 };
