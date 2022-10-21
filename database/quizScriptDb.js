@@ -96,6 +96,21 @@ async function createQuestions(data) {
   }
 }
 
+async function fetchCategories() {
+  await client.connect();
+  try {
+    const data = await cat.find({});
+    const final_data = await data.toArray();
+
+    return final_data;
+  } catch (error) {
+    console.log(error);
+    return 400;
+  } finally {
+    client.close();
+  }
+}
+
 async function getQuestions(category) {
   await client.connect();
   try {
@@ -125,4 +140,5 @@ module.exports = {
   createCategories,
   createQuestions,
   getQuestions,
+  fetchCategories,
 };

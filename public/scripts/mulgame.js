@@ -8,12 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const optD = document.getElementById("optD");
 
   const query = window.location.search.substring(1);
-  const array = query.split("=");
-  const param = array[1];
-  console.log("param is:" + param);
+  const temp = query.split("&");
+  // const array = query.split("=");
+  // const param = array[1];
+  // console.log("param is:" + param);
+  const uid = temp[0].split("=");
+  const userId = uid[1];
+
+  const cat = temp[1].split("=");
+  const category = cat[1];
+
+  console.log("userId=" + userId + ", category= " + category);
 
   function optionSelected(opt) {
-    socket.emit("option-selected", { id: param, opt });
+    socket.emit("option-selected", { id: userId, opt });
   }
 
   function clearActiveSelection() {

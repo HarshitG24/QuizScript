@@ -90,6 +90,8 @@
 .buttons {
   position: absolute;
   display: none;
+  background: yellowgreen;
+  font-size: x-large;
 }
 
 .buttons ul li {
@@ -208,6 +210,11 @@
     border-radius: 10px;
   }
 
+  .project_grid--1x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   /* categories card */
 
   .page_title {
@@ -239,6 +246,8 @@
   .buttons {
     position: absolute;
     display: none;
+    background: yellowgreen;
+    font-size: xxx-large;
   }
 
   .buttons ul li {
