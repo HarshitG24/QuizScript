@@ -26,87 +26,124 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function optionSelected(opt) {
-    socket.emit("option-selected", { id: userId, opt, index: currentIndex });
+    socket.emit("option-selected", { id: userId, opt });
   }
 
   function clearActiveSelection() {
-    if (optA.classList.contains("active")) {
-      optA.classList.toggle("active");
+    // Clear my option
+    if (optA.classList.contains("my_selection")) {
+      optA.classList.toggle("my_selection");
     }
-    if (optB.classList.contains("active")) {
-      optB.classList.toggle("active");
+    if (optB.classList.contains("my_selection")) {
+      optB.classList.toggle("my_selection");
     }
-    if (optC.classList.contains("active")) {
-      optC.classList.toggle("active");
+    if (optC.classList.contains("my_selection")) {
+      optC.classList.toggle("my_selection");
     }
-    if (optD.classList.contains("active")) {
-      optD.classList.toggle("active");
+    if (optD.classList.contains("my_selection")) {
+      optD.classList.toggle("my_selection");
+    }
+
+    // Clear opponent option
+    if (optA.classList.contains("opponent_selection")) {
+      optA.classList.toggle("opponent_selection");
+    }
+    if (optB.classList.contains("opponent_selection")) {
+      optB.classList.toggle("opponent_selection");
+    }
+    if (optC.classList.contains("opponent_selection")) {
+      optC.classList.toggle("opponent_selection");
+    }
+    if (optD.classList.contains("opponent_selection")) {
+      optD.classList.toggle("opponent_selection");
     }
   }
 
   optA.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      optA.classList.toggle("active");
+      optA.classList.toggle("my_selection");
       optionSelected(1);
     }
   });
   optB.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      optB.classList.toggle("active");
+      optB.classList.toggle("my_selection");
       optionSelected(2);
     }
   });
   optC.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      optC.classList.toggle("active");
+      optC.classList.toggle("my_selection");
       optionSelected(3);
     }
   });
   optD.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      optD.classList.toggle("active");
+      optD.classList.toggle("my_selection");
       optionSelected(4);
     }
   });
 
   socket.on("update option", (options) => {
     options.forEach((option) => {
+      let active_class =
+        option.id == userId ? "my_selection" : "opponent_selection";
       switch (option.opt) {
         case 1:
-          // clearActiveSelection();
-          optA.classList.add("active");
+          optA.classList.add(active_class);
           break;
         case 2:
-          // clearActiveSelection();
-          optB.classList.add("active");
+          optB.classList.add(active_class);
           break;
         case 3:
-          // clearActiveSelection();
-          optC.classList.add("active");
+          optC.classList.add(active_class);
           break;
         case 4:
-          // clearActiveSelection();
-          optD.classList.add("active");
+          optD.classList.add(active_class);
           break;
         default:
           clearActiveSelection();
       }
-      console.log("inside loop");
     });
 
     setTimeout(() => {
-      console.log("I am called");
-      clearActiveSelection();
-      iSelected = false;
       currentIndex = currentIndex + 1;
-      displayQuestions(currentIndex);
-      socket.emit("clear-options");
+
+      if (currentIndex <= questions.length - 1) {
+        clearActiveSelection();
+        iSelected = false;
+        displayQuestions(currentIndex);
+        socket.emit("clear-options");
+      } else {
+        window.location.href = "./mulresult.html";
+      }
     }, "1000");
   });
+
+  function addCSSToOptions(option) {
+    let active_class =
+      option.id == userId ? "my_selection" : "opponent_selection";
+    switch (option.opt) {
+      case 1:
+        optA.classList.add(active_class);
+        break;
+      case 2:
+        optB.classList.add(active_class);
+        break;
+      case 3:
+        optC.classList.add(active_class);
+        break;
+      case 4:
+        optD.classList.add(active_class);
+        break;
+      default:
+        clearActiveSelection();
+    }
+  }
 
   socket.on("update-index", () => {});
 

@@ -72,6 +72,18 @@ p {
   background: peru;
 }
 
+.my_selection {
+  background: lightcoral;
+}
+
+.opponent_selection {
+  background: lightgoldenrodyellow;
+}
+
+.correct_ans {
+  background: green;
+}
+
 .option:hover {
   display: pointer;
 }
