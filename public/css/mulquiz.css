@@ -43,7 +43,7 @@ p {
   width: 90%;
   display: flex;
   flex-wrap: wrap;
-  background: green;
+  background: coral;
 }
 
 .ques {
@@ -58,14 +58,14 @@ p {
 
 .options {
   width: 100%;
-  background: lightgreen;
+  background: white;
   display: flex;
   flex-direction: column;
 }
 
 .option {
   margin: 2rem;
-  background: plum;
+  /* background: plum; */
 }
 
 .active {

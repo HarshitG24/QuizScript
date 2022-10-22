@@ -1,6 +1,7 @@
 let Player = require("./player.js"),
   players = [],
-  options = [];
+  options = [],
+  correctAns = "";
 
 module.exports = {
   handle: (socket) => {

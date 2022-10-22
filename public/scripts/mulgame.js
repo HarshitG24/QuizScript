@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   let questions = [];
+  let question;
   let iSelected = false;
   let currentIndex = 0;
   const socket = io("http://localhost:3000");
@@ -33,29 +34,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Clear my option
     if (optA.classList.contains("my_selection")) {
       optA.classList.toggle("my_selection");
-    }
-    if (optB.classList.contains("my_selection")) {
+    } else if (optB.classList.contains("my_selection")) {
       optB.classList.toggle("my_selection");
-    }
-    if (optC.classList.contains("my_selection")) {
+    } else if (optC.classList.contains("my_selection")) {
       optC.classList.toggle("my_selection");
-    }
-    if (optD.classList.contains("my_selection")) {
+    } else if (optD.classList.contains("my_selection")) {
       optD.classList.toggle("my_selection");
     }
 
     // Clear opponent option
     if (optA.classList.contains("opponent_selection")) {
       optA.classList.toggle("opponent_selection");
-    }
-    if (optB.classList.contains("opponent_selection")) {
+    } else if (optB.classList.contains("opponent_selection")) {
       optB.classList.toggle("opponent_selection");
-    }
-    if (optC.classList.contains("opponent_selection")) {
+    } else if (optC.classList.contains("opponent_selection")) {
       optC.classList.toggle("opponent_selection");
-    }
-    if (optD.classList.contains("opponent_selection")) {
+    } else if (optD.classList.contains("opponent_selection")) {
       optD.classList.toggle("opponent_selection");
+    }
+
+    // Clear correct ans
+    if (optA.classList.contains("correct_ans")) {
+      optA.classList.toggle("correct_ans");
+    } else if (optB.classList.contains("correct_ans")) {
+      optB.classList.toggle("correct_ans");
+    } else if (optC.classList.contains("correct_ans")) {
+      optC.classList.toggle("correct_ans");
+    } else if (optD.classList.contains("correct_ans")) {
+      optD.classList.toggle("correct_ans");
     }
   }
 
@@ -110,6 +116,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
+    // showCorrectAns(question.ans);
+
+    switch (parseInt(question.ans)) {
+      case 1:
+        optA.classList.add("correct_ans");
+        break;
+      case 2:
+        optB.classList.add("correct_ans");
+        break;
+      case 3:
+        optC.classList.add("correct_ans");
+        break;
+      case 4:
+        optD.classList.add("correct_ans");
+        break;
+      default:
+        clearActiveSelection();
+    }
+
     setTimeout(() => {
       currentIndex = currentIndex + 1;
 
@@ -121,24 +146,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       } else {
         window.location.href = "./mulresult.html";
       }
-    }, "1000");
+    }, "3000");
   });
 
-  function addCSSToOptions(option) {
-    let active_class =
-      option.id == userId ? "my_selection" : "opponent_selection";
-    switch (option.opt) {
+  function showCorrectAns(option) {
+    console.log("correct ans", option);
+    switch (option) {
       case 1:
-        optA.classList.add(active_class);
+        optA.classList.add("correct_ans");
         break;
       case 2:
-        optB.classList.add(active_class);
+        optB.classList.add("correct_ans");
         break;
       case 3:
-        optC.classList.add(active_class);
+        optC.classList.add("correct_ans");
         break;
       case 4:
-        optD.classList.add(active_class);
+        optD.classList.add("correct_ans");
         break;
       default:
         clearActiveSelection();
@@ -155,7 +179,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const optionD = document.getElementById("optionD");
 
   function displayQuestions(currentIndex) {
-    let question = questions[currentIndex];
+    question = questions[currentIndex];
     display_ques.innerText = question.ques;
 
     let options = question.options;
