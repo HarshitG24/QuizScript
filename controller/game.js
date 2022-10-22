@@ -16,9 +16,11 @@ module.exports = {
 
       console.log("options", options);
       if (options.length == 2) {
-        options.forEach((o) => {
-          socket.server.emit("update option", o.opt);
-        });
+        // options.forEach((o) => {
+        //   socket.server.emit("update option", o.opt);
+        // });
+
+        socket.server.emit("update option", options);
 
         // socket.server.emit("update-index");
       }

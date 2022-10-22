@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resp = await fetch("/questions/" + category);
     questions = await resp.json();
     questions = questions.data;
+
+    console.log(questions);
   }
 
   function optionSelected(opt) {
@@ -30,11 +32,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   function clearActiveSelection() {
     if (optA.classList.contains("active")) {
       optA.classList.toggle("active");
-    } else if (optB.classList.contains("active")) {
+    }
+    if (optB.classList.contains("active")) {
       optB.classList.toggle("active");
-    } else if (optC.classList.contains("active")) {
+    }
+    if (optC.classList.contains("active")) {
       optC.classList.toggle("active");
-    } else if (optD.classList.contains("active")) {
+    }
+    if (optD.classList.contains("active")) {
       optD.classList.toggle("active");
     }
   }
@@ -68,33 +73,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  socket.on("update option", (option) => {
-    switch (option) {
-      case 1:
-        // clearActiveSelection();
-        optA.classList.add("active");
-        break;
-      case 2:
-        // clearActiveSelection();
-        optB.classList.add("active");
-        break;
-      case 3:
-        // clearActiveSelection();
-        optC.classList.add("active");
-        break;
-      case 4:
-        // clearActiveSelection();
-        optD.classList.add("active");
-        break;
-      default:
-        clearActiveSelection();
-    }
+  socket.on("update option", (options) => {
+    options.forEach((option) => {
+      switch (option.opt) {
+        case 1:
+          // clearActiveSelection();
+          optA.classList.add("active");
+          break;
+        case 2:
+          // clearActiveSelection();
+          optB.classList.add("active");
+          break;
+        case 3:
+          // clearActiveSelection();
+          optC.classList.add("active");
+          break;
+        case 4:
+          // clearActiveSelection();
+          optD.classList.add("active");
+          break;
+        default:
+          clearActiveSelection();
+      }
+      console.log("inside loop");
+    });
 
-    // displayQuestions(currentIndex);
-    // clearActiveSelection();
-    // iSelected = false;
-    // currentIndex = currentIndex + 1;
-    // socket.emit("clear-options");
+    setTimeout(() => {
+      console.log("I am called");
+      clearActiveSelection();
+      iSelected = false;
+      currentIndex = currentIndex + 1;
+      displayQuestions(currentIndex);
+      socket.emit("clear-options");
+    }, "1000");
   });
 
   socket.on("update-index", () => {});
