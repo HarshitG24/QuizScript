@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     anch1.innerText = "Single quiz";
 
     anch1.onclick = function (e) {
-      window.location.href = "mulquiz.html?categories=" + name;
+      window.location.href = "singlequiz.html?categories=" + name;
     };
     anch2.onclick = function (e) {
       console.log("quiz button clicked");
