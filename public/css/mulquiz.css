@@ -127,6 +127,18 @@ p {
   text-align: left;
 }
 
+.clock {
+  width: 100%;
+  margin: auto;
+}
+
+.clock > p {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+
 @media screen and (min-width: 768px) {
   .card {
     width: 80%;

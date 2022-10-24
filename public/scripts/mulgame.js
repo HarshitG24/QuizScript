@@ -118,6 +118,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Countdown clock
+  let time_left = 15;
+  const time_remain = document.getElementById("time_remaining");
+
+  function countDownClock() {
+    time_remain.innerText = `${time_left}s`;
+    time_left--;
+
+    if (time_left < 0) {
+      clearInterval(clock);
+      currentIndex = currentIndex + 1;
+      displayQuestions(currentIndex);
+      time_left = 15;
+      time_remain.innerText = `${time_left}s`;
+    }
+  }
+
+  let clock = setInterval(countDownClock, 1000);
+
   socket.on("update option", (options) => {
     options.forEach((option) => {
       let active_class = "";
@@ -175,10 +194,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       currentIndex = currentIndex + 1;
 
       if (currentIndex <= questions.length - 1) {
+        clearInterval(clock);
         clearActiveSelection();
+        time_left = 15;
+        time_remain.innerText = `${time_left}s`;
         iSelected = false;
         displayQuestions(currentIndex);
         socket.emit("clear-options");
+        clock = setInterval(countDownClock, 1000);
       } else {
         socket.emit("clear-players");
         window.location.href = "./mulresult.html";
