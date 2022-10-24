@@ -27,23 +27,20 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-p {
-  text-align: left;
-}
-
 .container {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .card {
   width: 90%;
   display: flex;
   flex-wrap: wrap;
-  background: coral;
+  background: green;
 }
 
 .ques {
@@ -58,30 +55,18 @@ p {
 
 .options {
   width: 100%;
-  background: white;
+  background: lightgreen;
   display: flex;
   flex-direction: column;
 }
 
 .option {
   margin: 2rem;
-  /* background: plum; */
+  background: plum;
 }
 
 .active {
   background: peru;
-}
-
-.my_selection {
-  background: lightcoral;
-}
-
-.opponent_selection {
-  background: lightgoldenrodyellow;
-}
-
-.correct_ans {
-  background: green;
 }
 
 .option:hover {
@@ -97,7 +82,17 @@ p {
   text-align: left;
 }
 
+.next{
+  margin: 1.5rem;
+}
 
+.next_button{
+  margin: 2.5rem;
+    width: 100%;
+    height: 50%;
+    font-size: large;
+    background-color: steelblue;
+}
 @media screen and (min-width: 768px) {
   .card {
     width: 80%;
@@ -117,6 +112,21 @@ p {
     font-size: 3.2rem;
   }
 
-  
+  .next{
+    width: 100%;
+    /* height: 100vh; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .next_button{
+    margin: 2.5rem;
+      width: 8%;
+      height: 8rem;
+      font-size: 3rem;
+      background-color: steelblue;
+
+  }
   
 }
