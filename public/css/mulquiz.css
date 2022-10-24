@@ -145,4 +145,16 @@ p {
     padding: 2.5rem;
     font-size: 3.2rem;
   }
+
+  .scores {
+    margin-top: 4rem;
+  }
+
+  .player_name {
+    font-size: 3.5rem;
+  }
+
+  .player_score {
+    font-size: 3rem;
+  }
 }
