@@ -3,7 +3,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   let question;
   let iSelected = false;
   let currentIndex = 0;
+
+  let myScore = 0;
+  let opponentScore = 0;
   const socket = io("http://localhost:3000");
+
+  // The login to display options dynamically
+  const display_ques = document.getElementById("display_question");
+  const optionA = document.getElementById("optionA");
+  const optionB = document.getElementById("optionB");
+  const optionC = document.getElementById("optionC");
+  const optionD = document.getElementById("optionD");
 
   const optA = document.getElementById("optA");
   const optB = document.getElementById("optB");
@@ -23,7 +33,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     questions = await resp.json();
     questions = questions.data;
 
-    console.log(questions);
+    displayQuestions(currentIndex);
+  }
+
+  function displayQuestions(currentIndex) {
+    question = questions[currentIndex];
+    display_ques.innerText = question.ques;
+
+    let options = question.options;
+    optionA.innerText = "A) " + options[0];
+    optionB.innerText = "B) " + options[1];
+    optionC.innerText = "C) " + options[2];
+    optionD.innerText = "D) " + options[3];
   }
 
   function optionSelected(opt) {
@@ -96,8 +117,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   socket.on("update option", (options) => {
     options.forEach((option) => {
-      let active_class =
-        option.id == userId ? "my_selection" : "opponent_selection";
+      let active_class = "";
+
+      if (option.id == userId) {
+        active_class = "my_selection";
+        myScore += option.opt == question.ans ? 1 : 0;
+      } else {
+        active_class = "opponent_selection";
+        opponentScore += option.opt == question.ans ? 1 : 0;
+      }
+
+      console.log("my score:" + myScore);
+      console.log("opponent score" + opponentScore);
       switch (option.opt) {
         case 1:
           optA.classList.add(active_class);
@@ -148,46 +179,4 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }, "3000");
   });
-
-  function showCorrectAns(option) {
-    console.log("correct ans", option);
-    switch (option) {
-      case 1:
-        optA.classList.add("correct_ans");
-        break;
-      case 2:
-        optB.classList.add("correct_ans");
-        break;
-      case 3:
-        optC.classList.add("correct_ans");
-        break;
-      case 4:
-        optD.classList.add("correct_ans");
-        break;
-      default:
-        clearActiveSelection();
-    }
-  }
-
-  socket.on("update-index", () => {});
-
-  // The login to display options dynamically
-  const display_ques = document.getElementById("display_question");
-  const optionA = document.getElementById("optionA");
-  const optionB = document.getElementById("optionB");
-  const optionC = document.getElementById("optionC");
-  const optionD = document.getElementById("optionD");
-
-  function displayQuestions(currentIndex) {
-    question = questions[currentIndex];
-    display_ques.innerText = question.ques;
-
-    let options = question.options;
-    optionA.innerText = "A) " + options[0];
-    optionB.innerText = "B) " + options[1];
-    optionC.innerText = "C) " + options[2];
-    optionD.innerText = "D) " + options[3];
-  }
-
-  displayQuestions(currentIndex);
 });
