@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const optC = document.getElementById("optC");
   const optD = document.getElementById("optD");
 
+  // const score1 = document.getElementById("score1");
+  // const score2 = document.getElementById("score2");
+
   const query = window.location.search.substring(1);
   const temp = query.split("&");
   const uid = temp[0].split("=");
@@ -122,9 +125,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (option.id == userId) {
         active_class = "my_selection";
         myScore += option.opt == question.ans ? 1 : 0;
+        score1.innerText = `${myScore}`;
       } else {
         active_class = "opponent_selection";
         opponentScore += option.opt == question.ans ? 1 : 0;
+        score2.innerText = `${opponentScore}`;
       }
 
       console.log("my score:" + myScore);
