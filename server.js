@@ -10,6 +10,7 @@ const indexRouter = require("./routes/index");
 const newUserRouter = require("./routes/newuser");
 const addCategories = require("./routes/categories");
 const addQuestion = require("./routes/questions");
+const mulResults = require("./routes/mulQuizResults");
 
 // app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
@@ -21,7 +22,8 @@ app.use(express.json());
 app.use("/", indexRouter);
 app.use("/newuser", newUserRouter);
 app.use("/categories", addCategories);
-app.use("/questions",addQuestion);
+app.use("/questions", addQuestion);
+app.use("/mulResult", mulResults);
 
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);

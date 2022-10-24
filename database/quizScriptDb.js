@@ -8,6 +8,7 @@ const users = db.collection("users");
 const testing = db.collection("test");
 const cat = db.collection("categories");
 const questions = db.collection("questions");
+const mulPlayerResult = db.collection("mulQuizResult");
 
 async function login(userData) {
   await client.connect();
@@ -134,6 +135,35 @@ async function fetchQuestions(category) {
   }
 }
 
+async function sendMulQuizResult(data) {
+  await client.connect();
+  try {
+    const userResults = await mulPlayerResult
+      .find({ username: data.username })
+      .toArray();
+    if (userResults.length > 0) {
+      userResults[0].results = [...userResults[0].results, ...data.results];
+
+      await mulPlayerResult.findOneAndUpdate(
+        { category: data.category },
+        {
+          $set: {
+            results: userResults[0].results,
+          },
+        }
+      );
+    } else {
+      await mulPlayerResult.insertOne(data);
+    }
+    return 200;
+  } catch (error) {
+    console.log(error);
+    return 400;
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   login,
   createUser,
@@ -141,4 +171,5 @@ module.exports = {
   createQuestions,
   fetchCategories,
   fetchQuestions,
+  sendMulQuizResult,
 };
