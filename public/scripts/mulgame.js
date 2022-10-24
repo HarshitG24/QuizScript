@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // showCorrectAns(question.ans);
 
-    switch (parseInt(question.ans)) {
+    switch (question.ans) {
       case 1:
         optA.classList.add("correct_ans");
         break;
@@ -175,6 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         displayQuestions(currentIndex);
         socket.emit("clear-options");
       } else {
+        socket.emit("clear-players");
         window.location.href = "./mulresult.html";
       }
     }, "3000");

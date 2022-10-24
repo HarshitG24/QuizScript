@@ -30,7 +30,11 @@ module.exports = {
     socket.on("clear-options", () => {
       options = [];
       options.slice(0, options.length);
-      console.log("options length", options.length);
+    });
+
+    socket.on("clear-players", () => {
+      players = [];
+      players.slice(0, players.length);
     });
   },
 };
