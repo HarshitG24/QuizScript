@@ -1,6 +1,9 @@
 const { MongoClient } = require("mongodb");
+const dotenv = require("dotenv");
+dotenv.config();
+
 const url =
-  `mongodb+srv://quizscript:webdev@quizapp.uzmfysu.mongodb.net/?retryWrites=true&w=majority` ||
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@quizapp.uzmfysu.mongodb.net/?retryWrites=true&w=majority` ||
   "mongodb://127.0.0.1:27017";
 const client = new MongoClient(url, { useUnifiedTopology: true });
 const db = client.db("QuizStart");
