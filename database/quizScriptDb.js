@@ -8,6 +8,7 @@ const users = db.collection("users");
 const testing = db.collection("test");
 const cat = db.collection("categories");
 const questions = db.collection("questions");
+const singleRecord = db.collection("SingleQuizRecords");
 
 async function login(userData) {
   await client.connect();
@@ -134,6 +135,34 @@ async function fetchQuestions(category) {
   }
 }
 
+async function sendScore(user,data){
+  await client.connect();
+  try{
+    const user_score = await singleRecord.find({ user_id:user}).toArray();
+    if (user_score.length>0) {
+      user_score[0].score = [...user_score[0].score,data]
+
+      await user_score.findOneAndUpdate(
+        {user_id:user},
+        {
+          $set : {
+            score: user_score[0].score,
+          }
+        }
+      )
+    } else {
+      await singleRecord.insertOne({user_id:user,score:data})
+    }
+    return 200l
+  } catch(error) {
+    console.log(error);
+    return 400
+  }
+  finally {
+    client.close();
+  }
+}
+
 module.exports = {
   login,
   createUser,
@@ -141,4 +170,5 @@ module.exports = {
   createQuestions,
   fetchCategories,
   fetchQuestions,
+  sendScore
 };

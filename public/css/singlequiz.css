@@ -27,20 +27,24 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+p {
+  text-align: left;
+}
+
 .container {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 .card {
   width: 90%;
   display: flex;
   flex-wrap: wrap;
-  background: green;
+  background: coral;
 }
 
 .ques {
@@ -55,18 +59,30 @@ body {
 
 .options {
   width: 100%;
-  background: lightgreen;
+  background: white;
   display: flex;
   flex-direction: column;
 }
 
 .option {
   margin: 2rem;
-  background: plum;
+  /* background: plum; */
 }
 
 .active {
   background: peru;
+}
+
+.my_selection {
+  background: lightcoral;
+}
+
+.opponent_selection {
+  background: lightgoldenrodyellow;
+}
+
+.correct_ans {
+  background: green;
 }
 
 .option:hover {
