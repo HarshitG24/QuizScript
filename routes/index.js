@@ -3,6 +3,8 @@ const router = express.Router();
 const db = require("../database/quizScriptDb");
 
 // Get Home Page
+//Change the render function
+//res.redirect(index.html) if user is authenticated
 router.get("/", function (req, res) {
   res.render("index", { title: "Express" });
 });
