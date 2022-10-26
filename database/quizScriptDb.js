@@ -161,30 +161,31 @@ async function sendMulQuizResult(data) {
     console.log(error);
     return 400;
   } finally {
-async function sendScore(user,data){
+  }
+}
+async function sendScore(user, data) {
   await client.connect();
-  try{
-    const user_score = await singleRecord.find({ user_id:user}).toArray();
-    if (user_score.length>0) {
-      user_score[0].score = [...user_score[0].score,data]
+  try {
+    const user_score = await singleRecord.find({ user_id: user }).toArray();
+    if (user_score.length > 0) {
+      user_score[0].score = [...user_score[0].score, data];
 
       await user_score.findOneAndUpdate(
-        {user_id:user},
+        { user_id: user },
         {
-          $set : {
+          $set: {
             score: user_score[0].score,
-          }
+          },
         }
-      )
+      );
     } else {
-      await singleRecord.insertOne({user_id:user,score:data})
+      await singleRecord.insertOne({ user_id: user, score: data });
     }
-    return 200l
-  } catch(error) {
+    return 200;
+  } catch (error) {
     console.log(error);
-    return 400
-  }
-  finally {
+    return 400;
+  } finally {
     client.close();
   }
 }
@@ -197,5 +198,5 @@ module.exports = {
   fetchCategories,
   fetchQuestions,
   sendMulQuizResult,
-  sendScore
+  sendScore,
 };
