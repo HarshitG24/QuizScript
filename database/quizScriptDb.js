@@ -123,9 +123,7 @@ async function fetchQuestions(category) {
         category: category,
       })
       .toArray();
-    console.log("qbank is", qbank);
     let arr = await qbank[0].question;
-    console.log("arr is", arr);
     return {
       data: arr.length > 0 ? arr : [],
       code: arr.length > 0 ? 200 : 500,

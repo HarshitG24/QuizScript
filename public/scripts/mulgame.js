@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let question;
   let iSelected = false;
   let currentIndex = 0;
+  let players = [];
 
   let myScore = 0;
   let opponentScore = 0;
@@ -137,6 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let clock = setInterval(countDownClock, 1000);
 
+  // Listen for socket connections
   socket.on("update option", (options) => {
     options.forEach((option) => {
       let active_class = "";
@@ -150,9 +152,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         opponentScore += option.opt == question.ans ? 1 : 0;
         score2.innerText = `${opponentScore}`;
       }
-
-      console.log("my score:" + myScore);
-      console.log("opponent score" + opponentScore);
       switch (option.opt) {
         case 1:
           optA.classList.add(active_class);
