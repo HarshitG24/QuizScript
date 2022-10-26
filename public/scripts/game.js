@@ -1,202 +1,179 @@
 const query = window.location.search.substring(1);
 const array = query.split("=");
 const param = array[1];
-console.log(param);
 
-
-function update(data,clicked_id) {
-
+function update(data, clicked_id) {
   let iSelected = false;
 
   let clicked_id = null;
-  const question = document.getElementById('q')
-  const op1_p = document.getElementById("1")
-  const op2_p = document.getElementById("2")
-  const op3_p = document.getElementById("3")
-  const op4_p = document.getElementById("4")
+  const question = document.getElementById("q");
+  const op1_p = document.getElementById("1");
+  const op2_p = document.getElementById("2");
+  const op3_p = document.getElementById("3");
+  const op4_p = document.getElementById("4");
 
-  question.innerHTML = data.ques
-  op1_p.innerHTML = data.options[0]
-  op2_p.innerHTML = data.options[1]
-  op3_p.innerHTML = data.options[2]
-  op4_p.innerHTML = data.options[3]
+  question.innerHTML = data.ques;
+  op1_p.innerHTML = data.options[0];
+  op2_p.innerHTML = data.options[1];
+  op3_p.innerHTML = data.options[2];
+  op4_p.innerHTML = data.options[3];
 
-  const opA = document.getElementById("optA")
-  const opB = document.getElementById("optB")
-  const opC = document.getElementById("optC")
-  const opD = document.getElementById("optD")
+  const opA = document.getElementById("optA");
+  const opB = document.getElementById("optB");
+  const opC = document.getElementById("optC");
+  const opD = document.getElementById("optD");
   opA.addEventListener("click", () => {
-    console.log("clicked")
     if (!iSelected) {
       iSelected = true;
       optA.classList.toggle("active");
-      clicked_id = opA.id
+      clicked_id = opA.id;
     }
-  })
+  });
 
   opB.addEventListener("click", () => {
-    console.log("clicked")
     if (!iSelected) {
       iSelected = true;
       optB.classList.toggle("active");
-      clicked_id = opB.id
+      clicked_id = opB.id;
     }
-  })
+  });
 
   opC.addEventListener("click", () => {
-    console.log("clicked")
     if (!iSelected) {
       iSelected = true;
       optC.classList.toggle("active");
-      clicked_id = opC.id
+      clicked_id = opC.id;
     }
-  })
+  });
 
   opD.addEventListener("click", () => {
-    console.log("clicked")
     if (!iSelected) {
       iSelected = true;
       optD.classList.toggle("active");
-      clicked_id = opD.id
+      clicked_id = opD.id;
     }
-  })
+  });
 
-  const button = document.querySelector(".next_button")
+  const button = document.querySelector(".next_button");
 
   button.addEventListener("click", () => {
-    changeSelection(clicked_id)
-  })
-  
-  
+    changeSelection(clicked_id);
+  });
 }
 
 function changeSelection(option) {
-  const op_clicked = document.getElementById(option)
-  op_clicked.classList.remove("active")
+  const op_clicked = document.getElementById(option);
+  op_clicked.classList.remove("active");
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("send");
   const resp = await fetch("/questions/" + param);
   data = await resp.json();
-  let index = 0
-  let iSelected = false
-  let clicked_id = null
+  let index = 0;
+  let iSelected = false;
+  let clicked_id = null;
 
-  first_ques = data.data[index]
+  first_ques = data.data[index];
 
-
-  const container = document.querySelector(".container")
-  const card = document.createElement("div")
-  const ques = document.createElement("div")
-  const ques_p = document.createElement("p")
-  const options = document.createElement("options")
-  const optA = document.createElement("button")
-  const optB = document.createElement("button")
-  const optC = document.createElement("button")
-  const optD = document.createElement("button")
-  const next = document.createElement("div")
-  const next_button = document.createElement("button")
-  next_button.innerHTML = "Next"
-  next_button.className = "next_button"
+  const container = document.querySelector(".container");
+  const card = document.createElement("div");
+  const ques = document.createElement("div");
+  const ques_p = document.createElement("p");
+  const options = document.createElement("options");
+  const optA = document.createElement("button");
+  const optB = document.createElement("button");
+  const optC = document.createElement("button");
+  const optD = document.createElement("button");
+  const next = document.createElement("div");
+  const next_button = document.createElement("button");
+  next_button.innerHTML = "Next";
+  next_button.className = "next_button";
 
   next_button.addEventListener("click", () => {
-    index+=1
-    changeSelection(clicked_id)
-    update(data.data[index],clicked_id)
-  })
+    index += 1;
+    changeSelection(clicked_id);
+    update(data.data[index], clicked_id);
+  });
 
-  next.className = "next"
-  next.appendChild(next_button)
-  ques_p.id = "q"
+  next.className = "next";
+  next.appendChild(next_button);
+  ques_p.id = "q";
 
-  const optA_p = document.createElement("p")
-  const optB_p = document.createElement("p")
-  const optC_p = document.createElement("p")
-  const optD_p = document.createElement("p")
-  optA_p.id = "1"
-  optB_p.id = "2"
-  optC_p.id = "3"
-  optD_p.id = "4"
+  const optA_p = document.createElement("p");
+  const optB_p = document.createElement("p");
+  const optC_p = document.createElement("p");
+  const optD_p = document.createElement("p");
+  optA_p.id = "1";
+  optB_p.id = "2";
+  optC_p.id = "3";
+  optD_p.id = "4";
 
+  card.className = "card";
+  ques.className = "ques";
+  options.className = "options";
+  optA.className = "option";
+  optB.className = "option";
+  optC.className = "option";
+  optD.className = "option";
 
-  card.className = "card"
-  ques.className = "ques"
-  options.className = "options"
-  optA.className = "option"
-  optB.className = "option"
-  optC.className = "option"
-  optD.className = "option"
+  optA.id = "optA";
+  optB.id = "optB";
+  optC.id = "optC";
+  optD.id = "optD";
 
-  optA.id = "optA"
-  optB.id = "optB"
-  optC.id = "optC"
-  optD.id = "optD"
+  ques_p.innerHTML = first_ques.ques;
+  ques.appendChild(ques_p);
 
-  
+  optA_p.innerHTML = first_ques.options[0];
+  optB_p.innerHTML = first_ques.options[1];
+  optC_p.innerHTML = first_ques.options[2];
+  optD_p.innerHTML = first_ques.options[3];
 
-  ques_p.innerHTML = first_ques.ques
-  ques.appendChild(ques_p)
-  
-  
-  optA_p.innerHTML = first_ques.options[0]
-  optB_p.innerHTML = first_ques.options[1]
-  optC_p.innerHTML = first_ques.options[2]
-  optD_p.innerHTML = first_ques.options[3]
+  optA.appendChild(optA_p);
+  optB.appendChild(optB_p);
+  optC.appendChild(optC_p);
+  optD.appendChild(optD_p);
 
-  optA.appendChild(optA_p)
-  optB.appendChild(optB_p)
-  optC.appendChild(optC_p)
-  optD.appendChild(optD_p)
-  
+  options.appendChild(optA);
+  options.appendChild(optB);
+  options.appendChild(optC);
+  options.appendChild(optD);
 
-  options.appendChild(optA)
-  options.appendChild(optB)
-  options.appendChild(optC)
-  options.appendChild(optD)
-
-  optA.addEventListener("click", ()=>{
-    console.log("clicked")
+  optA.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
       optA.classList.toggle("active");
-      clicked_id = optA.id
+      clicked_id = optA.id;
     }
-  })
+  });
 
-  optB.addEventListener("click", ()=>{
-    console.log("clicked")
+  optB.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
       optA.classList.toggle("active");
-      clicked_id = optA.id
+      clicked_id = optA.id;
     }
-  })
+  });
 
-  optC.addEventListener("click", ()=>{
-    console.log("clicked")
+  optC.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
       optA.classList.toggle("active");
-      clicked_id = optA.id
+      clicked_id = optA.id;
     }
-  })
+  });
 
-  optD.addEventListener("click", ()=>{
-    console.log("clicked")
+  optD.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
       optA.classList.toggle("active");
-      clicked_id = optA.id
+      clicked_id = optA.id;
     }
-  })
-  card.appendChild(ques)
-  card.appendChild(options)
-  
-  container.appendChild(card)
-  container.appendChild(next)
+  });
+  card.appendChild(ques);
+  card.appendChild(options);
 
-  
-
-
+  container.appendChild(card);
+  container.appendChild(next);
 });

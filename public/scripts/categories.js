@@ -9,7 +9,6 @@ const enteredGameCode = document.getElementById("entered_game_code");
 const query = window.location.search.substring(1);
 const array = query.split("=");
 const userID = array[1];
-console.log("userID is:" + userID);
 
 function toggleModal() {
   modal.classList.toggle("show-modal");
@@ -28,9 +27,7 @@ function socketCall(name) {
   socket.emit("new player", myGameCode);
 
   socket.on("update-game", (players) => {
-    console.log("total players", players);
     let me = socket.id;
-    console.log(players.flatMap((player) => player.name));
 
     let hasGameStarted = () => {
       return players.find((player) => player.active == true);
@@ -38,9 +35,7 @@ function socketCall(name) {
 
     if (hasGameStarted()) {
       let active = players.find((player) => player.active == true);
-      console.log(active.name + " is active");
     }
-    console.log(players.length);
     if (players.length == 2) {
       start_game.href =
         "./mulquiz.html?userID=" + userID + "&categories=" + name;
@@ -135,7 +130,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       window.location.href = "singlequiz.html?categories=" + name;
     };
     anch2.onclick = function (e) {
-      console.log("quiz button clicked");
       toggleModal();
       socketCall(name);
     };

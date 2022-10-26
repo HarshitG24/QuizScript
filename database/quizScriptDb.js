@@ -1,6 +1,9 @@
 const { MongoClient } = require("mongodb");
+const dotenv = require("dotenv");
+dotenv.config();
+
 const url =
-  `mongodb+srv://quizscript:webdev@quizapp.uzmfysu.mongodb.net/?retryWrites=true&w=majority` ||
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@quizapp.uzmfysu.mongodb.net/?retryWrites=true&w=majority` ||
   "mongodb://127.0.0.1:27017";
 const client = new MongoClient(url, { useUnifiedTopology: true });
 const db = client.db("QuizStart");
@@ -120,9 +123,7 @@ async function fetchQuestions(category) {
         category: category,
       })
       .toArray();
-    console.log("qbank is", qbank);
     let arr = await qbank[0].question;
-    console.log("arr is", arr);
     return {
       data: arr.length > 0 ? arr : [],
       code: arr.length > 0 ? 200 : 500,

@@ -26,7 +26,6 @@ app.use("/questions", addQuestion);
 app.use("/mulResult", mulResults);
 
 io.on("connection", (socket) => {
-  console.log("a user connected", socket.id);
   game.handle(socket);
 });
 

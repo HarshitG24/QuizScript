@@ -3,7 +3,6 @@ const password = document.getElementById("password");
 const btn = document.getElementById("clickme");
 
 btn.addEventListener("click", async () => {
-  console.log("login btn ");
   let user = {
     email: email?.value || "",
     password: password?.value || "",
@@ -23,8 +22,6 @@ btn.addEventListener("click", async () => {
   try {
     let resp = await fetch("/login", opts);
     resp = await resp.json();
-    console.log("login resp", resp);
-    debugger;
     if (resp.code == 200) {
       try {
         window.location.replace(
