@@ -179,7 +179,7 @@ async function sendScore(user,data){
     } else {
       await singleRecord.insertOne({user_id:user,score:data})
     }
-    return 200l
+    return 200;
   } catch(error) {
     console.log(error);
     return 400
@@ -198,4 +198,4 @@ module.exports = {
   fetchQuestions,
   sendMulQuizResult,
   sendScore
-};
+}
