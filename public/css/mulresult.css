@@ -86,4 +86,29 @@ body {
 }
 
 @media screen and (min-width: 768px) {
+  .result {
+    font-size: 6rem;
+  }
+
+  .trophy_img {
+    width: 20%;
+  }
+
+  .players {
+    margin: 0 12rem;
+    margin-top: 4rem;
+  }
+
+  .player_name {
+    font-size: 4rem;
+  }
+
+  .player_score {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .result_player {
+    font-size: 5rem;
+  }
 }
