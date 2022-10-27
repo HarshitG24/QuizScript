@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let question;
   let iSelected = false;
   let currentIndex = 0;
-  let players = [];
+  let playerObj = {};
 
   let myScore = 0;
   let opponentScore = 0;
@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const temp = query.split("&");
   const uid = temp[0].split("=");
   const userId = uid[1];
+
+  socket.emit("add_player", userId);
 
   const cat = temp[1].split("=");
   const category = cat[1];
@@ -206,5 +208,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = "./mulresult.html";
       }
     }, "3000");
+  });
+
+  socket.on("return_players", (obj) => {
+    playerObj = obj;
+    console.log("players in the game", playerObj);
+    debugger;
   });
 });

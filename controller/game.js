@@ -2,6 +2,8 @@ let Player = require("./player.js"),
   players = [],
   options = [];
 
+let playersObj = {};
+
 module.exports = {
   handle: (socket) => {
     socket.on("new player", () => {
@@ -34,9 +36,16 @@ module.exports = {
     });
 
     socket.on("clear-players", () => {
-      socket.server.emit("game_players", players);
-      // players = [];
-      // players.slice(0, players.length);
+      // socket.server.emit("game_players", players);
+      socket.server.emit("return_players", playersObj);
+      socket.server.emit("game_play", playersObj);
+      players = [];
+      players.slice(0, players.length);
+    });
+
+    socket.on("add_player", (p) => {
+      playersObj[p] = "";
+      console.log("player object", playersObj);
     });
   },
 };
