@@ -26,4 +26,53 @@ body {
     #45a247,
     #283c86
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.result {
+  width: 100%;
+  font-size: 3.5rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.players {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2rem;
+  margin-top: 3rem;
+}
+
+.player_name {
+  font-size: 2.7rem;
+  font-weight: 600;
+}
+
+.player_score {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.trophy_img {
+  width: 100%;
+  height: auto;
+}
+
+.result_player {
+  width: 100%;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
 }

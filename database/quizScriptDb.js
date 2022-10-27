@@ -12,6 +12,7 @@ const testing = db.collection("test");
 const cat = db.collection("categories");
 const questions = db.collection("questions");
 const singleRecord = db.collection("SingleQuizRecords");
+const mulPlayerResult = db.collection("mulQuizResult");
 
 async function login(userData) {
   await client.connect();
