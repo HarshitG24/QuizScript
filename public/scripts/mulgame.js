@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       displayQuestions(currentIndex);
       time_left = 15;
       time_remain.innerText = `${time_left}s`;
+      clock = setInterval(countDownClock, 1000);
     }
   }
 
@@ -203,6 +204,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (currentIndex <= questions.length - 1) {
         clearInterval(clock);
+        console.log("clock is", clock);
         clearActiveSelection();
         time_left = 15;
         time_remain.innerText = `${time_left}s`;
@@ -229,64 +231,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     finalArr.push({ id: opponent, score: opponentScore });
     console.log("final arr", finalArr);
     socket.emit("update_result", finalArr);
-
-    // const headers = new Headers({ "Content-Type": "application/json" });
-
-    // if (userId != opponent) {
-    //   let data = {
-    //     username: userId,
-    //     results: [
-    //       {
-    //         opponent: opponent,
-    //         result:
-    //           myScore == opponentScore
-    //             ? "Game Tied"
-    //             : myScore > opponentScore
-    //             ? "You Won"
-    //             : "Opponent Won",
-    //         date: new Date(),
-    //         category: category,
-    //       },
-    //     ],
-    //   };
-
-    //   let dataOpp = {
-    //     username: opponent,
-    //     results: [
-    //       {
-    //         opponent: userId,
-    //         result:
-    //           myScore == opponentScore
-    //             ? "Game Tied"
-    //             : myScore > opponentScore
-    //             ? "You Won"
-    //             : "Opponent Won",
-    //         date: new Date(),
-    //         category: category,
-    //       },
-    //     ],
-    //   };
-
-    //   const opts = {
-    //     method: "post",
-    //     headers: headers,
-    //     body: JSON.stringify(data),
-    //   };
-
-    //   const opts2 = {
-    //     method: "post",
-    //     headers: headers,
-    //     body: JSON.stringify(dataOpp),
-    //   };
-
-    //   try {
-    //     const resp = await fetch("/quizResult/sendMulQuizResults", opts);
-    //     const resp2 = await fetch("/quizResult/sendMulQuizResults", opts2);
-    //     console.log("resp is", resp, resp2);
-    //     debugger;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
   });
 });
