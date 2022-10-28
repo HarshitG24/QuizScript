@@ -206,7 +206,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         clock = setInterval(countDownClock, 1000);
       } else {
         socket.emit("clear-players");
-        window.location.href = "./mulresult.html";
+        window.location.href =
+          "./mulresult.html?userId=" + userId + "&category=" + category;
       }
     }, "3000");
   });
@@ -223,63 +224,63 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("final arr", finalArr);
     socket.emit("update_result", finalArr);
 
-    const headers = new Headers({ "Content-Type": "application/json" });
+    // const headers = new Headers({ "Content-Type": "application/json" });
 
-    if (userId != opponent) {
-      let data = {
-        username: userId,
-        results: [
-          {
-            opponent: opponent,
-            result:
-              myScore == opponentScore
-                ? "Game Tied"
-                : myScore > opponentScore
-                ? "You Won"
-                : "Opponent Won",
-            date: new Date(),
-            category: category,
-          },
-        ],
-      };
+    // if (userId != opponent) {
+    //   let data = {
+    //     username: userId,
+    //     results: [
+    //       {
+    //         opponent: opponent,
+    //         result:
+    //           myScore == opponentScore
+    //             ? "Game Tied"
+    //             : myScore > opponentScore
+    //             ? "You Won"
+    //             : "Opponent Won",
+    //         date: new Date(),
+    //         category: category,
+    //       },
+    //     ],
+    //   };
 
-      let dataOpp = {
-        username: opponent,
-        results: [
-          {
-            opponent: userId,
-            result:
-              myScore == opponentScore
-                ? "Game Tied"
-                : myScore > opponentScore
-                ? "You Won"
-                : "Opponent Won",
-            date: new Date(),
-            category: category,
-          },
-        ],
-      };
+    //   let dataOpp = {
+    //     username: opponent,
+    //     results: [
+    //       {
+    //         opponent: userId,
+    //         result:
+    //           myScore == opponentScore
+    //             ? "Game Tied"
+    //             : myScore > opponentScore
+    //             ? "You Won"
+    //             : "Opponent Won",
+    //         date: new Date(),
+    //         category: category,
+    //       },
+    //     ],
+    //   };
 
-      const opts = {
-        method: "post",
-        headers: headers,
-        body: JSON.stringify(data),
-      };
+    //   const opts = {
+    //     method: "post",
+    //     headers: headers,
+    //     body: JSON.stringify(data),
+    //   };
 
-      const opts2 = {
-        method: "post",
-        headers: headers,
-        body: JSON.stringify(dataOpp),
-      };
+    //   const opts2 = {
+    //     method: "post",
+    //     headers: headers,
+    //     body: JSON.stringify(dataOpp),
+    //   };
 
-      try {
-        const resp = await fetch("/quizResult/sendMulQuizResults", opts);
-        const resp2 = await fetch("/quizResult/sendMulQuizResults", opts2);
-        console.log("resp is", resp, resp2);
-        debugger;
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    //   try {
+    //     const resp = await fetch("/quizResult/sendMulQuizResults", opts);
+    //     const resp2 = await fetch("/quizResult/sendMulQuizResults", opts2);
+    //     console.log("resp is", resp, resp2);
+    //     debugger;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
   });
 });

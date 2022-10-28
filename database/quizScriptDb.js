@@ -140,23 +140,23 @@ async function fetchQuestions(category) {
 async function sendMulQuizResult(data) {
   await client.connect();
   try {
-    const userResults = await mulPlayerResult
-      .find({ username: data.username })
-      .toArray();
-    if (userResults.length > 0) {
-      userResults[0].results = [...userResults[0].results, ...data.results];
+    // const userResults = await mulPlayerResult
+    //   .find({ username: data.username })
+    //   .toArray();
+    // if (userResults.length > 0) {
+    //   userResults[0].results = [...userResults[0].results, ...data.results];
 
-      await mulPlayerResult.findOneAndUpdate(
-        { category: data.category },
-        {
-          $set: {
-            results: userResults[0].results,
-          },
-        }
-      );
-    } else {
-      await mulPlayerResult.insertOne(data);
-    }
+    //   await mulPlayerResult.findOneAndUpdate(
+    //     { category: data.category },
+    //     {
+    //       $set: {
+    //         results: userResults[0].results,
+    //       },
+    //     }
+    //   );
+    // } else {
+    await mulPlayerResult.insertOne(data);
+    // }
     return 200;
   } catch (error) {
     console.log(error);
@@ -168,21 +168,26 @@ async function sendMulQuizResult(data) {
 async function sendScore(data) {
   await client.connect();
   try {
-    const user_score = await singleRecord.find({ username: data.username }).toArray();
-    console.log(user_score[0])
+    const user_score = await singleRecord
+      .find({ username: data.username })
+      .toArray();
+    console.log(user_score[0]);
     if (user_score.length > 0) {
-      user_score[0].results  = [...user_score[0].results,data.results];
+      user_score[0].results = [...user_score[0].results, data.results];
 
       await singleRecord.findOneAndUpdate(
         { username: data.username },
         {
           $set: {
             results: user_score[0].results,
-          }
+          },
         }
       );
     } else {
-      await singleRecord.insertOne({ username: data.username, results: data.results });
+      await singleRecord.insertOne({
+        username: data.username,
+        results: data.results,
+      });
     }
     return 200;
   } catch (error) {
@@ -193,17 +198,20 @@ async function sendScore(data) {
   }
 }
 
-async function fetchSingleScore(user){
+async function fetchSingleScore(user) {
   await client.connect();
-  try{
-    const user_score = await singleRecord.find({username:user}).sort({date:-1}).toArray()
-    const data = user_score[0].results
-    return data[data.length-1];
-  } catch(error){
+  try {
+    const user_score = await singleRecord
+      .find({ username: user })
+      .sort({ date: -1 })
+      .toArray();
+    const data = user_score[0].results;
+    return data[data.length - 1];
+  } catch (error) {
     console.log(error);
     return 400;
-  } finally{
-    client.close()
+  } finally {
+    client.close();
   }
 }
 
