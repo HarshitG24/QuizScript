@@ -44,6 +44,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function displayQuestions(currentIndex) {
+    if (currentIndex >= questions.length) {
+      socket.emit("clear-players");
+      window.location.href =
+        "./mulresult.html?userId=" + userId + "&category=" + category;
+      return;
+    }
     question = questions[currentIndex];
     display_ques.innerText = question.ques;
 
