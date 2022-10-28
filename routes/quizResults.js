@@ -8,4 +8,9 @@ router.post("/sendMulQuizResults", async (req, res) => {
   res.status(status).send({ status: 200 });
 });
 
+router.get("/getMulQuizResults", async (req, res) => {
+  const status = await db.getQuizResult(req?.username || "");
+  res.status(status).send({ status: 200 });
+});
+
 module.exports = router;

@@ -191,6 +191,25 @@ async function sendScore(user, data) {
   }
 }
 
+async function getQuizResult(user) {
+  try {
+    const user = await mulPlayerResult
+      .find({
+        username,
+      })
+      .toArray();
+    return {
+      data: user.length > 0 ? user : [],
+      code: user.length > 0 ? 200 : 500,
+    };
+  } catch (error) {
+    console.log(error);
+    return 400;
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   login,
   createUser,
@@ -200,4 +219,5 @@ module.exports = {
   fetchQuestions,
   sendMulQuizResult,
   sendScore,
+  getQuizResult,
 };
