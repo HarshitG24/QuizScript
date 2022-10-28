@@ -5,6 +5,7 @@ const http = require("http").Server(app);
 // const server = http.createServer(app);
 const io = require("socket.io")(http);
 const game = require(__dirname + "/controller/game.js");
+// const sc = require(__dirname + "/public/scripts/mulresult.js");
 
 const indexRouter = require("./routes/index");
 const newUserRouter = require("./routes/newuser");
@@ -27,6 +28,7 @@ app.use("/quizResult", mulResults);
 
 io.on("connection", (socket) => {
   game.handle(socket);
+  // sc.score(socket);
 });
 
 // app.listen(process.env.PORT || 3000);

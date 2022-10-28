@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let iSelected = false;
   let currentIndex = 0;
   let playerObj = {};
+  let opponent = "";
 
   let myScore = 0;
   let opponentScore = 0;
@@ -212,7 +213,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   socket.on("return_players", (obj) => {
     playerObj = obj;
-    console.log("players in the game", playerObj);
-    debugger;
+    let parr = Object.keys(playerObj);
+    parr = parr.filter((p) => p != userId);
+    opponent = parr[0];
+    let finalArr = [];
+
+    finalArr.push({ id: userId, score: myScore });
+    finalArr.push({ id: opponent, score: opponentScore });
+    console.log("final arr", finalArr);
+    socket.emit("update_result", finalArr);
   });
 });
