@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, "3000");
   });
 
-  socket.on("return_players", (obj) => {
+  socket.on("return_players", async (obj) => {
     playerObj = obj;
     let parr = Object.keys(playerObj);
     parr = parr.filter((p) => p != userId);
@@ -222,5 +222,64 @@ document.addEventListener("DOMContentLoaded", async () => {
     finalArr.push({ id: opponent, score: opponentScore });
     console.log("final arr", finalArr);
     socket.emit("update_result", finalArr);
+
+    const headers = new Headers({ "Content-Type": "application/json" });
+
+    if (userId != opponent) {
+      let data = {
+        username: userId,
+        results: [
+          {
+            opponent: opponent,
+            result:
+              myScore == opponentScore
+                ? "Game Tied"
+                : myScore > opponentScore
+                ? "You Won"
+                : "Opponent Won",
+            date: new Date(),
+            category: category,
+          },
+        ],
+      };
+
+      let dataOpp = {
+        username: opponent,
+        results: [
+          {
+            opponent: userId,
+            result:
+              myScore == opponentScore
+                ? "Game Tied"
+                : myScore > opponentScore
+                ? "You Won"
+                : "Opponent Won",
+            date: new Date(),
+            category: category,
+          },
+        ],
+      };
+
+      const opts = {
+        method: "post",
+        headers: headers,
+        body: JSON.stringify(data),
+      };
+
+      const opts2 = {
+        method: "post",
+        headers: headers,
+        body: JSON.stringify(dataOpp),
+      };
+
+      try {
+        const resp = await fetch("/quizResult/sendMulQuizResults", opts);
+        const resp2 = await fetch("/quizResult/sendMulQuizResults", opts2);
+        console.log("resp is", resp, resp2);
+        debugger;
+      } catch (error) {
+        console.log(error);
+      }
+    }
   });
 });
