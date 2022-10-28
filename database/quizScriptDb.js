@@ -191,7 +191,7 @@ async function sendScore(user, data) {
   }
 }
 
-async function getQuizResult(user) {
+async function getQuizResult(username) {
   try {
     const user = await mulPlayerResult
       .find({
