@@ -161,33 +161,61 @@ async function sendMulQuizResult(data) {
     console.log(error);
     return 400;
   } finally {
-async function sendScore(user,data){
-  await client.connect();
-  try{
-    const user_score = await singleRecord.find({ user_id:user}).toArray();
-    if (user_score.length>0) {
-      user_score[0].score = [...user_score[0].score,data]
+  }
+}
 
-      await user_score.findOneAndUpdate(
-        {user_id:user},
+async function sendScore(data) {
+  await client.connect();
+  try {
+    const user_score = await singleRecord.find({ username: data.username }).toArray();
+    console.log(user_score[0])
+    if (user_score.length > 0) {
+      user_score[0].results  = [...user_score[0].results,data.results];
+
+      await singleRecord.findOneAndUpdate(
+        { username: data.username },
         {
-          $set : {
-            score: user_score[0].score,
+          $set: {
+            results: user_score[0].results,
           }
         }
-      )
+      );
     } else {
-      await singleRecord.insertOne({user_id:user,score:data})
+      await singleRecord.insertOne({ username: data.username, results: data.results });
     }
     return 200;
-  } catch(error) {
+  } catch (error) {
     console.log(error);
-    return 400
-  }
-  finally {
+    return 400;
+  } finally {
     client.close();
   }
 }
+
+async function fetchSingleScore(user){
+  await client.connect();
+  try{
+    const user_score = await singleRecord.find({username:user}).sort({date:-1}).toArray()
+    const data = user_score[0].results
+    return data[data.length-1];
+  } catch(error){
+    console.log(error);
+    return 400;
+  } finally{
+    client.close()
+  }
+}
+
+/* data format
+{
+  user: user_id,
+  score: [{
+    cat:cat_name,
+    score:score,
+    data:date
+  }]
+}
+*/
 
 module.exports = {
   login,
@@ -197,5 +225,6 @@ module.exports = {
   fetchCategories,
   fetchQuestions,
   sendMulQuizResult,
-  sendScore
-}
+  sendScore,
+  fetchSingleScore
+};

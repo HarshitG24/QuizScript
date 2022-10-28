@@ -1,11 +1,19 @@
-const query = window.location.search.substring(1);
-const array = query.split("=");
-const param = array[1];
+const query = window.location.search;
+const urlParams = new URLSearchParams(query);
+const param = urlParams.get("categories");
+const userID = urlParams.get("userID")
+
+let score = 0
+console.log(param)
+console.log(userID)
+
+
+//updating for next question
 
 function update(data, clicked_id) {
   let iSelected = false;
 
-  let clicked_id = null;
+  
   const question = document.getElementById("q");
   const op1_p = document.getElementById("1");
   const op2_p = document.getElementById("2");
@@ -25,6 +33,9 @@ function update(data, clicked_id) {
   opA.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
+      if (data.ans==1){
+        score+=1
+      }
       optA.classList.toggle("active");
       clicked_id = opA.id;
     }
@@ -33,6 +44,9 @@ function update(data, clicked_id) {
   opB.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
+      if (data.ans==2){
+        score+=1
+      }
       optB.classList.toggle("active");
       clicked_id = opB.id;
     }
@@ -41,6 +55,9 @@ function update(data, clicked_id) {
   opC.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
+      if (data.ans==3){
+        score+=1
+      }
       optC.classList.toggle("active");
       clicked_id = opC.id;
     }
@@ -49,6 +66,9 @@ function update(data, clicked_id) {
   opD.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
+      if (data.ans==4){
+        score+=1
+      }
       optD.classList.toggle("active");
       clicked_id = opD.id;
     }
@@ -66,8 +86,58 @@ function changeSelection(option) {
   op_clicked.classList.remove("active");
 }
 
+
+
+//sending result to database
+
+async function sendScore(score) {
+  let date = new Date()
+  //date = date.toDateString().split(" ")
+  //date = date[1]+" "+date[2]+" "+date[3]
+  
+  let data = {
+    username: userID,
+    results : [
+      {
+      score: score,
+      date: date,
+      category: param,
+      }
+    ]
+  }
+  console.log(data)
+  const headers = new Headers({"Content-Type":"application/json"})
+
+  const opts = {
+    method: "post",
+    headers: headers,
+    body: JSON.stringify(data)
+  }
+
+  
+    let resp = await fetch("/quizResult/sendSingleScore",opts);
+    resp = await resp.json()
+    console.log("this is the data",resp)
+    // if (resp.code == 200){
+    //   try{
+    //   window.location.replace(
+    //     "http://localhost:3000/singleResult.html?userID="+userID
+
+    //   )
+    //   }catch(error){
+    //     console.log(error)
+    // }
+    
+    //}
+    
+  
+
+}
+
+//display when page loaded
+
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log("send");
+  
   const resp = await fetch("/questions/" + param);
   data = await resp.json();
   let index = 0;
@@ -92,8 +162,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   next_button.addEventListener("click", () => {
     index += 1;
-    changeSelection(clicked_id);
-    update(data.data[index], clicked_id);
+    if (index>=data.data.length){
+      sendScore(score)
+      window.location.replace(
+        "http://localhost:3000/singleResult.html?userID="+userID+"&total="+data.data.length
+      )
+
+    }
+    else{
+      changeSelection(clicked_id);
+      update(data.data[index], clicked_id);
+      
+    }
+    
   });
 
   next.className = "next";
@@ -143,6 +224,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   optA.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
+      if (first_ques.ans==1){
+        score+=1
+      }
       optA.classList.toggle("active");
       clicked_id = optA.id;
     }
@@ -151,6 +235,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   optB.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
+      if (first_ques.ans==2){
+        score+=1
+      }
       optA.classList.toggle("active");
       clicked_id = optA.id;
     }
@@ -159,6 +246,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   optC.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
+      if (first_ques.ans==3){
+        score+=1
+      }
       optA.classList.toggle("active");
       clicked_id = optA.id;
     }
@@ -167,6 +257,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   optD.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
+      if (first_ques.ans==4){
+        score+=1
+      }
       optA.classList.toggle("active");
       clicked_id = optA.id;
     }

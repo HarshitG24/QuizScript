@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     anch1.innerText = "Single quiz";
 
     anch1.onclick = function (e) {
-      window.location.href = "singlequiz.html?categories=" + name;
+      window.location.href = "singlequiz.html?userID="+userID+"&categories=" + name;
     };
     anch2.onclick = function (e) {
       toggleModal();
