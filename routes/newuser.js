@@ -8,4 +8,9 @@ router.post("/createUser", async (req, res) => {
   res.status(status).send();
 });
 
+router.delete("/deleteUser/:user", async (req, res) => {
+  const status = await db.deleteUser(req?.params?.user || {});
+  res.status(status).send({ code: status });
+});
+
 module.exports = router;

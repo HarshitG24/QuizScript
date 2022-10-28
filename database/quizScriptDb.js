@@ -247,6 +247,19 @@ async function getQuizResult(username) {
   }
 }
 
+async function deleteUser(username) {
+  await client.connect();
+  try {
+    await users.deleteMany({ email: username });
+    return 200;
+  } catch (error) {
+    console.log(error);
+    return 400;
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   login,
   createUser,
@@ -258,4 +271,5 @@ module.exports = {
   sendScore,
   fetchSingleScore,
   getQuizResult,
+  deleteUser,
 };
