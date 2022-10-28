@@ -140,23 +140,25 @@ async function fetchQuestions(category) {
 async function sendMulQuizResult(data) {
   await client.connect();
   try {
-    // const userResults = await mulPlayerResult
-    //   .find({ username: data.username })
-    //   .toArray();
-    // if (userResults.length > 0) {
-    //   userResults[0].results = [...userResults[0].results, ...data.results];
+    const userResults = await mulPlayerResult
+      .find({ username: data.username })
+      .toArray();
 
-    //   await mulPlayerResult.findOneAndUpdate(
-    //     { category: data.category },
-    //     {
-    //       $set: {
-    //         results: userResults[0].results,
-    //       },
-    //     }
-    //   );
-    // } else {
-    await mulPlayerResult.insertOne(data);
-    // }
+    console.log("userResult", userResults);
+    if (userResults.length > 0) {
+      userResults[0].result = [...userResults[0].result, ...data.result];
+
+      await mulPlayerResult.findOneAndUpdate(
+        { category: data.category },
+        {
+          $set: {
+            result: userResults[0].result,
+          },
+        }
+      );
+    } else {
+      await mulPlayerResult.insertOne(data);
+    }
     return 200;
   } catch (error) {
     console.log(error);
