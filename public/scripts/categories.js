@@ -80,6 +80,14 @@ function generateUserGameCode() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  const dashboard = document.querySelector(".dashboard")
+  dashboard.addEventListener("click", () => {
+    window.location.replace(
+      "http://localhost:3000/dashboard.html?userID="+userID
+    )
+
+  })
   const container = document.querySelector(".container");
   const resp = await fetch("/categories", {
     method: "get",

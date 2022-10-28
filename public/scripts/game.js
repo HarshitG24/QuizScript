@@ -10,7 +10,7 @@ console.log(userID)
 
 //updating for next question
 
-function update(data, clicked_id) {
+function update(data) {
   let iSelected = false;
 
   
@@ -19,6 +19,30 @@ function update(data, clicked_id) {
   const op2_p = document.getElementById("2");
   const op3_p = document.getElementById("3");
   const op4_p = document.getElementById("4");
+  const opA = document.getElementById("optA");
+  const opB = document.getElementById("optB");
+  const opC = document.getElementById("optC");
+  const opD = document.getElementById("optD");
+//remove user selection
+  if (opA.classList.contains("active")) {
+    opA.classList.toggle("active");
+  } else if (opB.classList.contains("active")) {
+    opB.classList.toggle("active");
+  } else if (opC.classList.contains("active")) {
+    opC.classList.toggle("active");
+  } else if (opD.classList.contains("active")) {
+    opD.classList.toggle("active");
+  }
+//remove correct answer selection
+  if (opA.classList.contains("correct_ans")) {
+    opA.classList.toggle("correct_ans");
+  } else if (opB.classList.contains("correct_ans")) {
+    opB.classList.toggle("correct_ans");
+  } else if (opC.classList.contains("correct_ans")) {
+    opC.classList.toggle("correct_ans");
+  } else if (opD.classList.contains("correct_ans")) {
+    opD.classList.toggle("correct_ans");
+  }
 
   question.innerHTML = data.ques;
   op1_p.innerHTML = data.options[0];
@@ -26,10 +50,9 @@ function update(data, clicked_id) {
   op3_p.innerHTML = data.options[2];
   op4_p.innerHTML = data.options[3];
 
-  const opA = document.getElementById("optA");
-  const opB = document.getElementById("optB");
-  const opC = document.getElementById("optC");
-  const opD = document.getElementById("optD");
+  
+
+  
   opA.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
@@ -37,7 +60,8 @@ function update(data, clicked_id) {
         score+=1
       }
       optA.classList.toggle("active");
-      clicked_id = opA.id;
+      showAns(data.ans)
+      
     }
   });
 
@@ -48,7 +72,8 @@ function update(data, clicked_id) {
         score+=1
       }
       optB.classList.toggle("active");
-      clicked_id = opB.id;
+      showAns(data.ans)
+      
     }
   });
 
@@ -59,7 +84,8 @@ function update(data, clicked_id) {
         score+=1
       }
       optC.classList.toggle("active");
-      clicked_id = opC.id;
+      showAns(data.ans)
+      
     }
   });
 
@@ -70,15 +96,13 @@ function update(data, clicked_id) {
         score+=1
       }
       optD.classList.toggle("active");
-      clicked_id = opD.id;
+      showAns(data.ans)
+      
     }
   });
 
-  const button = document.querySelector(".next_button");
+  
 
-  button.addEventListener("click", () => {
-    changeSelection(clicked_id);
-  });
 }
 
 function changeSelection(option) {
@@ -134,6 +158,30 @@ async function sendScore(score) {
 
 }
 
+//show correct ans
+function showAns(ans) {
+  const optA = document.getElementById("optA");
+  const optB = document.getElementById("optB");
+  const optC = document.getElementById("optC");
+  const optD = document.getElementById("optD");
+  switch (ans) {
+    case 1:
+      optA.classList.add("correct_ans");
+      break;
+    case 2:
+      optB.classList.add("correct_ans");
+      break;
+    case 3:
+      optC.classList.add("correct_ans");
+      break;
+    case 4:
+      optD.classList.add("correct_ans");
+      break;
+    default:
+      clearActiveSelection();
+  }
+}
+
 //display when page loaded
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -160,18 +208,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   next_button.innerHTML = "Next";
   next_button.className = "next_button";
 
-  next_button.addEventListener("click", () => {
+  next_button.addEventListener("click", async() => {
     index += 1;
     if (index>=data.data.length){
-      sendScore(score)
+      await sendScore(score)
       window.location.replace(
         "http://localhost:3000/singleResult.html?userID="+userID+"&total="+data.data.length
       )
 
     }
     else{
-      changeSelection(clicked_id);
-      update(data.data[index], clicked_id);
+      update(data.data[index]);
       
     }
     
@@ -228,7 +275,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         score+=1
       }
       optA.classList.toggle("active");
-      clicked_id = optA.id;
+      showAns(first_ques.ans)
+      
     }
   });
 
@@ -238,8 +286,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (first_ques.ans==2){
         score+=1
       }
-      optA.classList.toggle("active");
-      clicked_id = optA.id;
+      optB.classList.toggle("active");
+      showAns(first_ques.ans)
     }
   });
 
@@ -249,8 +297,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (first_ques.ans==3){
         score+=1
       }
-      optA.classList.toggle("active");
-      clicked_id = optA.id;
+      optC.classList.toggle("active");
+      showAns(first_ques.ans)
     }
   });
 
@@ -260,8 +308,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (first_ques.ans==4){
         score+=1
       }
-      optA.classList.toggle("active");
-      clicked_id = optA.id;
+      optD.classList.toggle("active");
+      showAns(first_ques.ans)
     }
   });
   card.appendChild(ques);

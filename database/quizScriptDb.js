@@ -171,7 +171,7 @@ async function sendScore(data) {
     const user_score = await singleRecord.find({ username: data.username }).toArray();
     console.log(user_score[0])
     if (user_score.length > 0) {
-      user_score[0].results  = [...user_score[0].results,data.results];
+      user_score[0].results  = [...user_score[0].results,...data.results];
 
       await singleRecord.findOneAndUpdate(
         { username: data.username },
@@ -196,15 +196,30 @@ async function sendScore(data) {
 async function fetchSingleScore(user){
   await client.connect();
   try{
-    const user_score = await singleRecord.find({username:user}).sort({date:-1}).toArray()
+    const user_score = await singleRecord.find({username:user}).toArray()
     const data = user_score[0].results
-    return data[data.length-1];
+    return data;
   } catch(error){
     console.log(error);
     return 400;
   } finally{
     client.close()
   }
+}
+
+async function fetchMulScore(user){
+  await client.connect();
+  try{
+    const user_score = await mulPlayerResult.find({username:user}).toArray()
+    const data = user_score[0].result
+    return data;
+  } catch(error){
+    console.log(error);
+    return 400;
+  } finally{
+    client.close()
+  }
+
 }
 
 /* data format
@@ -248,4 +263,5 @@ module.exports = {
   sendScore,
   fetchSingleScore,
   getQuizResult,
+  fetchMulScore
 };

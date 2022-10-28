@@ -68,6 +68,9 @@ body {
 .active {
   background: peru;
 }
+.correct_ans {
+  background: green;
+}
 
 .option:hover {
   display: pointer;

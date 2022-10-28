@@ -28,4 +28,11 @@ router.get("/getMulQuizResults/:username", async (req, res) => {
   res.send({ data: resp.data });
 });
 
+router.get("/fetchMulScore/:user", async (req, res) => {
+  const resp = await db.fetchMulScore(req?.params?.user || "");
+  // const ans = await resp.json();
+  console.log("resp", resp);
+  res.send( JSON.stringify(resp));
+});
+
 module.exports = router;
