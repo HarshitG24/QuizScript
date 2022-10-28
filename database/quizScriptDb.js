@@ -143,14 +143,16 @@ async function sendMulQuizResult(data) {
     const userResults = await mulPlayerResult
       .find({ username: data.username })
       .toArray();
+
+    console.log("userResult", userResults);
     if (userResults.length > 0) {
-      userResults[0].results = [...userResults[0].results, ...data.results];
+      userResults[0].result = [...userResults[0].result, ...data.result];
 
       await mulPlayerResult.findOneAndUpdate(
         { category: data.category },
         {
           $set: {
-            results: userResults[0].results,
+            result: userResults[0].result,
           },
         }
       );
@@ -168,8 +170,10 @@ async function sendMulQuizResult(data) {
 async function sendScore(data) {
   await client.connect();
   try {
-    const user_score = await singleRecord.find({ username: data.username }).toArray();
-    console.log(user_score[0])
+    const user_score = await singleRecord
+      .find({ username: data.username })
+      .toArray();
+    console.log(user_score[0]);
     if (user_score.length > 0) {
       user_score[0].results  = [...user_score[0].results,...data.results];
 
@@ -178,11 +182,14 @@ async function sendScore(data) {
         {
           $set: {
             results: user_score[0].results,
-          }
+          },
         }
       );
     } else {
-      await singleRecord.insertOne({ username: data.username, results: data.results });
+      await singleRecord.insertOne({
+        username: data.username,
+        results: data.results,
+      });
     }
     return 200;
   } catch (error) {
@@ -193,7 +200,7 @@ async function sendScore(data) {
   }
 }
 
-async function fetchSingleScore(user){
+async function fetchSingleScore(user) {
   await client.connect();
   try{
     const user_score = await singleRecord.find({username:user}).toArray()
@@ -202,8 +209,8 @@ async function fetchSingleScore(user){
   } catch(error){
     console.log(error);
     return 400;
-  } finally{
-    client.close()
+  } finally {
+    client.close();
   }
 }
 
@@ -252,6 +259,21 @@ async function getQuizResult(username) {
   }
 }
 
+async function deleteUser(username) {
+  await client.connect();
+  try {
+    await users.deleteMany({ email: username });
+    await singleRecord.deleteMany({ username: username });
+    await mulPlayerResult.deleteMany({ username: username });
+    return 200;
+  } catch (error) {
+    console.log(error);
+    return 400;
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   login,
   createUser,
@@ -263,5 +285,6 @@ module.exports = {
   sendScore,
   fetchSingleScore,
   getQuizResult,
-  fetchMulScore
+  fetchMulScore,
+  deleteUser,
 };
