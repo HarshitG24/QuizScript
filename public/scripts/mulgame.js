@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   let question;
   let iSelected = false;
   let currentIndex = 0;
-  let players = [];
+  let playerObj = {};
+  let opponent = "";
 
   let myScore = 0;
   let opponentScore = 0;
@@ -28,6 +29,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const temp = query.split("&");
   const uid = temp[0].split("=");
   const userId = uid[1];
+
+  socket.emit("add_player", userId);
 
   const cat = temp[1].split("=");
   const category = cat[1];
@@ -206,5 +209,77 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = "./mulresult.html";
       }
     }, "3000");
+  });
+
+  socket.on("return_players", async (obj) => {
+    playerObj = obj;
+    let parr = Object.keys(playerObj);
+    parr = parr.filter((p) => p != userId);
+    opponent = parr[0];
+    let finalArr = [];
+
+    finalArr.push({ id: userId, score: myScore });
+    finalArr.push({ id: opponent, score: opponentScore });
+    console.log("final arr", finalArr);
+    socket.emit("update_result", finalArr);
+
+    const headers = new Headers({ "Content-Type": "application/json" });
+
+    if (userId != opponent) {
+      let data = {
+        username: userId,
+        results: [
+          {
+            opponent: opponent,
+            result:
+              myScore == opponentScore
+                ? "Game Tied"
+                : myScore > opponentScore
+                ? "You Won"
+                : "Opponent Won",
+            date: new Date(),
+            category: category,
+          },
+        ],
+      };
+
+      let dataOpp = {
+        username: opponent,
+        results: [
+          {
+            opponent: userId,
+            result:
+              myScore == opponentScore
+                ? "Game Tied"
+                : myScore > opponentScore
+                ? "You Won"
+                : "Opponent Won",
+            date: new Date(),
+            category: category,
+          },
+        ],
+      };
+
+      const opts = {
+        method: "post",
+        headers: headers,
+        body: JSON.stringify(data),
+      };
+
+      const opts2 = {
+        method: "post",
+        headers: headers,
+        body: JSON.stringify(dataOpp),
+      };
+
+      try {
+        const resp = await fetch("/quizResult/sendMulQuizResults", opts);
+        const resp2 = await fetch("/quizResult/sendMulQuizResults", opts2);
+        console.log("resp is", resp, resp2);
+        debugger;
+      } catch (error) {
+        console.log(error);
+      }
+    }
   });
 });

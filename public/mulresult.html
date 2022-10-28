@@ -13,7 +13,26 @@
       crossorigin="anonymous"></script>
   </head>
   <body>
-    <h1>Multiplayer Quiz Result</h1>
+    <div class="container">
+      <p class="result">Result</p>
+
+      <div class="players">
+        <div>
+          <p id="player_one" class="player_name"></p>
+          <p id="player_one_score" class="player_score"></p>
+        </div>
+
+        <div>
+          <p id="player_two" class="player_name"></p>
+          <p id="player_two_score" class="player_score"></p>
+        </div>
+      </div>
+
+      <div class="trophy">
+        <img src="./images/trophy.png" alt="Trophy Image" class="trophy_img" />
+        <p id="verdict" class="result_player"></p>
+      </div>
+    </div>
     <script src="./scripts/mulresult.js"></script>
   </body>
 </html>
