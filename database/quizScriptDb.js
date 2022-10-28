@@ -251,6 +251,8 @@ async function deleteUser(username) {
   await client.connect();
   try {
     await users.deleteMany({ email: username });
+    // await singleRecord.deleteMany({ username: username });
+    await mulPlayerResult.deleteMany({ username: username });
     return 200;
   } catch (error) {
     console.log(error);
