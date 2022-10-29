@@ -58,35 +58,44 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     mulData.forEach((val)=>{
         console.log(val)
-        // let score = val.score
-        // let date = val.date
-        // let topic = val.category
+        let opponent = val.opponent
+        let date = val.date
+        let winner = val.winner
+        let cat = val.category
 
-        // if(!score){
-        //     score = val[0].score
-        //     date=  val[0].date
-        //     topic = val[0].category
-        // }
-        // date = new Date(date)
-        // date = date.toDateString().split(" ")
-        // date = date[1]+" "+date[2]+" "+date[3]
+        
+         date = new Date(date)
+         date = date.toDateString().split(" ")
+         date = date[1]+" "+date[2]+" "+date[3]
         
         
 
-        // const row = document.createElement("tr")
-        // const score_d = document.createElement("td")
-        // const topic_d = document.createElement("td")
-        // const date_d = document.createElement("td")
+         const row = document.createElement("tr")
+         const topic_d = document.createElement("td")
+        const opponent_d = document.createElement("td")
+        const winner_d = document.createElement("td")
+        const date_d = document.createElement("td")
 
-        // score_d.innerHTML = score
-        // date_d.innerHTML = date
-        // topic_d.innerHTML = topic
+        topic_d.innerHTML = cat
+        date_d.innerHTML = date
+        opponent_d.innerHTML = opponent
+
+        if (opponent==winner){
+            winner_d.innerHTML = "You Lost"
+        }
+        else if(opponent == userID){
+            winner_d.innerHTML = "You Won"
+        }
+        else {
+            winner_d.innerHTML = "Tie"
+        }
         
-        // row.appendChild(topic_d)
-        // row.appendChild(score_d)
-        // row.appendChild(date_d)
+        row.appendChild(topic_d)
+        row.appendChild(opponent_d)
+        row.appendChild(winner_d)
+        row.appendChild(date_d)
 
-        // table.appendChild(row)
+        multable.appendChild(row)
     })
  
  

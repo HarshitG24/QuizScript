@@ -42,14 +42,33 @@
     margin: 1.5rem;
     justify-content: center;
   }
-  table {
+  .record{
+    margin: 1.5rem;
     width: 100%;
+    text-align: center;
   }
-
-  tbody{
+  .records {
+    width: 100%;
     text-align: center;
   }
 
+  
+
+  .mulRecord{
+    margin: 1.5rem;
+    width: 100%;
+    text-align: center;
+  }
+  .mulRecords{
+    text-align: center;
+  }
+
+  .title{
+    font-weight: bold;
+  }
+
+  
+  
 
 
   @media screen and (min-width: 768px) {
