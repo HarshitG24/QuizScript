@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
-// const expressLayouts = require("express-ejs-layouts");
 const http = require("http").Server(app);
-// const server = http.createServer(app);
 const io = require("socket.io")(http);
 const game = require(__dirname + "/controller/game.js");
-// const sc = require(__dirname + "/public/scripts/mulresult.js");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 const indexRouter = require("./routes/index");
 const newUserRouter = require("./routes/newuser");
@@ -19,6 +18,15 @@ app.set("views", __dirname + "/views");
 // app.use(expressLayouts);
 app.use(express.static("public"));
 app.use(express.json());
+
+app.use(cookieParser());
+app.use(
+  session({
+    resave: true,
+    saveUninitialized: true,
+    secret: "secret",
+  })
+);
 
 app.use("/", indexRouter);
 app.use("/newuser", newUserRouter);

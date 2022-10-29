@@ -51,25 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let opponentScore = player2.score;
 
     console.log("usid", usId, "opponent", opponent);
-    debugger;
     if (usId != opponent) {
-      // let data = {
-      //   playerA: userId,
-      //   playerB: opponent,
-      //   winner:
-      //     myScore == opponentScore
-      //       ? "Game Tie"
-      //       : myScore > opponentScore
-      //       ? userId
-      //       : opponent,
-      //   category,
-      // };
-
       let data = {
-        username: usId == player1.id ? usId : opponent,
+        username: usId,
         result: [
           {
-            opponent: usId == player1.id ? opponent : usId,
+            opponent,
             winner:
               myScore == opponentScore
                 ? "Game Tie"
