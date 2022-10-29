@@ -1,14 +1,19 @@
-let Player = require("./player.js"),
-  players = [],
-  options = [];
+import player from "./player.js";
 
-let playersObj = {};
-let scarr = [];
+function Game() {
+  let game = {};
 
-module.exports = {
-  handle: (socket) => {
+  let players = [],
+    options = [];
+
+  let playersObj = {};
+  let scarr = [];
+
+  // module.exports = {};
+
+  game.handle = (socket) => {
     socket.on("new player", () => {
-      players.push(Player.newPlayer(socket.id, socket.id));
+      players.push(player.Player(socket.id, socket.id));
       socket.server.emit("update-game", players);
 
       if (players.length == 2) {
@@ -65,5 +70,9 @@ module.exports = {
     socket.on("get_score", function (data, fn) {
       fn(scarr);
     });
-  },
-};
+  };
+
+  return game;
+}
+
+export default Game();

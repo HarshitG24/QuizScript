@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
+import db from "../database/quizScriptDb.js";
 const router = express.Router();
-const db = require("../database/quizScriptDb.js");
 
 //Api calls
 
@@ -9,4 +9,4 @@ router.get("/:id", async (req, res) => {
   res.send(JSON.stringify(data));
 });
 
-module.exports = router;
+export default router;

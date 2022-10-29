@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
+import db from "../database/quizScriptDb.js";
 const router = express.Router();
-const db = require("../database/quizScriptDb");
 
 // Api calls
 router.post("/createUser", async (req, res) => {
@@ -13,4 +13,4 @@ router.delete("/deleteUser/:user", async (req, res) => {
   res.status(status).send({ code: status });
 });
 
-module.exports = router;
+export default router;

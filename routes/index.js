@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
+import db from "../database/quizScriptDb.js";
 const router = express.Router();
-const db = require("../database/quizScriptDb");
 
 // Get Home Page
 //Change the render function
@@ -29,4 +29,4 @@ router.get("/logout", (req, res) => {
   req.session.destroy();
 });
 
-module.exports = router;
+export default router;

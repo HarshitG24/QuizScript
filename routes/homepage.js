@@ -1,7 +1,6 @@
-const express = require("express");
+import express from "express";
+import db from "../database/quizScriptDb.js";
 const router = express.Router();
-const db = require("../database/quizScriptDb");
-
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Express" });
@@ -13,4 +12,4 @@ router.get("/hello", async (req, res) => {
   res.send({ status: resp });
 });
 
-module.exports = router;
+export default router;

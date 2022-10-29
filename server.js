@@ -1,19 +1,24 @@
-const express = require("express");
-const app = express();
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
-const game = require(__dirname + "/controller/game.js");
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
 
-const indexRouter = require("./routes/index");
-const newUserRouter = require("./routes/newuser");
-const addCategories = require("./routes/categories");
-const addQuestion = require("./routes/questions");
-const mulResults = require("./routes/quizResults");
+import game from "./controller/game.js";
+import session from "express-session";
+import cookieParser from "cookie-parser";
+import { dirname } from "path";
+
+import indexRouter from "./routes/index.js";
+import newUserRouter from "./routes/newuser.js";
+import addCategories from "./routes/categories.js";
+import addQuestion from "./routes/questions.js";
+import mulResults from "./routes/quizResults.js";
+
+const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer, {});
 
 // app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
+app.set("views", dirname + "/views");
 // app.set("layout", "layouts/layout");
 // app.use(expressLayouts);
 app.use(express.static("public"));
@@ -40,4 +45,6 @@ io.on("connection", (socket) => {
 });
 
 // app.listen(process.env.PORT || 3000);
-http.listen(process.env.PORT || 3000);
+httpServer.listen(process.env.PORT || 3000);
+
+export default app;
