@@ -152,7 +152,7 @@ function dbConnector() {
         userResults[0].result = [...userResults[0].result, ...data.result];
 
         await mulPlayerResult.findOneAndUpdate(
-          { category: data.category },
+          { username: data.username },
           {
             $set: {
               result: userResults[0].result,
