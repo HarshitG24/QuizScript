@@ -3,12 +3,17 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const createBtn = document.getElementById("create");
 
+let userEmail = "";
+
 createBtn.addEventListener("click", async () => {
   let newUser = {
     fullName: fname?.value || "",
     email: email?.value || "",
     password: password?.value || "",
   };
+
+  userEmail = email?.value || "";
+  debugger;
 
   fname.value = "";
   email.value = "";
@@ -26,7 +31,7 @@ createBtn.addEventListener("click", async () => {
   if (resp.status == 200 && resp.statusText == "OK") {
     // alert("Successfully created account");
     // alert("Successfully logged in");
-    window.location.replace("/categories.html");
+    window.location.replace("/categories.html?userID=" + userEmail);
   } else {
     alert("error creating account");
   }

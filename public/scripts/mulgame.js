@@ -40,7 +40,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     questions = await resp.json();
     questions = questions.data;
 
-    displayQuestions(currentIndex);
+    if (questions.length > 0) {
+      displayQuestions(currentIndex);
+    }
   }
 
   function displayQuestions(currentIndex) {

@@ -127,11 +127,15 @@ function dbConnector() {
           category: category,
         })
         .toArray();
-      let arr = await qbank[0].question;
-      return {
-        data: arr.length > 0 ? arr : [],
-        code: arr.length > 0 ? 200 : 500,
-      };
+
+      let arr = [];
+      arr = await qbank[0].question;
+
+      if (arr.length > 0) {
+        return { data: arr, code: 200 };
+      } else {
+        return { data: [], code: 500 };
+      }
     } catch (error) {
       console.log(error);
       return 400;
