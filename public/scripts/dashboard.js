@@ -1,105 +1,101 @@
 const query = window.location.search;
 const urlParams = new URLSearchParams(query);
-const userID = urlParams.get("userID")
+const userID = urlParams.get("userID");
 
-console.log(userID)
-
-
-
+console.log(userID);
 
 async function fetchScore() {
-    const resp = await fetch("/quizResult/fetchSingleScore/" + userID);
-    data = await resp.json();
-    return data
+  const resp = await fetch("/quizResult/fetchSingleScore/" + userID);
+  data = await resp.json();
+  return data;
 }
 
-async function fetchMulScore(){
-    const resp = await fetch("/quizResult/fetchMulScore/" + userID);
-    data = await resp.json();
-    return data
+async function fetchMulScore() {
+  const resp = await fetch("/quizResult/fetchMulScore/" + userID);
+  data = await resp.json();
+  return data;
 }
 
-document.addEventListener("DOMContentLoaded", async() => {
+document.addEventListener("DOMContentLoaded", async () => {
+  const data = await fetchScore();
 
-    const data =  await fetchScore()
+  const mulData = await fetchMulScore();
+  console.log("multiple quiz data", mulData);
+  const table = document.querySelector(".records");
+  const multable = document.querySelector(".mulRecords");
+  const deleteBtn = document.getElementById("delete_user");
 
-    const mulData = await fetchMulScore()
-    console.log("multiple quiz data",mulData)
-    const table = document.querySelector(".records")
-    const multable = document.querySelector(".mulRecords")
-    data.forEach((val)=>{
-        
-        let score = val.score
-        let date = val.date
-        let topic = val.category
+  data.forEach((val) => {
+    let score = val.score;
+    let date = val.date;
+    let topic = val.category;
 
-        
-        date = new Date(date)
-        date = date.toDateString().split(" ")
-        date = date[1]+" "+date[2]+" "+date[3]
-        
-        
+    date = new Date(date);
+    date = date.toDateString().split(" ");
+    date = date[1] + " " + date[2] + " " + date[3];
 
-        const row = document.createElement("tr")
-        const score_d = document.createElement("td")
-        const topic_d = document.createElement("td")
-        const date_d = document.createElement("td")
+    const row = document.createElement("tr");
+    const score_d = document.createElement("td");
+    const topic_d = document.createElement("td");
+    const date_d = document.createElement("td");
 
-        score_d.innerHTML = score
-        date_d.innerHTML = date
-        topic_d.innerHTML = topic
-        
-        row.appendChild(topic_d)
-        row.appendChild(score_d)
-        row.appendChild(date_d)
+    score_d.innerHTML = score;
+    date_d.innerHTML = date;
+    topic_d.innerHTML = topic;
 
-        table.appendChild(row)
-    })
+    row.appendChild(topic_d);
+    row.appendChild(score_d);
+    row.appendChild(date_d);
 
-    mulData.forEach((val)=>{
-        console.log(val)
-        let opponent = val.opponent
-        let date = val.date
-        let winner = val.winner
-        let cat = val.category
+    table.appendChild(row);
+  });
 
-        
-         date = new Date(date)
-         date = date.toDateString().split(" ")
-         date = date[1]+" "+date[2]+" "+date[3]
-        
-        
+  mulData.forEach((val) => {
+    console.log(val);
+    let opponent = val.opponent;
+    let date = val.date;
+    let winner = val.winner;
+    let cat = val.category;
 
-         const row = document.createElement("tr")
-         const topic_d = document.createElement("td")
-        const opponent_d = document.createElement("td")
-        const winner_d = document.createElement("td")
-        const date_d = document.createElement("td")
+    date = new Date(date);
+    date = date.toDateString().split(" ");
+    date = date[1] + " " + date[2] + " " + date[3];
 
-        topic_d.innerHTML = cat
-        date_d.innerHTML = date
-        opponent_d.innerHTML = opponent
+    const row = document.createElement("tr");
+    const topic_d = document.createElement("td");
+    const opponent_d = document.createElement("td");
+    const winner_d = document.createElement("td");
+    const date_d = document.createElement("td");
 
-        if (opponent==winner){
-            winner_d.innerHTML = "You Lost"
-        }
-        else if(opponent == userID){
-            winner_d.innerHTML = "You Won"
-        }
-        else {
-            winner_d.innerHTML = "Tie"
-        }
-        
-        row.appendChild(topic_d)
-        row.appendChild(opponent_d)
-        row.appendChild(winner_d)
-        row.appendChild(date_d)
+    topic_d.innerHTML = cat;
+    date_d.innerHTML = date;
+    opponent_d.innerHTML = opponent;
 
-        multable.appendChild(row)
-    })
- 
- 
- 
- 
- 
- })
+    if (opponent == winner) {
+      winner_d.innerHTML = "You Lost";
+    } else if (opponent == userID) {
+      winner_d.innerHTML = "You Won";
+    } else {
+      winner_d.innerHTML = "Tie";
+    }
+
+    row.appendChild(topic_d);
+    row.appendChild(opponent_d);
+    row.appendChild(winner_d);
+    row.appendChild(date_d);
+
+    multable.appendChild(row);
+  });
+
+  deleteBtn.addEventListener("click", async () => {
+    const headers = new Headers({ "Content-Type": "application/json" });
+
+    const opts = {
+      method: "delete",
+      headers: headers,
+    };
+
+    const resp = await fetch("/newuser/deleteUser/" + userID, opts);
+    if (resp.status == 200) window.location.replace("http://localhost:3000/");
+  });
+});
