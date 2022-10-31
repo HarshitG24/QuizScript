@@ -15,7 +15,7 @@ import mulResults from "./routes/quizResults.js";
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {});
+const io = new Server(httpServer, { cors: { origin: "*" } });
 
 // app.set("view engine", "ejs");
 app.set("views", dirname + "/views");
@@ -44,7 +44,6 @@ io.on("connection", (socket) => {
   // sc.score(socket);
 });
 
-// app.listen(process.env.PORT || 3000);
 httpServer.listen(process.env.PORT || 3000);
 
 export default app;

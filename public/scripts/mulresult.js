@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const socket = io("http://localhost:3000");
+  const socket = io("http://localhost:3000", {});
 
   const query = window.location.search.substring(1);
   const temp = query.split("&");
@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getScore() {
     socket.emit("get_score", "", function (resp) {
-
       let player1 = resp.find((p) => p.id == usId);
       let arr = resp.filter((p) => p.id != usId);
 

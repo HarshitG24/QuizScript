@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let myScore = 0;
   let opponentScore = 0;
-  const socket = io("http://localhost:3000");
+  const socket = io("http://localhost:3000", {});
 
   // The login to display options dynamically
   const display_ques = document.getElementById("display_question");
