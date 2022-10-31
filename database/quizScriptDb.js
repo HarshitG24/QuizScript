@@ -1,6 +1,10 @@
-import { MongoClient } from "mongodb";
+
+import { MongoClient } from 'mongodb';
 import dotenv from "dotenv";
 dotenv.config();
+
+
+
 
 function dbConnector() {
   let dbObj = {};
