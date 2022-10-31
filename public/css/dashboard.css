@@ -5,7 +5,7 @@ html {
 body{
   margin:0
 }
-.navbar {
+/* .navbar {
   width:100%;
   display: flex;
   justify-content: center;
@@ -40,7 +40,7 @@ body{
   font-size: 1.2rem;
   margin-left: 2.5rem;
   color: white;
-}
+} */
 
 .container {
   align-items: center;
@@ -134,7 +134,7 @@ padding: 1.5rem;
 }
 
 @media screen and (min-width: 768px) {
-  .navbar {
+  /* .navbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -168,7 +168,7 @@ padding: 1.5rem;
     font-size: 4rem;
     color: white;
     padding: 1.5rem;
-  }
+  } */
 
   .username{
     font-size: 3.5rem;
