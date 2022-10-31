@@ -7,6 +7,7 @@
     <title>Document</title>
     <!-- <link rel="stylesheet" href="./css/normalize.css" /> -->
     <link rel="stylesheet" href="./css/categories.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
     <script
       type="module"
       src="https://cdn.socket.io/4.5.3/socket.io.min.js"
@@ -14,20 +15,19 @@
       crossorigin="anonymous"></script>
   </head>
   <body>
-    
-      <nav class="navbar">
-        <div class="app_title">QuizScript</div>
-        
-        <div class="navbar_links">
-          <ul>
-            <li class = "dashboard">Dashboard</li>
-            <li class = "signout">Sign Out</li>
-          </ul>
-        </div>
-      </nav>
-    
+    <nav class="navbar">
+      <div class="app_title">QuizScript</div>
+
+      <div class="navbar_links">
+        <ul>
+          <li id="dashboard" class="dashboard">Dashboard</li>
+          <li id="signout" class="signout">Sign Out</li>
+        </ul>
+      </div>
+    </nav>
+
     <p class="page_title">Categories</p>
-    <div class = "main">
+    <div class="main">
       <div class="container">
         <!--
             <div class = "project_grid project_grid--1x3">

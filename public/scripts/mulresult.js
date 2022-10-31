@@ -16,6 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const p1Score = document.getElementById("player_one_score");
   const p2Score = document.getElementById("player_two_score");
   const verdict = document.getElementById("verdict");
+  const dashboard = document.getElementById("dashboard");
+  const signout = document.getElementById("signout");
+
+  dashboard.addEventListener("click", () => {
+    window.location.replace("./dashboard.html?userID=" + usId);
+  });
+
+  signout.addEventListener("click", () => {
+    window.location.replace("/");
+  });
 
   function getScore() {
     socket.emit("get_score", "", function (resp) {

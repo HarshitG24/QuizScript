@@ -80,14 +80,17 @@ function generateUserGameCode() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  const dashboard = document.getElementById("dashboard");
+  const signout = document.getElementById("signout");
 
-  const dashboard = document.querySelector(".dashboard")
   dashboard.addEventListener("click", () => {
-    window.location.replace(
-      "http://localhost:3000/dashboard.html?userID="+userID
-    )
+    window.location.replace("./dashboard.html?userID=" + userID);
+  });
 
-  })
+  signout.addEventListener("click", () => {
+    window.location.replace("/");
+  });
+
   const container = document.querySelector(".container");
   const resp = await fetch("/categories", {
     method: "get",
@@ -135,7 +138,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     anch1.innerText = "Single quiz";
 
     anch1.onclick = function (e) {
-      window.location.href = "singlequiz.html?userID="+userID+"&categories=" + name;
+      window.location.href =
+        "singlequiz.html?userID=" + userID + "&categories=" + name;
     };
     anch2.onclick = function (e) {
       toggleModal();

@@ -14,17 +14,7 @@ html {
 }
 
 body {
-  background: #009fff; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #ec2f4b,
-    #009fff
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #ec2f4b,
-    #009fff
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgba(34, 39, 47, 1);
 }
 
 p {
@@ -32,17 +22,19 @@ p {
 }
 
 .container {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .scores {
   display: flex;
+  color: #fff;
   flex-direction: row;
   justify-content: space-between;
   width: 90%;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .player_name {
@@ -73,7 +65,7 @@ p {
   width: 90%;
   display: flex;
   flex-wrap: wrap;
-  background: coral;
+  background: rgba(111, 190, 141, 1);
 }
 
 .ques {
@@ -88,7 +80,7 @@ p {
 
 .options {
   width: 100%;
-  background: white;
+  background: rgba(63, 74, 89, 1);
   display: flex;
   flex-direction: column;
 }
@@ -130,6 +122,7 @@ p {
 .clock {
   width: 100%;
   margin: auto;
+  color: #fff;
 }
 
 .clock > p {
