@@ -33,6 +33,7 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   color: white;
+  width: 100%;
 }
 
 .container {
@@ -52,11 +53,28 @@ body {
 
 .players {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  /* justify-content: space-between;
+  align-items: center; */
   margin: 0 2rem;
   margin-top: 3rem;
+}
+
+.player_one {
+  width: 100%;
+  /* background: green; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.player_two {
+  width: 100%;
+  /* background: blue; */
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .player_name {
@@ -66,10 +84,12 @@ body {
 
 .player_score {
   width: 100%;
-  font-size: 2rem;
-  font-weight: 400;
+  font-size: 2.7rem;
+  font-weight: 800;
   text-align: center;
   margin-top: 0.5rem;
+  text-align: right;
+  padding-left: 1rem;
 }
 
 .trophy {
@@ -78,10 +98,11 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 4rem;
 }
 
 .trophy_img {
-  width: 100%;
+  width: 60%;
   height: auto;
 }
 
@@ -90,9 +111,13 @@ body {
   font-size: 2.5rem;
   font-weight: 800;
   text-align: center;
+  color: black;
 }
 
 @media screen and (min-width: 768px) {
+  .players--1x2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .result {
     font-size: 6rem;
   }
@@ -104,6 +129,19 @@ body {
   .players {
     margin: 0 12rem;
     margin-top: 4rem;
+  }
+
+  .player_one {
+    flex-direction: column;
+  }
+
+  .player_two {
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .player_score {
+    text-align: center;
   }
 
   .player_name {
