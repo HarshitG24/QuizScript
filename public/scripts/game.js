@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (index>=data.data.length){
       await sendScore(score)
       window.location.replace(
-        "http://localhost:3000/singleResult.html?userID="+userID+"&total="+data.data.length
+        "/singleResult.html?userID="+userID+"&total="+data.data.length
       )
 
     }

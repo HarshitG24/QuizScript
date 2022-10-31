@@ -111,6 +111,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     const resp = await fetch("/newuser/deleteUser/" + userID, opts);
-    if (resp.status == 200) window.location.replace("http://localhost:3000/");
+    if (resp.status == 200) window.location.replace("/");
   });
 });

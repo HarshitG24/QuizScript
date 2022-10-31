@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     const dashboard = document.getElementById("dashboard")
     dashboard.onclick = function(e) {
-        window.location.href = "http://localhost:3000/dashboard.html?userID="+param
+        window.location.href = "/dashboard.html?userID="+param
     }
     const signout = document.getElementById("sign_out")
 signout.onclick = function(e) {
