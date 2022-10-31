@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     category_description.innerHTML = description;
 
     image.src = img;
-
+    //
     buttons.className = "buttons";
     const list = document.createElement("ul");
     const link1 = document.createElement("li");
