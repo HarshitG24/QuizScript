@@ -57,7 +57,7 @@ function Game() {
     });
 
     socket.on("update_result", (scoreArr) => {
-      console.log("fetched result array is: ", scarr);
+      console.log("fetched result array is: ", scoreArr);
       scarr = scoreArr;
       // console.log("reached here", scoreArr);
       // socket.server.emit("game_play", scoreArr);

@@ -15,7 +15,10 @@ import mulResults from "./routes/quizResults.js";
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, { cors: { origin: "*" } });
+const io = new Server(httpServer, {
+  cors: { origin: "*" },
+  pingTimeout: 60000,
+});
 
 // app.set("view engine", "ejs");
 app.set("views", dirname + "/views");
@@ -40,6 +43,7 @@ app.use("/questions", addQuestion);
 app.use("/quizResult", mulResults);
 
 io.on("connection", (socket) => {
+  console.log("socket id", socket.id);
   game.handle(socket);
   // sc.score(socket);
 });
