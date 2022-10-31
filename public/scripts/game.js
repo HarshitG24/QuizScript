@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   card.appendChild(ques);
   card.appendChild(options);
-
+  card.appendChild(next)
   container.appendChild(card);
-  container.appendChild(next);
+  
 });

@@ -18,7 +18,20 @@ document.addEventListener("DOMContentLoaded", async() => {
    show_score.innerHTML = score.toString()+"/"+total.toString()
 
 
+    const message = document.querySelector(".text")
+    if (score==5){
+        message.innerHTML = "Awesome!"
+    }
+    else if( score>=3 && score <=4){
+        message.innerHTML = "Good Job!"
+    }
+    else {
+        message.innerHTML = "Better Luck Next Time!"
+    }
 
-
+    const dashboard = document.getElementById("dashboard")
+    dashboard.onclick = function(e) {
+        window.location.href = "http://localhost:3000/dashboard.html?userID="+param
+    }
 
 })
