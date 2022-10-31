@@ -206,7 +206,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (currentIndex <= questions.length - 1) {
         clearInterval(clock);
-        console.log("clock is", clock);
         clearActiveSelection();
         time_left = 15;
         time_remain.innerText = `${time_left}s`;
@@ -231,7 +230,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     finalArr.push({ id: userId, score: myScore });
     finalArr.push({ id: opponent, score: opponentScore });
-    console.log("final arr", finalArr);
     socket.emit("update_result", finalArr);
   });
 });

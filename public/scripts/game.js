@@ -4,8 +4,7 @@ const param = urlParams.get("categories");
 const userID = urlParams.get("userID")
 
 let score = 0
-console.log(param)
-console.log(userID)
+
 
 
 //updating for next question
@@ -129,7 +128,7 @@ async function sendScore(score) {
       }
     ]
   }
-  console.log(data)
+  
   const headers = new Headers({"Content-Type":"application/json"})
 
   const opts = {
@@ -141,18 +140,7 @@ async function sendScore(score) {
   
     let resp = await fetch("/quizResult/sendSingleScore",opts);
     resp = await resp.json()
-    console.log("this is the data",resp)
-    // if (resp.code == 200){
-    //   try{
-    //   window.location.replace(
-    //     "http://localhost:3000/singleResult.html?userID="+userID
-
-    //   )
-    //   }catch(error){
-    //     console.log(error)
-    // }
-    
-    //}
+   
     
   
 

@@ -29,13 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getScore() {
     socket.emit("get_score", "", function (resp) {
-      console.log("callback worked", resp);
 
       let player1 = resp.find((p) => p.id == usId);
       let arr = resp.filter((p) => p.id != usId);
 
       let player2 = arr[0];
-      console.log("player1: ", player1, ", player2: ", player2);
       p1.innerText = usId;
       p2.innerText = player2.id;
       p1Score.innerText = `${player1.score}`;
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let myScore = player1.score;
     let opponentScore = player2.score;
 
-    console.log("usid", usId, "opponent", opponent);
     if (usId != opponent) {
       let data = {
         username: usId,
@@ -87,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const resp = await fetch("/quizResult/sendMulQuizResults", opts);
-        console.log("resp is", resp);
       } catch (error) {
         console.log(error);
       }

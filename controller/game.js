@@ -52,21 +52,13 @@ function Game() {
 
     socket.on("add_player", (p) => {
       playersObj[p] = "";
-      console.log("player object", playersObj);
     });
 
     socket.on("update_result", (scoreArr) => {
       scarr = scoreArr;
-      // console.log("reached here", scoreArr);
-      // socket.server.emit("game_play", scoreArr);
-      // socket.server.emit("get_score", scoreArr);
     });
 
-    // socket.on("get_score", () => {
-    //   console.log("works from result page");
-    //   socket.server.emit("get_score", scarr);
-    // });
-
+    
     socket.on("get_score", function (data, fn) {
       fn(scarr);
     });

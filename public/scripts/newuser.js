@@ -13,7 +13,6 @@ createBtn.addEventListener("click", async () => {
   };
 
   userEmail = email?.value || "";
-  debugger;
 
   fname.value = "";
   email.value = "";

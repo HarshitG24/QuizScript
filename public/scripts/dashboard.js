@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchScore();
 
   const mulData = await fetchMulScore();
-  console.log("multiple quiz data", mulData);
   const table = document.querySelector(".records");
   const multable = document.querySelector(".mulRecords");
   const deleteBtn = document.getElementById("delete_user");
@@ -64,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if(mulData) {
   mulData.forEach((val) => {
-    console.log(val);
+   
     let opponent = val.opponent;
     let date = val.date;
     let winner = val.winner;
