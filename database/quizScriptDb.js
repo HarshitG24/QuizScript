@@ -1,10 +1,6 @@
-
-import { MongoClient } from 'mongodb';
+import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
-
-
-
 
 function dbConnector() {
   let dbObj = {};
@@ -12,7 +8,7 @@ function dbConnector() {
   const url =
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@quizapp.uzmfysu.mongodb.net/?retryWrites=true&w=majority` ||
     "mongodb://127.0.0.1:27017";
-  const client = new MongoClient(url, { useUnifiedTopology: true });
+  const client = new MongoClient(url, {});
   const db = client.db("QuizStart");
   const users = db.collection("users");
   const testing = db.collection("test");
@@ -38,7 +34,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -51,7 +47,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -64,7 +60,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -77,7 +73,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -104,7 +100,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -119,7 +115,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -144,7 +140,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -207,7 +203,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -221,7 +217,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -237,7 +233,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -256,7 +252,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
@@ -271,7 +267,7 @@ function dbConnector() {
       console.log(error);
       return 400;
     } finally {
-      client.close();
+      // client.close();
     }
   };
 
