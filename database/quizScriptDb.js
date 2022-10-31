@@ -211,8 +211,13 @@ function dbConnector() {
     await client.connect();
     try {
       const user_score = await singleRecord.find({ username: user }).toArray();
-      const data = user_score[0].results;
-      return data;
+      if (user_score.length > 0) {
+        console.log("user score", user_score);
+        const data = user_score[0].results;
+        return data;
+      } else {
+        return [];
+      }
     } catch (error) {
       console.log(error);
       return 400;

@@ -230,6 +230,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     finalArr.push({ id: userId, score: myScore });
     finalArr.push({ id: opponent, score: opponentScore });
+    console.log("inside return players", finalArr);
     socket.emit("update_result", finalArr);
   });
 });

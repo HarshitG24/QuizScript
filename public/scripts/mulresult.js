@@ -29,8 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getScore() {
     socket.emit("get_score", "", function (resp) {
-      let player1 = resp.find((p) => p.id == usId);
+      let player1 = resp.find((p) => p.id === usId);
       let arr = resp.filter((p) => p.id != usId);
+
+      console.log("resp is", resp);
+      debugger;
 
       let player2 = arr[0];
       p1.innerText = usId;
@@ -39,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       p2Score.innerText = `${player2.score}`;
 
       verdict.innerText =
-        player1.score == player2.score
+        player1.score === player2.score
           ? "Game Tied"
           : player1.score > player2.score
           ? player1.id + " Won"
