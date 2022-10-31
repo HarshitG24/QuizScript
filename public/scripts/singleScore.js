@@ -11,6 +11,7 @@ async function fetchScore() {
     return data.score
 }
 
+
 document.addEventListener("DOMContentLoaded", async() => {
 
    const score =  await fetchScore()
@@ -33,5 +34,9 @@ document.addEventListener("DOMContentLoaded", async() => {
     dashboard.onclick = function(e) {
         window.location.href = "http://localhost:3000/dashboard.html?userID="+param
     }
+    const signout = document.getElementById("sign_out")
+signout.onclick = function(e) {
+  window.location.replace("/")
+}
 
 })

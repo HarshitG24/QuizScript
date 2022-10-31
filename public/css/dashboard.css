@@ -48,8 +48,12 @@ body{
   flex-direction: column;
 }
 .user_title {
-  margin: 1.5rem;
   justify-content: center;
+}
+
+.username{
+  font-size: 2.5rem;
+  font-weight: 800;
 }
 .record {
   
@@ -63,16 +67,14 @@ body{
   text-align: center;
 }
 
-.mulRecord {
-  margin: 1.5rem;
-  width: 100%;
-  text-align: center;
-}
+
 .mulRecords {
   text-align: center;
+  font-size: 2.5rem;
 }
 
 .title {
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
@@ -81,6 +83,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin:1.5rem
 }
 
 .delete_btn {
@@ -91,6 +94,43 @@ body{
   border-radius: 0.5rem;
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+.record tr:nth-child(even) {
+  background-color: #dfdfdf;
+}
+.record td {
+font-size: 1.5rem;
+}
+.record th{
+font-size: 1.5rem;
+}
+.records{
+width: 100%;
+text-align: center;
+padding: 2.5rem;
+}
+
+.mulRecord tr:nth-child(even) {
+background-color: #dfdfdf;
+}
+.mulRecord td {
+font-size: 1.5rem;
+}
+.mulRecord th{
+font-size: 1.5rem;
+}
+.mulRecords{
+padding: 1.5rem;
+}
+
+.mulRecord{
+  margin: 1.5rem;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
