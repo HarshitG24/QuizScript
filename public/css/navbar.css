@@ -10,9 +10,9 @@
 .app_title {
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   margin: 0.5rem;
-  width: 50%;
+  width: 30%;
   color: white;
 }
 
@@ -20,6 +20,8 @@
   padding-right: 2.5rem;
   display: flex;
   flex-direction: column;
+  width: 70%;
+  align-items: flex-end;
 }
 .navbar_links ul {
   margin: 0;
@@ -33,7 +35,7 @@
 
 .navbar_links ul li {
   list-style: none;
-  font-size: 1.2rem;
+  font-size: 2.5rem;
   margin-left: 2.5rem;
   color: white;
   cursor: pointer;
