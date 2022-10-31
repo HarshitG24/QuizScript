@@ -13,6 +13,8 @@ import addCategories from "./routes/categories.js";
 import addQuestion from "./routes/questions.js";
 import mulResults from "./routes/quizResults.js";
 
+
+
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, { cors: { origin: "*" } });
@@ -27,9 +29,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   session({
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     secret: "secret",
+    cookie: {}
   })
 );
 

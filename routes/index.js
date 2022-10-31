@@ -15,7 +15,7 @@ router.post("/login", async (req, res) => {
   // res.status(resp.code).send(resp.data);
 
   if (resp.code == 200) {
-    req.session.user = resp.data;
+    req.session.user = resp.data[0].email;
     req.session.save();
   }
   res.send(JSON.stringify(resp));
@@ -27,6 +27,12 @@ router.get("/currentUser", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.session.destroy();
+  return res.redirect("/")
 });
+
+router.get("/getUser", (req,res)=> {
+  res.json({'user':req.session.user})
+})
+
 
 export default router;

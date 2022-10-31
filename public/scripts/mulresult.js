@@ -1,15 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
+async function validateUser() {
+  const fetchdata = await fetch("/getUser")
+  const user_data = await fetchdata.json()
+  
+
+  if (!user_data.user){
+    window.location.replace("/")
+  }
+   else {
+    return user_data.user
+   }
+}
+
+
+
+document.addEventListener("DOMContentLoaded", async() => {
+  
   const socket = io("http://localhost:3000", {});
 
-  const query = window.location.search.substring(1);
-  const temp = query.split("&");
-  const uid = temp[0].split("=");
-  const usId = uid[1];
+  const usId = await validateUser()
+
+  const query = window.location.search;
+  const urlParams = new URLSearchParams(query);
+  const category = urlParams.get("category")
 
   // socket.emit("add_player", userId);
 
-  const cat = temp[1].split("=");
-  const category = cat[1];
+
 
   const p1 = document.getElementById("player_one");
   const p2 = document.getElementById("player_two");
@@ -20,12 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const signout = document.getElementById("signout");
 
   dashboard.addEventListener("click", () => {
-    window.location.replace("./dashboard.html?userID=" + usId);
+    window.location.replace("./dashboard.html");
   });
 
-  signout.addEventListener("click", () => {
-    window.location.replace("/");
-  });
+  signout.onclick = async function(e) {
+    logout = await fetch("/logout")
+    console.log("done")
+    window.location.replace("/")
+  }
 
   function getScore() {
     socket.emit("get_score", "", function (resp) {

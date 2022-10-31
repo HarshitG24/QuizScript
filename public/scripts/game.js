@@ -1,7 +1,21 @@
+async function validateUser() {
+  const fetchdata = await fetch("/getUser")
+  const user_data = await fetchdata.json()
+  
+
+  if (!user_data.user){
+    window.location.replace("/")
+  }
+   else {
+    return user_data.user
+   }
+}
+
+
 const query = window.location.search;
 const urlParams = new URLSearchParams(query);
 const param = urlParams.get("categories");
-const userID = urlParams.get("userID")
+// const userID = urlParams.get("userID")
 
 let score = 0
 
@@ -113,7 +127,7 @@ function changeSelection(option) {
 
 //sending result to database
 
-async function sendScore(score) {
+async function sendScore(score,userID) {
   let date = new Date()
   //date = date.toDateString().split(" ")
   //date = date[1]+" "+date[2]+" "+date[3]
@@ -173,6 +187,8 @@ function showAns(ans) {
 //display when page loaded
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  const userID = await validateUser();
   
   const resp = await fetch("/questions/" + param);
   data = await resp.json();
@@ -199,9 +215,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   next_button.addEventListener("click", async() => {
     index += 1;
     if (index>=data.data.length){
-      await sendScore(score)
+      await sendScore(score,userID)
       window.location.replace(
-        "/singleResult.html?userID="+userID+"&total="+data.data.length
+        "/singleResult.html?total="+data.data.length
       )
 
     }

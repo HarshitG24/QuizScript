@@ -1,3 +1,19 @@
+async function validateUser() {
+  const fetchdata = await fetch("/getUser")
+  const user_data = await fetchdata.json()
+  
+
+  if (!user_data.user){
+    window.location.replace("/")
+  }
+   else {
+    return user_data.user
+   }
+}
+
+
+
+
 const modal = document.querySelector(".modal");
 const trigger = document.querySelector(".trigger");
 const closeButton = document.querySelector(".close-button");
@@ -6,9 +22,9 @@ const myGameCode = document.getElementById("generated_game_code");
 const enteredGameCode = document.getElementById("entered_game_code");
 
 // To fetch the USERID from the url
-const query = window.location.search.substring(1);
-const array = query.split("=");
-const userID = array[1];
+// const query = window.location.search.substring(1);
+// const array = query.split("=");
+// const userID = validateUser();
 
 function toggleModal() {
   modal.classList.toggle("show-modal");
@@ -22,7 +38,7 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
-function socketCall(name) {
+function socketCall(name,userID) {
   // const socket = io("http://localhost:3000");
   const socket = io("http://localhost:3000", {});
   socket.emit("new player", myGameCode);
@@ -39,7 +55,7 @@ function socketCall(name) {
     }
     if (players.length == 2) {
       start_game.href =
-        "./mulquiz.html?userID=" + userID + "&categories=" + name;
+        "./mulquiz.html?categories=" + name;
       start_game.click();
     }
   });
@@ -81,17 +97,23 @@ function generateUserGameCode() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  const userID = validateUser();
   const dashboard = document.getElementById("dashboard");
   const signout = document.getElementById("signout");
 
   dashboard.addEventListener("click", () => {
-    window.location.replace("./dashboard.html?userID=" + userID);
+    window.location.replace("./dashboard.html");
   });
 
-  signout.addEventListener("click", () => {
-    window.location.replace("/");
-  });
+  
+signout.onclick = async function(e) {
+  logout = await fetch("/logout")
+  console.log("done")
+  window.location.replace("/")
+}
 
+  
   const container = document.querySelector(".container");
   const resp = await fetch("/categories", {
     method: "get",
@@ -140,11 +162,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     anch1.onclick = function (e) {
       window.location.href =
-        "singlequiz.html?userID=" + userID + "&categories=" + name;
+        "singlequiz.html?categories=" + name;
     };
     anch2.onclick = function (e) {
       toggleModal();
-      socketCall(name);
+      socketCall(name,userID);
     };
 
     link1.appendChild(anch1);

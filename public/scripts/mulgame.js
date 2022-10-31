@@ -1,4 +1,21 @@
+async function validateUser() {
+  const fetchdata = await fetch("/getUser")
+  const user_data = await fetchdata.json()
+  
+
+  if (!user_data.user){
+    window.location.replace("/")
+  }
+   else {
+    return user_data.user
+   }
+}
+
+
+
 document.addEventListener("DOMContentLoaded", async () => {
+
+  const userId = await validateUser()
   let questions = [];
   let question;
   let iSelected = false;
@@ -25,15 +42,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   // const score1 = document.getElementById("score1");
   // const score2 = document.getElementById("score2");
 
-  const query = window.location.search.substring(1);
-  const temp = query.split("&");
-  const uid = temp[0].split("=");
-  const userId = uid[1];
+  const query = window.location.search;
+  const urlParams = new URLSearchParams(query);
 
   socket.emit("add_player", userId);
 
-  const cat = temp[1].split("=");
-  const category = cat[1];
+  const category = urlParams.get("categories")
 
   if (category != undefined && category != null && category != "") {
     const resp = await fetch("/questions/" + category);
@@ -49,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (currentIndex >= questions.length) {
       socket.emit("clear-players");
       window.location.href =
-        "./mulresult.html?userId=" + userId + "&category=" + category;
+        "./mulresult.html?&category=" + category;
       return;
     }
     question = questions[currentIndex];
@@ -216,7 +230,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       } else {
         socket.emit("clear-players");
         window.location.href =
-          "./mulresult.html?userId=" + userId + "&category=" + category;
+          "./mulresult.html?category=" + category;
       }
     }, "3000");
   });

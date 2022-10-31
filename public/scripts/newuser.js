@@ -30,7 +30,8 @@ createBtn.addEventListener("click", async () => {
   if (resp.status == 200 && resp.statusText == "OK") {
     // alert("Successfully created account");
     // alert("Successfully logged in");
-    window.location.replace("/categories.html?userID=" + userEmail);
+    
+    window.location.replace("/categories.html");
   } else {
     alert("error creating account");
   }

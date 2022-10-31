@@ -1,10 +1,26 @@
+async function validateUser() {
+    const fetchdata = await fetch("/getUser")
+    const user_data = await fetchdata.json()
+    
+  
+    if (!user_data.user){
+      window.location.replace("/")
+    }
+     else {
+      return user_data.user
+     }
+  }
+
+
+
+
 const query = window.location.search;
 const urlParams = new URLSearchParams(query);
-const param = urlParams.get("userID");
-const total = urlParams.get("total")
+// const param = urlParams.get("userID");
+ const total = urlParams.get("total")
 
 
-async function fetchScore() {
+async function fetchScore(param) {
     const resp = await fetch("/quizResult/fetchSingleScore/" + param);
     data = await resp.json();
     data = data[data.length-1]
@@ -13,8 +29,9 @@ async function fetchScore() {
 
 
 document.addEventListener("DOMContentLoaded", async() => {
+    const userID = await validateUser()
 
-   const score =  await fetchScore()
+   const score =  await fetchScore(userID)
    const show_score = document.querySelector(".score")
    show_score.innerHTML = score.toString()+"/"+total.toString()
 
@@ -32,11 +49,13 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     const dashboard = document.getElementById("dashboard")
     dashboard.onclick = function(e) {
-        window.location.href = "/dashboard.html?userID="+param
+        window.location.href = "/dashboard.html"
     }
     const signout = document.getElementById("sign_out")
-signout.onclick = function(e) {
-  window.location.replace("/")
-}
+    signout.onclick = async function(e) {
+        logout = await fetch("/logout")
+        console.log("done")
+        window.location.replace("/")
+      }
 
 })
