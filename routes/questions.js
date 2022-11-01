@@ -1,3 +1,5 @@
+
+//AUTHOR MIHIR MESIA
 import express from "express";
 import db from "../database/quizScriptDb.js";
 const router = express.Router();

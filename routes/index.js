@@ -30,6 +30,7 @@ router.get("/logout", (req, res) => {
   return res.redirect("/")
 });
 
+//AUTHOR MIHIR MESIA
 router.get("/getUser", (req,res)=> {
   res.json({'user':req.session.user})
 })

@@ -1,3 +1,5 @@
+
+//AUTHOR MIHIR MESIA
 async function validateUser() {
   const fetchdata = await fetch("/getUser")
   const user_data = await fetchdata.json()
@@ -129,8 +131,7 @@ function changeSelection(option) {
 
 async function sendScore(score,userID) {
   let date = new Date()
-  //date = date.toDateString().split(" ")
-  //date = date[1]+" "+date[2]+" "+date[3]
+  
   
   let data = {
     username: userID,

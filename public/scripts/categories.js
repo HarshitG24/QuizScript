@@ -1,3 +1,6 @@
+
+//AUTHOR MIHIR MESIA
+
 async function validateUser() {
   const fetchdata = await fetch("/getUser");
   const user_data = await fetchdata.json();
@@ -20,6 +23,7 @@ const enteredGameCode = document.getElementById("entered_game_code");
 // const query = window.location.search.substring(1);
 // const array = query.split("=");
 // const userID = validateUser();
+
 
 function toggleModal() {
   modal.classList.toggle("show-modal");
@@ -90,6 +94,7 @@ function generateUserGameCode() {
   return Math.floor(1000 + Math.random() * 9000);
 }
 
+//AUTHOR MIHIR MESIA
 document.addEventListener("DOMContentLoaded", async () => {
   const userID = validateUser();
   const dashboard = document.getElementById("dashboard");
