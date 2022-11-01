@@ -60,3 +60,10 @@
 <img width="1719" alt="multiplayer" src="https://user-images.githubusercontent.com/35658851/199158306-8d47d1a4-a1e0-48f0-b74c-ad5c242ecdb7.png">
 <img width="1726" alt="multiplayer result" src="https://user-images.githubusercontent.com/35658851/199158349-18ee6a92-0614-461c-8b56-403b42bfb64b.png">
 
+## Branching
+We followed the concept of pair progarmming while working on this project
+1. main - Contains the final code
+2. master - Contains the final code
+3. rls/harshit - All code commits by Harshit Gajjar
+4. rls/mihir - All code commits by Mihir Mesia
+5. rls/master - branch to merge changes from rls/harshit and rls/mihir
