@@ -1,34 +1,25 @@
 
 //AUTHOR MIHIR MESIA
 async function validateUser() {
-  const fetchdata = await fetch("/getUser")
-  const user_data = await fetchdata.json()
-  
+  const fetchdata = await fetch("/getUser");
+  const user_data = await fetchdata.json();
 
-  if (!user_data.user){
-    window.location.replace("/")
+  if (!user_data.user) {
+    window.location.replace("/");
+  } else {
+    return user_data.user;
   }
-   else {
-    return user_data.user
-   }
 }
-
 
 const query = window.location.search;
 const urlParams = new URLSearchParams(query);
 const param = urlParams.get("categories");
-// const userID = urlParams.get("userID")
-
-let score = 0
-
-
+let score = 0;
 
 //updating for next question
-
 function update(data) {
   let iSelected = false;
 
-  
   const question = document.getElementById("q");
   const op1_p = document.getElementById("1");
   const op2_p = document.getElementById("2");
@@ -38,7 +29,8 @@ function update(data) {
   const opB = document.getElementById("optB");
   const opC = document.getElementById("optC");
   const opD = document.getElementById("optD");
-//remove user selection
+
+  //remove user selection
   if (opA.classList.contains("active")) {
     opA.classList.toggle("active");
   } else if (opB.classList.contains("active")) {
@@ -48,7 +40,7 @@ function update(data) {
   } else if (opD.classList.contains("active")) {
     opD.classList.toggle("active");
   }
-//remove correct answer selection
+  //remove correct answer selection
   if (opA.classList.contains("correct_ans")) {
     opA.classList.toggle("correct_ans");
   } else if (opB.classList.contains("correct_ans")) {
@@ -65,59 +57,49 @@ function update(data) {
   op3_p.innerHTML = data.options[2];
   op4_p.innerHTML = data.options[3];
 
-  
-
-  
   opA.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      if (data.ans==1){
-        score+=1
+      if (data.ans == 1) {
+        score += 1;
       }
       optA.classList.toggle("active");
-      showAns(data.ans)
-      
+      showAns(data.ans);
     }
   });
 
   opB.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      if (data.ans==2){
-        score+=1
+      if (data.ans == 2) {
+        score += 1;
       }
       optB.classList.toggle("active");
-      showAns(data.ans)
-      
+      showAns(data.ans);
     }
   });
 
   opC.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      if (data.ans==3){
-        score+=1
+      if (data.ans == 3) {
+        score += 1;
       }
       optC.classList.toggle("active");
-      showAns(data.ans)
-      
+      showAns(data.ans);
     }
   });
 
   opD.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      if (data.ans==4){
-        score+=1
+      if (data.ans == 4) {
+        score += 1;
       }
       optD.classList.toggle("active");
-      showAns(data.ans)
-      
+      showAns(data.ans);
     }
   });
-
-  
-
 }
 
 function changeSelection(option) {
@@ -125,40 +107,30 @@ function changeSelection(option) {
   op_clicked.classList.remove("active");
 }
 
-
-
 //sending result to database
-
-async function sendScore(score,userID) {
-  let date = new Date()
-  
-  
+async function sendScore(score, userID) {
+  let date = new Date();
   let data = {
     username: userID,
-    results : [
+    results: [
       {
-      score: score,
-      date: date,
-      category: param,
-      }
-    ]
-  }
-  
-  const headers = new Headers({"Content-Type":"application/json"})
+        score: score,
+        date: date,
+        category: param,
+      },
+    ],
+  };
+
+  const headers = new Headers({ "Content-Type": "application/json" });
 
   const opts = {
     method: "post",
     headers: headers,
-    body: JSON.stringify(data)
-  }
+    body: JSON.stringify(data),
+  };
 
-  
-    let resp = await fetch("/quizResult/sendSingleScore",opts);
-    resp = await resp.json()
-   
-    
-  
-
+  let resp = await fetch("/quizResult/sendSingleScore", opts);
+  resp = await resp.json();
 }
 
 //show correct ans
@@ -186,11 +158,9 @@ function showAns(ans) {
 }
 
 //display when page loaded
-
 document.addEventListener("DOMContentLoaded", async () => {
-
   const userID = await validateUser();
-  
+
   const resp = await fetch("/questions/" + param);
   data = await resp.json();
   let index = 0;
@@ -213,20 +183,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   next_button.innerHTML = "Next";
   next_button.className = "next_button";
 
-  next_button.addEventListener("click", async() => {
+  next_button.addEventListener("click", async () => {
     index += 1;
-    if (index>=data.data.length){
-      await sendScore(score,userID)
-      window.location.replace(
-        "/singleResult.html?total="+data.data.length
-      )
-
-    }
-    else{
+    if (index >= data.data.length) {
+      await sendScore(score, userID);
+      window.location.replace("/singleResult.html?total=" + data.data.length);
+    } else {
       update(data.data[index]);
-      
     }
-    
   });
 
   next.className = "next";
@@ -276,50 +240,48 @@ document.addEventListener("DOMContentLoaded", async () => {
   optA.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      if (first_ques.ans==1){
-        score+=1
+      if (first_ques.ans == 1) {
+        score += 1;
       }
       optA.classList.toggle("active");
-      showAns(first_ques.ans)
-      
+      showAns(first_ques.ans);
     }
   });
 
   optB.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      if (first_ques.ans==2){
-        score+=1
+      if (first_ques.ans == 2) {
+        score += 1;
       }
       optB.classList.toggle("active");
-      showAns(first_ques.ans)
+      showAns(first_ques.ans);
     }
   });
 
   optC.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      if (first_ques.ans==3){
-        score+=1
+      if (first_ques.ans == 3) {
+        score += 1;
       }
       optC.classList.toggle("active");
-      showAns(first_ques.ans)
+      showAns(first_ques.ans);
     }
   });
 
   optD.addEventListener("click", () => {
     if (!iSelected) {
       iSelected = true;
-      if (first_ques.ans==4){
-        score+=1
+      if (first_ques.ans == 4) {
+        score += 1;
       }
       optD.classList.toggle("active");
-      showAns(first_ques.ans)
+      showAns(first_ques.ans);
     }
   });
   card.appendChild(ques);
   card.appendChild(options);
-  card.appendChild(next)
+  card.appendChild(next);
   container.appendChild(card);
-  
 });

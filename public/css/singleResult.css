@@ -1,155 +1,78 @@
 /*AUTHOR MIHIR MESIA*/
 :root {
-    --black-color: rgb(3, 3, 3);
-  }
-  
-  
-  html {
-    font-size: 62.5%;
-  }
-
-  body{
-    margin:0;
-    background: #FEAC5E;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
-  /* .navbar {
-    width:100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(34, 39, 47, 1);
-    position: sticky;
-  }
-  
-  .app_title {
-    justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      margin: 0.5rem;
-      width: 50%;
-      color:white
-  }
-  
-  
-  .navbar_links {
-    padding-right: 2.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .navbar_links ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  .navbar_links ul li {
-    list-style: none;
-    font-size: 1.2rem;
-    margin-left: 2.5rem;
-    color: white;
-  }
-  
-   */
-
-  .container{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin: 2.5rem
+  --black-color: rgb(3, 3, 3);
 }
-  
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  background: #feac5e;
+  background: -webkit-linear-gradient(to right, #4bc0c8, #c779d0, #feac5e);
+  background: linear-gradient(to right, #4bc0c8, #c779d0, #feac5e);
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 2.5rem;
+}
+
+.display_score {
+  border-radius: 50%;
+  background: #936c6c;
+  box-shadow: -5px 5px 33px #453333, 5px -5px 33px #e1a5a5;
+  width: 25rem;
+  height: 25rem;
+  margin: 2.5rem;
+}
+
+.score {
+  align-items: center;
+  text-align: center;
+  padding: 4.5rem;
+  font-size: 4.5rem;
+}
+
+.title_score {
+  font-size: 4rem;
+}
+
+.message {
+  text-align: center;
+  margin: 2rem;
+}
+
+.text {
+  font-size: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .title_score {
+    font-size: 6rem;
+  }
 
   .display_score {
     border-radius: 50%;
     background: #936c6c;
     box-shadow: -5px 5px 33px #453333, 5px -5px 33px #e1a5a5;
-    width: 25rem;
-    height: 25rem;
-    margin: 2.5rem;
+    width: 30rem;
+    height: 30rem;
+    margin: 0.5rem;
   }
 
   .score {
     align-items: center;
     text-align: center;
-    padding: 4.5rem;
-    font-size: 4.5rem;
-  }
-
-  .title_score{
-    font-size: 4rem;
-  }
-
-  .message{
-    text-align: center;
-    margin:2rem
-  }
-
-  .text{
-    font-size: 3rem;
-  }
-
-
-  @media screen and (min-width: 768px) {
-    /* .navbar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(34, 39, 47, 1);
-      
-      position: sticky;
-    }
-    .app_title {
-      justify-content: center;
-      align-items: center;
-      font-size: 4rem;
-      margin: 0.5rem;
-      margin-left: 4rem;
-      width: 50%;
-    }
-  
-    .navbar_links {
-      padding-right: 2.5rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .navbar_links ul {
-      margin-right: 1.5rem;
-      display: flex;
-      width: 100%;
-    }
-  
-    .navbar_links ul li {
-      list-style: none;
-      font-size: 4rem;
-      color: white;
-      padding: 1.5rem;
-    } */
-
-    .title_score{
-      font-size: 6rem;
-    }
-  
-    .display_score{
-      border-radius: 50%;
-      background: #936c6c;
-      box-shadow: -5px 5px 33px #453333, 5px -5px 33px #e1a5a5;
-      width: 30rem;
-      height: 30rem;
-      margin: 0.5rem;
-    }
-
-    .score{
-      align-items: center;
-    text-align: center;
     padding: 8.5rem;
     font-size: 3.5rem;
-    }
-
-    .text {
-      font-size: 3.5rem;
-      margin: 4.5rem;
-    }
   }
+
+  .text {
+    font-size: 3.5rem;
+    margin: 4.5rem;
+  }
+}

@@ -2,9 +2,6 @@ import express from "express";
 import db from "../database/quizScriptDb.js";
 const router = express.Router();
 
-// Get Home Page
-//Change the render function
-//res.redirect(index.html) if user is authenticated
 router.get("/", function (req, res) {
   res.render("index", { title: "Express" });
 });

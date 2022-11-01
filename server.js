@@ -5,7 +5,6 @@ import { Server } from "socket.io";
 import game from "./controller/game.js";
 import session from "express-session";
 import cookieParser from "cookie-parser";
-import { dirname } from "path";
 
 import indexRouter from "./routes/index.js";
 import newUserRouter from "./routes/newuser.js";
@@ -19,9 +18,6 @@ const io = new Server(httpServer, {
   cors: { origin: "*" },
   pingTimeout: 60000,
 });
-
-
-app.set("views", dirname + "/views");
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -44,7 +40,6 @@ app.use("/quizResult", mulResults);
 
 io.on("connection", (socket) => {
   game.handle(socket);
-  
 });
 
 httpServer.listen(process.env.PORT || 3000);

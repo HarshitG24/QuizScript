@@ -9,8 +9,6 @@ function Game() {
   let playersObj = {};
   let scarr = [];
 
-  // module.exports = {};
-
   game.handle = (socket) => {
     socket.on("new player", () => {
       players.push(player.Player(socket.id, socket.id));
@@ -18,7 +16,6 @@ function Game() {
 
       if (players.length == 2) {
         socket.server.emit("game_players", players);
-        // socket.server.emit("return_players", playersObj);
       }
     });
 
@@ -27,13 +24,7 @@ function Game() {
       options.push(data);
 
       if (options.length == 2) {
-        // options.forEach((o) => {
-        //   socket.server.emit("update option", o.opt);
-        // });
-
         socket.server.emit("update option", options);
-
-        // socket.server.emit("update-index");
       }
     });
 

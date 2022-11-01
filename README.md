@@ -20,6 +20,11 @@
 7. Multiplayer Result Page () -> After completing the quiz, they can see which player won and who has how many points
 8. Dashboard page () -> User can see the summary of all the single and multiplayer quizes taken by them
 
+## Running the multiplayer quiz
+1. Open the app in 2 different browsers
+2. Log in using 2 different credentials
+3. Hover over a category in each browser, click on multiplayer quiz
+4. Do the same on other browser and make sure that category selected is same for it work.
 
 ## Design Document
 The design document pdf can be found in the **/Document** folder of the project
@@ -35,4 +40,15 @@ The design document pdf can be found in the **/Document** folder of the project
 
 ## Class Link
 [CS5610 Web Development Course](https://johnguerra.co/classes/webDevelopment_fall_2022/)
+
+## Screenshots
+
+<img width="1596" alt="Login" src="https://user-images.githubusercontent.com/35658851/199158094-5824d7b7-36e7-4fcf-969d-4235a2e19931.png">
+<img width="1727" alt="Categories" src="https://user-images.githubusercontent.com/35658851/199158123-2f4b6432-d798-45e2-b78c-a480bee1dc80.png">
+<img width="1728" alt="Categories-Hover" src="https://user-images.githubusercontent.com/35658851/199158147-33ea437b-57bc-4bcd-bc3d-566be4abf4ab.png">
+<img width="1728" alt="single-player-quiz" src="https://user-images.githubusercontent.com/35658851/199158167-8416a81f-4274-427f-a030-8f4e4a489ffe.png">
+<img width="1726" alt="single player score" src="https://user-images.githubusercontent.com/35658851/199158198-84bcc587-4a38-4faa-941b-531065737627.png">
+<img width="1728" alt="dashboard" src="https://user-images.githubusercontent.com/35658851/199158220-6e40355e-8965-4d77-a836-35ae2be71076.png">
+<img width="1719" alt="multiplayer" src="https://user-images.githubusercontent.com/35658851/199158306-8d47d1a4-a1e0-48f0-b74c-ad5c242ecdb7.png">
+<img width="1726" alt="multiplayer result" src="https://user-images.githubusercontent.com/35658851/199158349-18ee6a92-0614-461c-8b56-403b42bfb64b.png">
 

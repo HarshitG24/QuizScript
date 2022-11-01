@@ -24,9 +24,7 @@ btn.addEventListener("click", async () => {
     resp = await resp.json();
     if (resp.code == 200) {
       try {
-        window.location.replace(
-          "/categories.html"
-        );
+        window.location.replace("/categories.html");
       } catch (error) {
         console.log(error);
       }

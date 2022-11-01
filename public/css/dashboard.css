@@ -7,7 +7,6 @@ body {
   background: #4e54c8; /* fallback for old browsers */
 }
 
-
 .container {
   align-items: center;
   display: flex;
@@ -100,8 +99,6 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-  
-
   .username {
     font-size: 3.5rem;
     font-weight: 800;

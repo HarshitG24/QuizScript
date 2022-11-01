@@ -35,9 +35,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const optC = document.getElementById("optC");
   const optD = document.getElementById("optD");
 
-  // const score1 = document.getElementById("score1");
-  // const score2 = document.getElementById("score2");
-
   const query = window.location.search;
   const urlParams = new URLSearchParams(query);
 
@@ -58,8 +55,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   function displayQuestions(currentIndex) {
     if (currentIndex >= questions.length) {
       socket.emit("clear-players");
-      // window.location.href =
-      //   "./mulresult.html?userId=" + userId + "&category=" + category;
       return;
     }
     question = questions[currentIndex];
@@ -192,8 +187,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // showCorrectAns(question.ans);
-
     switch (question.ans) {
       case 1:
         optA.classList.add("correct_ans");
@@ -225,9 +218,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       } else {
         socket.emit("clear-players");
         clearInterval(clock);
-
-        // window.location.href =
-        //   "./mulresult.html?userId=" + userId + "&category=" + category;
       }
     }, "3000");
   });
