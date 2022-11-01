@@ -1,8 +1,6 @@
-import { MongoClient }  from "mongodb";
+import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
-
-
 
 function dbConnector() {
   let dbObj = {};
@@ -213,14 +211,12 @@ function dbConnector() {
     await client.connect();
     try {
       const user_score = await singleRecord.find({ username: user }).toArray();
-      if (user_score.length>0){
+      if (user_score.length > 0) {
         const data = user_score[0].results;
-      return data;
+        return data;
+      } else {
+        return [];
       }
-      else {
-        return []
-      }
-      
     } catch (error) {
       console.log(error);
       return 400;
@@ -235,13 +231,12 @@ function dbConnector() {
       const user_score = await mulPlayerResult
         .find({ username: user })
         .toArray();
-        if (user_score.length>0){
-          const data = user_score[0].result;
+      if (user_score.length > 0) {
+        const data = user_score[0].result;
         return data;
-        }
-        else {
-          return []
-        }
+      } else {
+        return [];
+      }
     } catch (error) {
       console.log(error);
       return 400;

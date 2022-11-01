@@ -1,27 +1,23 @@
 async function validateUser() {
-  const fetchdata = await fetch("/getUser")
-  const user_data = await fetchdata.json()
-  
+  const fetchdata = await fetch("/getUser");
+  const user_data = await fetchdata.json();
 
-  if (!user_data.user){
-    window.location.replace("/")
+  if (!user_data.user) {
+    window.location.replace("/");
+  } else {
+    return user_data.user;
   }
-   else {
-    return user_data.user
-   }
 }
 
-
-
 document.addEventListener("DOMContentLoaded", async () => {
-
-  const userId = await validateUser()
+  const userId = await validateUser();
   let questions = [];
   let question;
   let iSelected = false;
   let currentIndex = 0;
   let playerObj = {};
   let opponent = "";
+  let resArr = [];
 
   let myScore = 0;
   let opponentScore = 0;
@@ -47,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   socket.emit("add_player", userId);
 
-  const category = urlParams.get("categories")
+  const category = urlParams.get("categories");
 
   if (category != undefined && category != null && category != "") {
     const resp = await fetch("/questions/" + category);
@@ -62,8 +58,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   function displayQuestions(currentIndex) {
     if (currentIndex >= questions.length) {
       socket.emit("clear-players");
-      window.location.href =
-        "./mulresult.html?&category=" + category;
+      // window.location.href =
+      //   "./mulresult.html?userId=" + userId + "&category=" + category;
       return;
     }
     question = questions[currentIndex];
@@ -215,9 +211,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         clearActiveSelection();
     }
 
-    setTimeout(() => {
+    setTimeout(async () => {
       currentIndex = currentIndex + 1;
-
+      console.log("index is", currentIndex);
       if (currentIndex <= questions.length - 1) {
         clearInterval(clock);
         clearActiveSelection();
@@ -228,9 +224,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         socket.emit("clear-options");
         clock = setInterval(countDownClock, 1000);
       } else {
+        console.log("all ques done");
         socket.emit("clear-players");
-        window.location.href =
-          "./mulresult.html?category=" + category;
+        clearInterval(clock);
+
+        // window.location.href =
+        //   "./mulresult.html?userId=" + userId + "&category=" + category;
       }
     }, "3000");
   });
@@ -244,6 +243,52 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     finalArr.push({ id: userId, score: myScore });
     finalArr.push({ id: opponent, score: opponentScore });
+    console.log("inside return players", finalArr);
+    resArr = finalArr;
+    debugger;
+    time_remaining.innerText =
+      myScore === opponentScore
+        ? "Game Tie"
+        : myScore > opponentScore
+        ? "You Won"
+        : "Opponent Won";
     socket.emit("update_result", finalArr);
   });
+
+  async function makeApiCall() {
+    const headers = new Headers({ "Content-Type": "application/json" });
+
+    let p1 = resArr[0];
+    let p2 = resArr[1];
+    if (p1.id != p2.id) {
+      let data = {
+        username: p1.id,
+        result: [
+          {
+            opponent: p2.id,
+            winner:
+              p1.score == p2.score
+                ? "Game Tie"
+                : p1.score > p2.score
+                ? p1.id
+                : p2.id,
+            category,
+            date: new Date(),
+          },
+        ],
+      };
+
+      const opts = {
+        method: "post",
+        headers: headers,
+        body: JSON.stringify(data),
+      };
+
+      try {
+        const resp = await fetch("/quizResult/sendMulQuizResults", opts);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 });
