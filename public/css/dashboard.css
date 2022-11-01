@@ -1,9 +1,9 @@
-
 html {
   font-size: 62.5%;
 }
-body{
-  margin:0
+body {
+  margin: 0;
+  background: #4e54c8; /* fallback for old browsers */
 }
 /* .navbar {
   width:100%;
@@ -51,22 +51,21 @@ body{
   justify-content: center;
 }
 
-.username{
+.username {
   font-size: 2.5rem;
   font-weight: 800;
 }
 .record {
-  
   width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
+  background: #8f94fb;
 }
 .records {
   width: 100%;
   text-align: center;
 }
-
 
 .mulRecords {
   text-align: center;
@@ -83,7 +82,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin:1.5rem
+  margin: 1.5rem;
 }
 
 .delete_btn {
@@ -97,40 +96,41 @@ body{
 }
 
 .record tr:nth-child(even) {
-  background-color: #dfdfdf;
+  background-color: #4e54c8;
 }
 .record td {
-font-size: 1.5rem;
+  font-size: 1.5rem;
 }
-.record th{
-font-size: 1.5rem;
+.record th {
+  font-size: 1.5rem;
 }
-.records{
-width: 100%;
-text-align: center;
-padding: 2.5rem;
+.records {
+  width: 100%;
+  text-align: center;
+  padding: 2.5rem;
 }
 
 .mulRecord tr:nth-child(even) {
-background-color: #dfdfdf;
+  background-color: #4e54c8;
 }
 .mulRecord td {
-font-size: 1.5rem;
+  font-size: 1.5rem;
 }
-.mulRecord th{
-font-size: 1.5rem;
+.mulRecord th {
+  font-size: 1.5rem;
 }
-.mulRecords{
-padding: 1.5rem;
+.mulRecords {
+  padding: 1.5rem;
 }
 
-.mulRecord{
+.mulRecord {
   margin: 1.5rem;
   width: 100%;
   text-align: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
+  background: #8f94fb;
 }
 
 @media screen and (min-width: 768px) {
@@ -170,16 +170,16 @@ padding: 1.5rem;
     padding: 1.5rem;
   } */
 
-  .username{
+  .username {
     font-size: 3.5rem;
     font-weight: 800;
   }
-  .title{
+  .title {
     margin: 1.5rem;
     font-size: 2.5rem;
   }
 
-  .mulRecord{
+  .mulRecord {
     margin: 1.5rem;
     width: 100%;
     text-align: center;
@@ -188,40 +188,38 @@ padding: 1.5rem;
     flex-direction: column;
   }
 
-  
   .record tr:nth-child(even) {
-      background-color: #dfdfdf;
+    background-color: #4e54c8;
   }
   .record td {
     font-size: 2.5rem;
   }
-  .record th{
+  .record th {
     font-size: 2.5rem;
   }
-.records{
+  .records {
     width: 100%;
     text-align: center;
     padding: 3.5rem;
-}
+  }
 
-.mulRecord tr:nth-child(even) {
-  background-color: #dfdfdf;
-}
-.mulRecord td {
-font-size: 2.5rem;
-}
-.mulRecord th{
-font-size: 2.5rem;
-}
-.mulRecords{
-  padding: 2.5rem;
-}
-.delete {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-}
-
+  .mulRecord tr:nth-child(even) {
+    background-color: #4e54c8;
+  }
+  .mulRecord td {
+    font-size: 2.5rem;
+  }
+  .mulRecord th {
+    font-size: 2.5rem;
+  }
+  .mulRecords {
+    padding: 2.5rem;
+  }
+  .delete {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
 }
