@@ -1,4 +1,3 @@
-
 //AUTHOR MIHIR MESIA
 import express from "express";
 import db from "../database/quizScriptDb.js";

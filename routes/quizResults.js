@@ -2,13 +2,12 @@ import express from "express";
 import db from "../database/quizScriptDb.js";
 const router = express.Router();
 
-// Api calls
+// Author: Harshit Gajjar
 router.post("/sendMulQuizResults", async (req, res) => {
   const status = await db.sendMulQuizResult(req?.body || {});
   res.status(status).send();
 });
 
-//single quiz results
 //AUTHOR MIHIR MESIA
 router.post("/sendSingleScore", async (req, res) => {
   const status = await db.sendScore(req?.body || {});
@@ -20,6 +19,7 @@ router.get("/fetchSingleScore/:user", async (req, res) => {
   res.send(JSON.stringify(data));
 });
 
+// Author: Harshit Gajjar
 router.get("/getMulQuizResults/:username", async (req, res) => {
   const resp = await db.getQuizResult(req?.params?.username || "");
   res.send({ data: resp.data });
