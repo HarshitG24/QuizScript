@@ -272,7 +272,12 @@ function dbConnector() {
     }
   };
 
+  dbObj.closeConnection = async () =>{
+    client.close()
+  }
+
   return dbObj;
+
 }
 
 export default dbConnector();

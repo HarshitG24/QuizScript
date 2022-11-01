@@ -27,6 +27,7 @@ router.get("/currentUser", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.session.destroy();
+  db.closeConnection();
   return res.redirect("/")
 });
 
