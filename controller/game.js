@@ -43,7 +43,6 @@ function Game() {
     });
 
     socket.on("clear-players", () => {
-      // socket.server.emit("game_players", players);
       socket.server.emit("return_players", playersObj);
 
       players = [];
@@ -58,7 +57,6 @@ function Game() {
       scarr = scoreArr;
     });
 
-    
     socket.on("get_score", function (data, fn) {
       fn(scarr);
     });

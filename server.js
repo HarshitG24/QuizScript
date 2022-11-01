@@ -13,8 +13,6 @@ import addCategories from "./routes/categories.js";
 import addQuestion from "./routes/questions.js";
 import mulResults from "./routes/quizResults.js";
 
-
-
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
@@ -35,7 +33,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: "secret",
-    cookie: {}
+    cookie: {},
   })
 );
 

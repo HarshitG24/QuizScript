@@ -173,6 +173,15 @@ body {
   background-color: var(--font-dynamic);
 }
 
+.game_on {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.hide {
+  display: none;
+}
+
 /*desktop*/
 
 @media screen and (min-width: 768px) {

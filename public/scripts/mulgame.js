@@ -242,50 +242,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     finalArr.push({ id: userId, score: myScore });
     finalArr.push({ id: opponent, score: opponentScore });
     resArr = finalArr;
-    debugger;
-    time_remaining.innerText =
-      myScore === opponentScore
-        ? "Game Tie"
-        : myScore > opponentScore
-        ? "You Won"
-        : "Opponent Won";
     socket.emit("update_result", finalArr);
+    time_remaining.innerText = "Go to Result";
+
+    time_remaining.addEventListener("click", () => {
+      window.location.replace("/mulresult.html?category=" + category);
+    });
   });
-
-  async function makeApiCall() {
-    const headers = new Headers({ "Content-Type": "application/json" });
-
-    let p1 = resArr[0];
-    let p2 = resArr[1];
-    if (p1.id != p2.id) {
-      let data = {
-        username: p1.id,
-        result: [
-          {
-            opponent: p2.id,
-            winner:
-              p1.score == p2.score
-                ? "Game Tie"
-                : p1.score > p2.score
-                ? p1.id
-                : p2.id,
-            category,
-            date: new Date(),
-          },
-        ],
-      };
-
-      const opts = {
-        method: "post",
-        headers: headers,
-        body: JSON.stringify(data),
-      };
-
-      try {
-        const resp = await fetch("/quizResult/sendMulQuizResults", opts);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
 });
