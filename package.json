@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node ./node_modules/nodemon/bin/nodemon.js server.js",
+    "start": "node ./node_modules/nodemon/bin/nodemon.js ./bin/www.js",
     "devStart": "nodemon server.js"
   },
   "repository": {
