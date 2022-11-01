@@ -1,14 +1,14 @@
-import { MongoClient } from "mongodb";
+import  MongoClient  from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
-
+const mc = MongoClient.MongoClient
 function dbConnector() {
   let dbObj = {};
 
   const url =
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@quizapp.uzmfysu.mongodb.net/?retryWrites=true&w=majority` ||
     "mongodb://127.0.0.1:27017";
-  const client = new MongoClient(url, {});
+  const client = new mc(url, {});
   const db = client.db("QuizStart");
   const users = db.collection("users");
   const testing = db.collection("test");
@@ -151,7 +151,7 @@ function dbConnector() {
         .find({ username: data.username })
         .toArray();
 
-      console.log("userResult", userResults);
+      
       if (userResults.length > 0) {
         userResults[0].result = [...userResults[0].result, ...data.result];
 

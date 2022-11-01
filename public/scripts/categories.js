@@ -109,7 +109,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   
 signout.onclick = async function(e) {
   logout = await fetch("/logout")
-  console.log("done")
   window.location.replace("/")
 }
 

@@ -46,7 +46,6 @@ app.use("/questions", addQuestion);
 app.use("/quizResult", mulResults);
 
 io.on("connection", (socket) => {
-  console.log("socket id", socket.id);
   game.handle(socket);
   // sc.score(socket);
 });

@@ -44,7 +44,6 @@ function Game() {
 
     socket.on("clear-players", () => {
       // socket.server.emit("game_players", players);
-      console.log();
       socket.server.emit("return_players", playersObj);
 
       players = [];
@@ -56,7 +55,6 @@ function Game() {
     });
 
     socket.on("update_result", (scoreArr) => {
-      console.log("fetched result array is: ", scoreArr);
       scarr = scoreArr;
     });
 

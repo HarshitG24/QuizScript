@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
   signout.onclick = async function(e) {
     logout = await fetch("/logout")
-    console.log("done")
     window.location.replace("/")
   }
 
@@ -50,7 +49,6 @@ document.addEventListener("DOMContentLoaded", async() => {
       let player1 = resp.find((p) => p.id === usId);
       let arr = resp.filter((p) => p.id != usId);
 
-      console.log("resp is", resp);
       debugger;
 
       let player2 = arr[0];
