@@ -21,22 +21,21 @@
 
 ## Features
 1. Login Page (index.html) -> The user can login to the QuizScript app or create account
-2. Create Account Page (project.html) -> The User can register in the website.
-3. Categories Page (experience.html) -> This page shows the various categories the user can choose from to take quiz
-4. SinglePlayer Quiz Page (contactme.html) -> After choosing a category, user can take the quiz and get result
-5. Multiplayer Quiz Page () -> User need to select a category and also match with another player to start the quiz and get the result
-6. SinglePlayer Result Page (contactme.html) -> After completing the quiz, they can see their score and their performance
-7. Multiplayer Result Page () -> After completing the quiz, they can see which player won and who has how many points
-8. Dashboard page () -> User can see the summary of all the single and multiplayer quizes taken by them
+2. Create Account Page (newuser.html) -> The User can register in the website.
+3. Categories Page (categories.html) -> This page shows the various categories the user can choose from to take quiz
+4. SinglePlayer Quiz Page (singlequiz.html) -> After choosing a category, user can take the quiz and get result
+5. Multiplayer Quiz Page (mulquiz.html) -> User need to select a category and also match with another player to start the quiz and get the result
+6. SinglePlayer Result Page (singleResult.html) -> After completing the quiz, they can see their score and their performance
+7. Multiplayer Result Page (mulresult.html) -> After completing the quiz, they can see which player won and who has how many points
+8. Dashboard page (dashboard.html) -> User can see the summary of all the single and multiplayer quizes taken by them
 
 ## Running the multiplayer quiz
-1. Open the app in 2 different browsers
-2. Log in using 2 different credentials
-3. Hover over a category in each browser, click on multiplayer quiz
-4. Do the same on other browser and make sure that category selected is same for it work.
+1. Start the server
+2. Open the app in 2 different browsers
+3. Log in using 2 different credentials
+4. Hover over a category in each browser, click on multiplayer quiz
+5. Do the same on other browser and make sure that category selected is same for it work.
 
-## Design Document
-The design document pdf can be found in the **/Document** folder of the project
 
 ## Tech Requirements
 1. HTML5
