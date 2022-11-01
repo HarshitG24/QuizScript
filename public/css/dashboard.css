@@ -1,3 +1,4 @@
+/*AUTHOR MIHIR MESIA*/
 html {
   font-size: 62.5%;
 }
@@ -98,42 +99,6 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-  /* .navbar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(34, 39, 47, 1);
-    
-    position: sticky;
-  }
-  .app_title {
-    justify-content: center;
-    align-items: center;
-    font-size: 4rem;
-    margin: 0.5rem;
-    margin-left: 4rem;
-    width: 50%;
-  }
-
-  .navbar_links {
-    padding-right: 2.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .navbar_links ul {
-    margin-right: 1.5rem;
-    display: flex;
-    width: 100%;
-  }
-
-  .navbar_links ul li {
-    list-style: none;
-    font-size: 4rem;
-    color: white;
-    padding: 1.5rem;
-  } */
-
   .username {
     font-size: 3.5rem;
     font-weight: 800;

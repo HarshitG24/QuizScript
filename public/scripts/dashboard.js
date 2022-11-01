@@ -1,3 +1,4 @@
+//AUTHOR MIHIR MESIA
 async function validateUser() {
   const fetchdata = await fetch("/getUser");
   const user_data = await fetchdata.json();
