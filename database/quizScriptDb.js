@@ -277,6 +277,22 @@ function dbConnector() {
     }
   };
 
+  //Author: Mihir Mesia
+
+  dbObj.deleteRecords = async (username) => {
+    await client.connect();
+    try{
+      await singleRecord.deleteMany({username:username})
+      await mulPlayerResult.deleteMany({ username: username });
+      return 200;
+    }
+    catch (error){
+      return 400;
+    } finally {
+      //client.close();
+    }
+  }
+
   dbObj.closeConnection = async () => {
     client.close();
   };

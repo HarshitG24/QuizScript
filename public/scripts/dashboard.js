@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const table = document.querySelector(".records");
   const multable = document.querySelector(".mulRecords");
   const deleteBtn = document.getElementById("delete_user");
-
+  const deleteRecords = document.getElementById("delete_record")
   const username = document.querySelector(".username");
   username.innerHTML = userID;
   if (data.length > 0) {
@@ -124,4 +124,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resp = await fetch("/newuser/deleteUser/" + userID, opts);
     if (resp.status == 200) window.location.replace("/");
   });
-});
+
+  // Author: Mihir Mesia
+
+  deleteRecords.addEventListener("click", async() => {
+    const headers = new Headers({ "Content-Type": "application/json" });
+
+    const opts = {
+      method: "delete",
+      headers: headers,
+    };
+
+    const resp = await fetch("/newuser/deleteRecords/" + userID, opts);
+    if (resp.status == 200) window.location.replace("/dashboard.html");
+  });
+
+
+  })
+
