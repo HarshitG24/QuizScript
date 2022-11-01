@@ -5,9 +5,7 @@ const mc = MongoClient.MongoClient;
 function dbConnector() {
   let dbObj = {};
 
-  const url =
-    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@quizapp.uzmfysu.mongodb.net/?retryWrites=true&w=majority` ||
-    "mongodb://127.0.0.1:27017";
+  const url = "mongodb://127.0.0.1:27017";
   const client = new mc(url, {});
   const db = client.db("QuizStart");
   const users = db.collection("users");
@@ -281,17 +279,16 @@ function dbConnector() {
 
   dbObj.deleteRecords = async (username) => {
     await client.connect();
-    try{
-      await singleRecord.deleteMany({username:username})
+    try {
+      await singleRecord.deleteMany({ username: username });
       await mulPlayerResult.deleteMany({ username: username });
       return 200;
-    }
-    catch (error){
+    } catch (error) {
       return 400;
     } finally {
       //client.close();
     }
-  }
+  };
 
   dbObj.closeConnection = async () => {
     client.close();
