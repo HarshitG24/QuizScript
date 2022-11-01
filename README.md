@@ -13,11 +13,13 @@
 **Project Objective:**
  A Quiz application for user’s to test their knowledge on various tools, technology and framework such as GIT, JavaScript, ReactJs. The website allows the users to take a single player quiz and test their knowledge, or they can compete with their friends in a timer based quiz. The project is intended to get experience working with NodeJS + MongoDB + ExpressJS + HTML + JavaScript. It also gives exposure working with API’s and their testing in postman
 
-## Installation
+## Installation and running it in local monodb compass (it uses mongoimport)
 1. Clone the repository
 2. Open it in your favourite editor
 3. Run yarn install/ npm install to install node modules
-4. Go to terminal and run the command **npm start**
+4. Go to terminal and Run **npm run initcat**
+5. Run **npm run initques**
+6. Run the command **npm start**
 
 ## Features
 1. Login Page (index.html) -> The user can login to the QuizScript app or create account
@@ -30,6 +32,7 @@
 8. Dashboard page (dashboard.html) -> User can see the summary of all the single and multiplayer quizes taken by them
 
 ## Running the multiplayer quiz
+For best experience, please close both the browsers, restart the server, start it fresh for it work best
 1. Start the server
 2. Open the app in 2 different browsers
 3. Log in using 2 different credentials
