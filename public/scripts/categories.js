@@ -1,4 +1,3 @@
-
 //AUTHOR MIHIR MESIA
 
 async function validateUser() {
