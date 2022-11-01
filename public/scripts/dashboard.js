@@ -1,15 +1,13 @@
 //AUTHOR MIHIR MESIA
 async function validateUser() {
-  const fetchdata = await fetch("/getUser")
-  const user_data = await fetchdata.json()
-  
+  const fetchdata = await fetch("/getUser");
+  const user_data = await fetchdata.json();
 
-  if (!user_data.user){
-    window.location.replace("/")
+  if (!user_data.user) {
+    window.location.replace("/");
+  } else {
+    return user_data.user;
   }
-   else {
-    return user_data.user
-   }
 }
 
 const cat_re = document.getElementById("cat_re");
@@ -45,34 +43,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   const multable = document.querySelector(".mulRecords");
   const deleteBtn = document.getElementById("delete_user");
 
-  const username = document.querySelector(".username")
-  username.innerHTML = userID
-if (data.length>0){
-  data.forEach((val) => {
-    let score = val.score;
-    let date = val.date;
-    let topic = val.category;
+  const username = document.querySelector(".username");
+  username.innerHTML = userID;
+  if (data.length > 0) {
+    data.forEach((val) => {
+      let score = val.score;
+      let date = val.date;
+      let topic = val.category;
 
-    date = new Date(date);
-    date = date.toDateString().split(" ");
-    date = date[1] + " " + date[2] + " " + date[3];
+      date = new Date(date);
+      date = date.toDateString().split(" ");
+      date = date[1] + " " + date[2] + " " + date[3];
 
-    const row = document.createElement("tr");
-    const score_d = document.createElement("td");
-    const topic_d = document.createElement("td");
-    const date_d = document.createElement("td");
+      const row = document.createElement("tr");
+      const score_d = document.createElement("td");
+      const topic_d = document.createElement("td");
+      const date_d = document.createElement("td");
 
-    score_d.innerHTML = score;
-    date_d.innerHTML = date;
-    topic_d.innerHTML = topic;
+      score_d.innerHTML = score;
+      date_d.innerHTML = date;
+      topic_d.innerHTML = topic;
 
-    row.appendChild(topic_d);
-    row.appendChild(score_d);
-    row.appendChild(date_d);
+      row.appendChild(topic_d);
+      row.appendChild(score_d);
+      row.appendChild(date_d);
 
-    table.appendChild(row);
-  });
-}
+      table.appendChild(row);
+    });
+  }
 
   if (mulData.length > 0) {
     mulData.forEach((val) => {
@@ -114,6 +112,7 @@ if (data.length>0){
     });
   }
 
+  // Author: Harshit Gajjar
   deleteBtn.addEventListener("click", async () => {
     const headers = new Headers({ "Content-Type": "application/json" });
 
