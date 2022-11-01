@@ -1,6 +1,15 @@
 **Author:**
  Harshit Gajjar Mihir Mesia
 
+**Youtube Link**
+[Demo](https://youtu.be/9ZP1YUmB4yE)
+
+**Website Link**
+[Slides](https://docs.google.com/presentation/d/1pbwqfanXbBBvygGy7RpWY47h24gk93kbKrWLz83vDgo/edit?usp=sharing)
+
+**Design Document**
+[Design Document](https://drive.google.com/file/d/1JbQcfZ85_FxeVhW2Ig8f8A0JoiIQaje6/view?usp=share_link)
+
 **Project Objective:**
  A Quiz application for user’s to test their knowledge on various tools, technology and framework such as GIT, JavaScript, ReactJs. The website allows the users to take a single player quiz and test their knowledge, or they can compete with their friends in a timer based quiz. The project is intended to get experience working with NodeJS + MongoDB + ExpressJS + HTML + JavaScript. It also gives exposure working with API’s and their testing in postman
 
