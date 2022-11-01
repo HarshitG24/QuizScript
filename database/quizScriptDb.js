@@ -5,7 +5,9 @@ const mc = MongoClient.MongoClient;
 function dbConnector() {
   let dbObj = {};
 
-  const url = "mongodb://127.0.0.1:27017";
+  const url =
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@quizapp.uzmfysu.mongodb.net/?retryWrites=true&w=majority` ||
+    "mongodb://127.0.0.1:27017";
   const client = new mc(url, {});
   const db = client.db("QuizStart");
   const users = db.collection("users");
