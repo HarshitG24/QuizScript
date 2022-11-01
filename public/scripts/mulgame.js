@@ -245,14 +245,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     finalArr.push({ id: opponent, score: opponentScore });
     console.log("inside return players", finalArr);
     resArr = finalArr;
-    debugger;
-    time_remaining.innerText =
-      myScore === opponentScore
-        ? "Game Tie"
-        : myScore > opponentScore
-        ? "You Won"
-        : "Opponent Won";
+    // myScore === opponentScore
+    //   ? "Game Tie"
+    //   : myScore > opponentScore
+    //   ? "You Won"
+    //   : "Opponent Won";
     socket.emit("update_result", finalArr);
+    time_remaining.innerText = "Go to Result";
+
+    time_remaining.addEventListener("click", () => {
+      window.location.replace("/mulresult.html?category=" + category);
+    });
   });
 
   async function makeApiCall() {

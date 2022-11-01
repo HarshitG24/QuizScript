@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const mulData = await fetchMulScore(userID);
   const table = document.querySelector(".records");
-  // const multable = document.querySelector(".mulRecords");
+  const multable = document.querySelector(".mulRecords");
   const deleteBtn = document.getElementById("delete_user");
 
   const username = document.querySelector(".username");
@@ -79,46 +79,45 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  //   if(mulData.length>0) {
-  //   mulData.forEach((val) => {
+  if (mulData.length > 0) {
+    mulData.forEach((val) => {
+      let opponent = val.opponent;
+      let date = val.date;
+      let winner = val.winner;
+      let cat = val.category;
 
-  //     let opponent = val.opponent;
-  //     let date = val.date;
-  //     let winner = val.winner;
-  //     let cat = val.category;
+      cat = cat.replace("%20", " ");
 
-  //     cat = cat.replace("%20"," ")
+      date = new Date(date);
+      date = date.toDateString().split(" ");
+      date = date[1] + " " + date[2] + " " + date[3];
 
-  //     date = new Date(date);
-  //     date = date.toDateString().split(" ");
-  //     date = date[1] + " " + date[2] + " " + date[3];
+      const row = document.createElement("tr");
+      const topic_d = document.createElement("td");
+      const opponent_d = document.createElement("td");
+      const winner_d = document.createElement("td");
+      const date_d = document.createElement("td");
 
-  //     const row = document.createElement("tr");
-  //     const topic_d = document.createElement("td");
-  //     const opponent_d = document.createElement("td");
-  //     const winner_d = document.createElement("td");
-  //     const date_d = document.createElement("td");
+      topic_d.innerHTML = cat;
+      date_d.innerHTML = date;
+      opponent_d.innerHTML = opponent;
 
-  //     topic_d.innerHTML = cat;
-  //     date_d.innerHTML = date;
-  //     opponent_d.innerHTML = opponent;
+      if (opponent == winner && winner == userID) {
+        winner_d.innerHTML = "Tie";
+      } else if (winner == userID) {
+        winner_d.innerHTML = "You Won";
+      } else {
+        winner_d.innerHTML = "You Lost";
+      }
 
-  //     if (opponent == winner && winner==userID) {
-  //       winner_d.innerHTML = "Tie";
-  //     } else if (winner == userID) {
-  //       winner_d.innerHTML = "You Won";
-  //     } else {
-  //       winner_d.innerHTML = "You Lost";
-  //     }
+      row.appendChild(topic_d);
+      row.appendChild(opponent_d);
+      row.appendChild(winner_d);
+      row.appendChild(date_d);
 
-  //     row.appendChild(topic_d);
-  //     row.appendChild(opponent_d);
-  //     row.appendChild(winner_d);
-  //     row.appendChild(date_d);
-
-  //     multable.appendChild(row);
-  //   });
-  // }
+      multable.appendChild(row);
+    });
+  }
 
   deleteBtn.addEventListener("click", async () => {
     const headers = new Headers({ "Content-Type": "application/json" });
