@@ -17,6 +17,7 @@ function dbConnector() {
   const singleRecord = db.collection("SingleQuizRecords");
   const mulPlayerResult = db.collection("mulQuizResult");
 
+  // Author: Harshit Gajjar
   dbObj.login = async (userData) => {
     await client.connect();
     try {
@@ -38,6 +39,7 @@ function dbConnector() {
     }
   };
 
+  // Author: Harshit Gajjar
   dbObj.createUser = async (userData) => {
     await client.connect();
     try {
@@ -51,7 +53,7 @@ function dbConnector() {
     }
   };
 
-//AUTHOR MIHIR MESIA
+  //AUTHOR MIHIR MESIA
   dbObj.createCategories = async (data) => {
     await client.connect();
     try {
@@ -65,6 +67,7 @@ function dbConnector() {
     }
   };
 
+  // Author: Harshit Gajjar
   dbObj.createQuestions = async (data) => {
     await client.connect();
     try {
@@ -91,7 +94,8 @@ function dbConnector() {
       // client.close();
     }
   };
-//AUTHOR MIHIR MESIA
+
+  //AUTHOR MIHIR MESIA
   dbObj.fetchCategories = async () => {
     await client.connect();
     try {
@@ -133,6 +137,7 @@ function dbConnector() {
     }
   };
 
+  // Author: Harshit Gajjar
   dbObj.sendMulQuizResult = async (data) => {
     await client.connect();
     try {
@@ -236,6 +241,7 @@ function dbConnector() {
     }
   };
 
+  // Author: Harshit Gajjar
   dbObj.getQuizResult = async (username) => {
     try {
       const user = await mulPlayerResult
@@ -255,6 +261,7 @@ function dbConnector() {
     }
   };
 
+  // Author: Harshit Gajjar
   dbObj.deleteUser = async (username) => {
     await client.connect();
     try {

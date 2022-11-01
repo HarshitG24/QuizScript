@@ -1,3 +1,4 @@
+// Author: Harshit Gajjar
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const btn = document.getElementById("clickme");

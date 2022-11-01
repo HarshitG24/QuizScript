@@ -1,3 +1,5 @@
+// Author: Harshit Gajjar
+
 import express from "express";
 import db from "../database/quizScriptDb.js";
 const router = express.Router();
@@ -5,7 +7,7 @@ const router = express.Router();
 // Api calls
 router.post("/createUser", async (req, res) => {
   const status = await db.createUser(req?.body || {});
-  if(status==200){
+  if (status == 200) {
     req.session.user = req.body.email;
   }
   res.status(status).send();

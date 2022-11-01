@@ -1,3 +1,4 @@
+// Author: Harshit Gajjar
 function PlayerObj() {
   let player = {};
   player.Player = (id, name) => {

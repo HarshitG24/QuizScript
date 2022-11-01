@@ -1,3 +1,4 @@
+// Author: Harshit Gajjar
 import player from "./player.js";
 
 function Game() {
