@@ -1,18 +1,13 @@
 async function validateUser() {
-  const fetchdata = await fetch("/getUser")
-  const user_data = await fetchdata.json()
-  
+  const fetchdata = await fetch("/getUser");
+  const user_data = await fetchdata.json();
 
-  if (!user_data.user){
-    window.location.replace("/")
+  if (!user_data.user) {
+    window.location.replace("/");
+  } else {
+    return user_data.user;
   }
-   else {
-    return user_data.user
-   }
 }
-
-
-
 
 const modal = document.querySelector(".modal");
 const trigger = document.querySelector(".trigger");
@@ -38,7 +33,7 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
-function socketCall(name,userID) {
+function socketCall(name, userID) {
   // const socket = io("http://localhost:3000");
   const socket = io("http://localhost:3000", {});
   socket.emit("new player", myGameCode);
@@ -54,8 +49,7 @@ function socketCall(name,userID) {
       let active = players.find((player) => player.active == true);
     }
     if (players.length == 2) {
-      start_game.href =
-        "./mulquiz.html?categories=" + name;
+      start_game.href = "./mulquiz.html?categories=" + name;
       start_game.click();
     }
   });
@@ -97,7 +91,6 @@ function generateUserGameCode() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-
   const userID = validateUser();
   const dashboard = document.getElementById("dashboard");
   const signout = document.getElementById("signout");
@@ -106,14 +99,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.replace("./dashboard.html");
   });
 
-  
-signout.onclick = async function(e) {
-  logout = await fetch("/logout")
-  console.log("done")
-  window.location.replace("/")
-}
+  signout.onclick = async function (e) {
+    logout = await fetch("/logout");
+    window.location.replace("/");
+  };
 
-  
   const container = document.querySelector(".container");
   const resp = await fetch("/categories", {
     method: "get",
@@ -161,12 +151,11 @@ signout.onclick = async function(e) {
     anch1.innerText = "Single quiz";
 
     anch1.onclick = function (e) {
-      window.location.href =
-        "singlequiz.html?categories=" + name;
+      window.location.href = "singlequiz.html?categories=" + name;
     };
     anch2.onclick = function (e) {
       toggleModal();
-      socketCall(name,userID);
+      socketCall(name, userID);
     };
 
     link1.appendChild(anch1);

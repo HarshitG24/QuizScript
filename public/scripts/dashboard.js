@@ -9,11 +9,6 @@ async function validateUser() {
   }
 }
 
-// const query = window.location.search;
-// const urlParams = new URLSearchParams(query);
-// const userID = validateUser();
-// console.log(userID)
-
 const cat_re = document.getElementById("cat_re");
 cat_re.onclick = function (e) {
   window.location.href = "/categories.html";
@@ -22,21 +17,18 @@ cat_re.onclick = function (e) {
 const signout = document.getElementById("sign_out");
 signout.onclick = async function (e) {
   logout = await fetch("/logout");
-  console.log("done");
   window.location.replace("/");
 };
 
 async function fetchScore(userID) {
   const resp = await fetch("/quizResult/fetchSingleScore/" + userID);
   const data = await resp.json();
-  console.log(data);
   return data;
 }
 
 async function fetchMulScore(userID) {
   const resp = await fetch("/quizResult/fetchMulScore/" + userID);
   const data = await resp.json();
-  console.log(data);
   return data;
 }
 
@@ -102,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       date_d.innerHTML = date;
       opponent_d.innerHTML = opponent;
 
-      if (opponent == winner && winner == userID) {
+      if (winner == "Game Tie") {
         winner_d.innerHTML = "Tie";
       } else if (winner == userID) {
         winner_d.innerHTML = "You Won";

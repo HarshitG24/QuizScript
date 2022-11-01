@@ -151,7 +151,6 @@ function dbConnector() {
         .find({ username: data.username })
         .toArray();
 
-      console.log("userResult", userResults);
       if (userResults.length > 0) {
         userResults[0].result = [...userResults[0].result, ...data.result];
 
@@ -180,7 +179,6 @@ function dbConnector() {
       const user_score = await singleRecord
         .find({ username: data.username })
         .toArray();
-      console.log(user_score[0]);
       if (user_score.length > 0) {
         user_score[0].results = [...user_score[0].results, ...data.results];
 
