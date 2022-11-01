@@ -15,9 +15,7 @@ html {
 }
 
 body {
-  /* background: #283c86;
-  background: -webkit-linear-gradient(to right, #45a247, #283c86);
-  background: linear-gradient(to right, #45a247, #283c86); */
+ 
   background: #feac5e; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -54,15 +52,14 @@ body {
 .players {
   width: 100%;
   display: grid;
-  /* justify-content: space-between;
-  align-items: center; */
+  
   margin: 0 2rem;
   margin-top: 3rem;
 }
 
 .player_one {
   width: 100%;
-  /* background: green; */
+  
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -70,7 +67,7 @@ body {
 
 .player_two {
   width: 100%;
-  /* background: blue; */
+  
   margin-top: 3rem;
   display: flex;
   justify-content: center;

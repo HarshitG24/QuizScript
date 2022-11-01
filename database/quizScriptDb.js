@@ -51,19 +51,7 @@ function dbConnector() {
     }
   };
 
-  dbObj.testData = async (data) => {
-    await client.connect();
-    try {
-      await testing.insertOne(data);
-      return 200;
-    } catch (error) {
-      console.log(error);
-      return 400;
-    } finally {
-      // client.close();
-    }
-  };
-
+//AUTHOR MIHIR MESIA
   dbObj.createCategories = async (data) => {
     await client.connect();
     try {
@@ -103,7 +91,7 @@ function dbConnector() {
       // client.close();
     }
   };
-
+//AUTHOR MIHIR MESIA
   dbObj.fetchCategories = async () => {
     await client.connect();
     try {
@@ -119,6 +107,7 @@ function dbConnector() {
     }
   };
 
+  //AUTHOR MIHIR MESIA
   dbObj.fetchQuestions = async (category) => {
     await client.connect();
     try {
@@ -173,6 +162,7 @@ function dbConnector() {
     }
   };
 
+  //AUTHOR MIHIR MESIA
   dbObj.sendScore = async (data) => {
     await client.connect();
     try {
@@ -205,6 +195,8 @@ function dbConnector() {
     }
   };
 
+  //AUTHOR MIHIR MESIA
+
   dbObj.fetchSingleScore = async (user) => {
     await client.connect();
     try {
@@ -223,6 +215,7 @@ function dbConnector() {
     }
   };
 
+  //AUTHOR MIHIR MESIA
   dbObj.fetchMulScore = async (user) => {
     await client.connect();
     try {
