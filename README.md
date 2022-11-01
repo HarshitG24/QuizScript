@@ -20,6 +20,7 @@
 4. Go to terminal and Run **npm run initcat**
 5. Run **npm run initques**
 6. Run the command **npm start**
+7. Go to **http://localhost:3001/**
 
 ## Features
 1. Login Page (index.html) -> The user can login to the QuizScript app or create account
