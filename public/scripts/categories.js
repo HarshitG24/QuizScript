@@ -16,11 +16,6 @@ const closeButton = document.querySelector(".close-button");
 const myGameCode = document.getElementById("generated_game_code");
 const enteredGameCode = document.getElementById("entered_game_code");
 
-// To fetch the USERID from the url
-// const query = window.location.search.substring(1);
-// const array = query.split("=");
-// const userID = validateUser();
-
 function toggleModal() {
   modal.classList.toggle("show-modal");
   if (modal.classList.contains("show-modal")) {
@@ -34,7 +29,6 @@ function windowOnClick(event) {
   }
 }
 function socketCall(name, userID) {
-  // const socket = io("http://localhost:3000");
   const socket = io("http://localhost:3000", {});
   socket.emit("new player", myGameCode);
 
@@ -70,22 +64,6 @@ function revert(img, cat_parent, cat_details, buttons) {
   buttons.style.display = "none";
 }
 
-// button.addEventListener("click", async () => {
-//   let categories = {
-//     category_name: "",
-//     category_data: "",
-//   };
-
-//   const headers = new Headers({ "Content-Type": "application/json" });
-//   const opts = {
-//     method: "post",
-//     headers: headers,
-//     body: JSON.stringify(categories),
-//   };
-
-//   const resp = await fetch("/categories/createCategories", opts);
-// });
-
 function generateUserGameCode() {
   return Math.floor(1000 + Math.random() * 9000);
 }
@@ -110,7 +88,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   data = await resp.json();
   const grid = document.createElement("div");
-  //const grid = document.querySelector(".project_grid project_grid--1x3")
   grid.className = ".project_grid project_grid--1x3";
   data.forEach((val) => {
     // categories grid display
@@ -137,7 +114,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     category_description.innerHTML = description;
 
     image.src = img;
-    //
     buttons.className = "buttons";
     const list = document.createElement("ul");
     const link1 = document.createElement("li");

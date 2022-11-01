@@ -21,7 +21,6 @@ router.get("/fetchSingleScore/:user", async (req, res) => {
 
 router.get("/getMulQuizResults/:username", async (req, res) => {
   const resp = await db.getQuizResult(req?.params?.username || "");
- 
   res.send({ data: resp.data });
 });
 

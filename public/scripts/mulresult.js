@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(query);
   const category = urlParams.get("category");
 
-  // socket.emit("add_player", userId);
-
   const p1 = document.getElementById("player_one");
   const p2 = document.getElementById("player_two");
   const p1Score = document.getElementById("player_one_score");

@@ -2,9 +2,6 @@ import express from "express";
 import db from "../database/quizScriptDb.js";
 const router = express.Router();
 
-// Get Home Page
-//Change the render function
-//res.redirect(index.html) if user is authenticated
 router.get("/", function (req, res) {
   res.render("index", { title: "Express" });
 });
@@ -27,12 +24,11 @@ router.get("/currentUser", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.session.destroy();
-  return res.redirect("/")
+  return res.redirect("/");
 });
 
-router.get("/getUser", (req,res)=> {
-  res.json({'user':req.session.user})
-})
-
+router.get("/getUser", (req, res) => {
+  res.json({ user: req.session.user });
+});
 
 export default router;
